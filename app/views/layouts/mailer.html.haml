@@ -1,0 +1,20 @@
+%html
+  %head
+    %meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
+    :css
+      @media only screen and (max-device-width: 480px) {
+        .table {
+          width: 296px !important; } }
+      a { color: #0000FF; }
+  %body(leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" bgcolor="#1166AA")
+    %table(width="100%" cellpadding="10" cellspacing="0" bgcolor="#1166AA" style="margin-bottom: 30px;font-family: arial, helvetica, sans-serif; font-size: 14px;")
+      %tr
+        %td(valign="top" align="center")
+          %table(width="550px" cellpadding="20" cellspacing="0" bgcolor="#FFFFFF" class="table")
+            %tr
+              %td(bgcolor="#F4F7F8" valign="top" align="left" style="font-size:14px;color:#000000;line-height:150%;font-family:arial, helvetica, sans-serif;")
+                = yield
+
+                - unless @nofooter
+                  %br
+                  = render :partial => 'follow_paragraph'
