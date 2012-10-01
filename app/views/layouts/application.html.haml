@@ -1,0 +1,25 @@
+!!!
+%html(lang="en")
+  %head
+    %title PositiveBid
+    %meta(name="viewport" content="width=device-width, initial-scale=1")
+    %link(rel="apple-touch-icon-precomposed" href="/phonegap/icons/Icon.png")
+    %link(rel="apple-touch-icon-precomposed" sizes="72x72" href="/phonegap/icons/Icon-72.png")
+    %link(rel="apple-touch-icon-precomposed" sizes="114x114" href="/phonegap/icons/Icon@2x.png")
+    - if Rails.env.development?
+      = javascript_include_tag 'jquery-all', :charset => 'utf-8' #, :debug => Rails.env.development?
+    - else
+      = javascript_include_tag("https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js", :charset => 'utf-8')
+      = javascript_include_tag("https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js", :charset => 'utf-8')
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application", :charset => 'utf-8'
+    %link{:href => "/blog/posts.atom", :rel => "alternate", :type => "application/atom+xml"}/
+    - if @document_assets
+      = stylesheet_link_tag 'document'
+      = javascript_include_tag 'document' 
+    = csrf_meta_tags
+    - if Rails.env.production? and session[:admin_id].blank?
+      = render 'shared/google_analytics'
+  %body{:class => "#{@body_class if @body_class}"}
+      = yield
+    = render 'shared/page_extras'
