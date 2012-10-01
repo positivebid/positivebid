@@ -1,0 +1,55 @@
+module EmailHelper
+
+  SIGN_OFFS = [ "All the best",
+    "Best",
+    "Best regards",
+    "Best wishes",
+    "Cheers",
+    "Yours",
+    "Cordially",
+    "Hmmm",
+    "Respectfully",
+    "Regards",
+    "Sincerely",
+    "Sincerely yours",
+    "Yours sincerely",
+    "Yours faithfully",
+    "Faithfully yours",
+    "Later",
+    "Kindest regards",
+    "Kind regards",
+    "Warmest regards",
+    "Warm regards",
+    "Yours truly",
+    "We remain yours truly",
+    "Warmly",
+    "Peace",
+    "Be well",
+    "Thanks",
+    "Thanks again",
+    "Thank you",
+    "Our sincere thanks for your time and consideration",
+    "Take care",
+    "Continued success",
+    "In your service",
+    "Virtually",
+    "Good Job!",
+    "All the best of success!",
+    "Have a great day!",
+    "Happy Holidays!",
+    "Keep up the good work!",
+    "Thank you!",
+    "Thank you for taking the time",
+    "All the best",
+    "Enjoy your weekend",
+    "HTH! (Hope This Helps!)",
+    "God speed",
+    "Keep in touch",
+    "Have a good one" ]
+
+  # random sign off
+  def rsignoff
+    return SIGN_OFFS[rand(SIGN_OFFS.size)]
+  end
+
+end

@@ -1,0 +1,6 @@
+= new_form.input :first_name , :hint => 'Your Given Name', :required => false, :input_html => { 'autofocus' => 'autofocus' }
+= new_form.input :last_name , :hint => 'Your Family Surname', :required => false
+= new_form.input :email, :label => 'Email', :hint => 'An activation link will be emailed to this address'
+= new_form.input :time_zone, :hint => "Make sure you set this correctly to your timezone"
+= new_form.input :password, :label => 'New Password'
+= new_form.input :password_confirmation, :label => 'Confirm New Password'
