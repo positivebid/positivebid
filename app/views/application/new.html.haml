@@ -1,0 +1,12 @@
+%h1
+  New #{resource_name.titleize}
+  - if enclosing_resource && path_exists?(:enclosing_resource_path)
+    for #{link_to enclosing_resource_name, enclosing_resource_path}
+
+= simple_form_for_resource do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => { :f => f }
+  %p
+    = f.submit "Create"
+
+= link_to 'Back to Index', resources_path

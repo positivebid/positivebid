@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20121001191215) do
 
   create_table "auctions", :force => true do |t|
-    t.string   "name",                                              :null => false
+    t.string   "name",                                               :null => false
     t.text     "description"
     t.string   "location"
     t.datetime "event_start_at"
@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(:version => 20121001191215) do
     t.integer  "fundraising_target"
     t.text     "payment_methods"
     t.boolean  "allow_anoymous_bids",       :default => false
-    t.string   "state",                     :default => "requrest", :null => false
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
+    t.string   "state",                     :default => "requested", :null => false
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
   end
 
   add_index "auctions", ["event_start_at"], :name => "index_auctions_on_event_start_at"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20121001191215) do
     t.string   "name",                                :null => false
     t.integer  "number",                              :null => false
     t.integer  "position",                            :null => false
-    t.integer  "increment",      :default => 1,       :null => false
+    t.integer  "min_increment",  :default => 1,       :null => false
     t.integer  "current_bid_id"
     t.boolean  "paid",           :default => false
     t.integer  "sold_for"

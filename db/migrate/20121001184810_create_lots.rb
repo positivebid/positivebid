@@ -5,7 +5,7 @@ class CreateLots < ActiveRecord::Migration
       t.string :name, :null => false
       t.integer :number, :null => false
       t.integer :position, :null => false
-      t.integer :increment, :default => 1, :null => false
+      t.integer :min_increment, :default => 1, :null => false
       t.integer :current_bid_id
       t.boolean :paid, :default => false
       t.integer :sold_for

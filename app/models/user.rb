@@ -58,4 +58,8 @@ class User < ActiveRecord::Base
   end
 
 
+  ########################## app stuff #############
+  has_many :auctions, :dependent => :nullify
+
+
 end

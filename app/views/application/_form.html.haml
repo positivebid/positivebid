@@ -1,0 +1,4 @@
+
+- for column in f.object.class.attr_accessible[@attr_role || :default].to_a.reject(&:blank?)
+  = f.input column
+

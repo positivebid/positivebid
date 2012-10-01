@@ -18,7 +18,7 @@ class CreateAuctions < ActiveRecord::Migration
       t.integer :fundraising_target
       t.text :payment_methods
       t.boolean :allow_anoymous_bids, :default => false
-      t.string :state, :default => 'requrest', :null => false
+      t.string :state, :default => 'requested', :null => false
 
       t.timestamps
     end

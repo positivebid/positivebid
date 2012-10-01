@@ -1,0 +1,26 @@
+%h1
+  Listing #{resource_name.humanize.pluralize}
+  - if enclosing_resource && path_exists?(:enclosing_resource_path)
+    for
+    = link_to enclosing_resource_name.humanize, enclosing_resource_path
+
+- if resources.respond_to? 'num_pages'
+  = paginate resources
+
+%table
+  %tr
+    - for column in controller.resource_service.content_columns
+      %th= column.human_name
+  - for resource in resources
+    %tr
+      - for column in controller.resource_service.content_columns
+        %td= h resource.send(column.name)
+      %td= link_to 'Show', resource_path(resource)
+      %td= link_to 'Edit', edit_resource_path(resource)
+      %td= link_to 'Destroy', resource_path(resource) , 'data-confirm' => 'Are you sure?', 'data-method' => :delete
+
+- if resources.respond_to? 'num_pages'
+  = paginate resources
+
+%br.clearleft/
+= link_to 'New ' + resource_name.humanize, new_resource_path

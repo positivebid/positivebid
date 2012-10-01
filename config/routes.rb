@@ -21,6 +21,14 @@ Positive::Application.routes.draw do
 
 
   resources :users
-  resource :home, :controller => :home
+  resource :home, :controller => :home do
+
+    resources :auctions do
+      resources :lots do
+        resources :items
+      end
+    end
+
+  end
 
 end
