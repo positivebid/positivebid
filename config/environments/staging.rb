@@ -64,10 +64,10 @@ Positive::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
-  
+ 
   Positive::Application.config.middleware.use ExceptionNotifier,
-    :email_prefix => "[PositiveBid PROD] ",
-    :sender_address => %{"PostiveBid notifier" <tech@postivebid.com>},
-    :exception_recipients => %w{tech@postivebid.com}
+    :email_prefix => "[PostiveBid STG] ",
+    :sender_address => %{"Postive notifier" <tech@positivebid.com>},
+    :exception_recipients => %w{tech@positivebid.com}
   
 end
