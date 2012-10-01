@@ -11,7 +11,92 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001131759) do
+ActiveRecord::Schema.define(:version => 20121001191215) do
+
+  create_table "auctions", :force => true do |t|
+    t.string   "name",                                              :null => false
+    t.text     "description"
+    t.string   "location"
+    t.datetime "event_start_at"
+    t.datetime "event_end_at"
+    t.datetime "default_sale_start_at"
+    t.datetime "default_sale_end_at"
+    t.string   "hashtag"
+    t.integer  "user_id"
+    t.string   "charity_name"
+    t.string   "charity_contact_name"
+    t.string   "charity_contact_email"
+    t.string   "charity_contact_telephone"
+    t.boolean  "charity_approved",          :default => false
+    t.integer  "fundraising_target"
+    t.text     "payment_methods"
+    t.boolean  "allow_anoymous_bids",       :default => false
+    t.string   "state",                     :default => "requrest", :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
+
+  add_index "auctions", ["event_start_at"], :name => "index_auctions_on_event_start_at"
+  add_index "auctions", ["state"], :name => "index_auctions_on_state"
+  add_index "auctions", ["user_id"], :name => "index_auctions_on_user_id"
+
+  create_table "bids", :force => true do |t|
+    t.integer  "lot_id",     :null => false
+    t.integer  "user_id"
+    t.integer  "amount",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "bids", ["lot_id", "created_at"], :name => "index_bids_on_lot_id_and_created_at"
+  add_index "bids", ["lot_id"], :name => "index_bids_on_lot_id"
+  add_index "bids", ["user_id"], :name => "index_bids_on_user_id"
+
+  create_table "items", :force => true do |t|
+    t.integer  "lot_id",            :null => false
+    t.string   "name",              :null => false
+    t.integer  "position"
+    t.text     "description"
+    t.text     "terms"
+    t.text     "collection_info"
+    t.string   "donor_name"
+    t.string   "donor_website_url"
+    t.text     "donor_byline"
+    t.text     "organiser_notes"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "items", ["lot_id", "position"], :name => "index_items_on_lot_id_and_position"
+  add_index "items", ["lot_id"], :name => "index_items_on_lot_id"
+
+  create_table "lots", :force => true do |t|
+    t.integer  "auction_id",                          :null => false
+    t.string   "name",                                :null => false
+    t.integer  "number",                              :null => false
+    t.integer  "position",                            :null => false
+    t.integer  "increment",      :default => 1,       :null => false
+    t.integer  "current_bid_id"
+    t.boolean  "paid",           :default => false
+    t.integer  "sold_for"
+    t.boolean  "sold",           :default => false
+    t.string   "payment_method"
+    t.boolean  "collected",      :default => false
+    t.boolean  "published",      :default => false
+    t.datetime "sale_start_at"
+    t.datetime "sale_end_at"
+    t.integer  "buy_now_price"
+    t.string   "state",          :default => "draft"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
+  add_index "lots", ["auction_id", "number"], :name => "index_lots_on_auction_id_and_number"
+  add_index "lots", ["auction_id", "position"], :name => "index_lots_on_auction_id_and_position"
+  add_index "lots", ["auction_id", "sale_start_at"], :name => "index_lots_on_auction_id_and_sale_start_at"
+  add_index "lots", ["auction_id", "state"], :name => "index_lots_on_auction_id_and_state"
+  add_index "lots", ["auction_id"], :name => "index_lots_on_auction_id"
+  add_index "lots", ["state"], :name => "index_lots_on_state"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                  :null => false
