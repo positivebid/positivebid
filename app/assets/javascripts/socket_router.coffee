@@ -5,7 +5,8 @@ PB = window.PB ||= {}
 unless $.cookie('nuid')?
   $.cookie('nuid', window.nuid() , { path: '/' })
 
-window.socket ?= io.connect()
+#window.socket ?= io.connect()
+window.socket ?= NoDevent
 
 socket_defaults(socket)
 

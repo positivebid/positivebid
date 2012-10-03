@@ -1,0 +1,88 @@
+
+$window = $(window)
+
+window.window_width = ->  $window.width()
+
+window.supports_html5_storage = ->
+  try
+    if window["localStorage"]?
+      return window["localStorage"]
+  catch e
+    console?.log("no local storage: #{e}")
+    return false
+
+window.localStorage_getItem = (key) ->
+  localStorage.getItem(key)
+
+
+window.localStorage_setItem = (key, value) ->
+  try
+    localStorage.setItem(key, value)
+  catch err
+    if (err.name).toUpperCase() == 'QUOTA_EXCEEDED_ERR'
+      alert "You must have local storage enabled (or private browsing turned off)"
+       
+
+
+window.R ?= {}
+
+window.loadR = (R = {}) ->
+  #removeExistingModelData()
+  PB.auctions.reset(R.auctions) if R.auctions?
+  PB.lots.reset(R.lots) if R.lots?
+  PB.items.reset(R.items) if R.items?
+  #OLD if R.current_user?
+  #OLD   PB.User.add(window.current_user = new PB.User(R.current_user))
+
+window.removeExistingModelData = ->
+  window.current_user = null
+  for m in [ PB.auctions, PB.lots, PB.items ]
+    m.reset()
+
+
+window.reloadR = (callback, error_callback = null) ->
+  json_url = "#{R.app_host}/app.json"
+  $.ajax
+    dataType: "json"
+    type: "GET"
+    url: json_url
+    success: (data) ->
+      R = data
+      loadR R
+      callback.call()  if callback
+
+    error: (data) ->
+      console.log "reload R error", data
+      error_callback.call()  if callback
+
+window.D2 = (val) -> (if (val < 10) then "0" + val else val)
+
+
+window.phonegap = -> PhoneGap?
+window.phonegap_target = -> if PhoneGap? then "_blank" else "_top"
+
+window.progressHandlingFunction = (e) ->
+ if e.lengthComputable
+   $('progress').attr({value:e.loaded,max:e.total})
+
+
+window.nice_date = (string) ->
+  if string? and string != ""
+    moment(string).format("ddd, Do MMM YYYY")
+  else
+    ""
+window.nice_datetime = (string) ->
+  if string? and string != ""
+    moment(string).format("ddd, Do MMM YYYY h:mm A")
+  else
+    ""
+
+window.nice_time = (mins) ->
+  h = (parseInt(mins/60,10))%12
+  h = 12 if h == 0
+  "#{h}:#{D2(mins%60)} #{if mins < 720 then 'AM' else 'PM'}"
+
+
+window.csrf_token = -> $("meta[name=csrf-token]").attr("content")
+window.csrf_param = -> $("meta[name=csrf-param]").attr("content")
+

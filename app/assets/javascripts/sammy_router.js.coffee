@@ -129,6 +129,29 @@ PB.app = $.sammy(->
     context.redirect("#/lots/#{new_bid.lot_id}")
     return false
 
+  @get "#/reload", (context) ->
+    console.log 'here1'
+    render( new Sview('reload', {}) )
+    console.log 'here2'
+    window.reverse_back = true
+    console.log 'here3'
+    setTimeout ->
+      reloadR( ->
+        console.log 'here4'
+        context.redirect "#/auctions"
+      , ->
+        removeExistingModelData()
+        delete R.current_user
+        context.redirect "#/root"
+        gritter
+          title: "Data Error"
+          text: "logging you out!"
+      )
+      
+
+    , 500  # need to wait for jquery mobile page to fully render
+    false
+
 #  @post "#/users", (context) ->
 #    u = new User(context.params.user)
 #    localStorage_setItem("email", context.params.user?.email) if supports_html5_storage()

@@ -35,6 +35,8 @@ gem 'money'
 gem 'gocardless'
 gem 'exception_notification'
 
+gem "nodevent"
+
 
 gem 'prawn', '0.12.0'
 gem 'prawn-fast-png', :git => 'git://github.com/jlsync/prawn-fast-png.git', :require => 'prawn/fast_png'

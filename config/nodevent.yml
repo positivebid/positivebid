@@ -1,0 +1,16 @@
+development: &development
+  host: 'http://localhost:8080'
+  namespace: '/nodevent'
+
+test: &test
+  host: 'http://localhost:8080'
+  namespace: '/nodevent'
+
+cucumber:
+  <<: *test
+
+production:
+  host: 'http://nodevent.com:8080'
+  namespace: '/nodevent'
+  
+

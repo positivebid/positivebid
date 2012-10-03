@@ -13,6 +13,7 @@
 #= require pb
 #= require socket_defaults
 #= require socket_router
+#= require util
 #= require_tree ./models
 #= require sammy_router
 #= require sview

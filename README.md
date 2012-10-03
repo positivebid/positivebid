@@ -18,3 +18,11 @@ rake db:create
 rake db:setup
 
 
+# NoDevent
+
+## install
+npm install -g nodevent
+
+## start
+npm start -g nodevent
+

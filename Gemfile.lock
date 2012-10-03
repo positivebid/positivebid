@@ -160,6 +160,8 @@ GEM
     multi_json (1.3.6)
     multipart-post (1.1.5)
     newrelic_rpm (3.4.2.1)
+    nodevent (3.1.2)
+      redis (>= 2.0.0)
     oauth2 (0.7.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -208,6 +210,7 @@ GEM
     rdiscount (1.6.8)
     rdoc (3.12)
       json (~> 1.4)
+    redis (3.0.1)
     rmagick (2.13.1)
     ruby-graphviz (1.0.8)
     ruby-rc4 (0.1.5)
@@ -269,6 +272,7 @@ DEPENDENCIES
   less-rails-bootstrap
   money
   newrelic_rpm
+  nodevent
   pg
   prawn (= 0.12.0)
   prawn-fast-png!

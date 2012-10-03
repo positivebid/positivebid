@@ -13,10 +13,12 @@ class ApplicationController < ActionController::Base
   before_filter :require_user, :except => [:xs, :s, :m, :l, :xl, :xxl, :o, :p20, :p40, :p80, :p160, :p200, :p320, :p400, :p640 ]
 
 
+
   map_enclosing_resource :home, :singleton => true, :class => User, :find => :current_user
 
 
   before_filter :set_user_time_zone
+  before_filter :set_r_var
 
   def set_user_time_zone
     Time.zone = current_user.time_zone if current_user
@@ -65,6 +67,18 @@ class ApplicationController < ActionController::Base
   def require_admin
     unless current_user and session[:admin_id]
       redirect_to root_path, :notice => "You must be an admin to access that page" 
+    end
+  end
+
+  def set_r_var
+    @r = {} # converted to_json as "R" in application layout
+    @r['current_user'] = current_user if current_user
+    if Rails.env.production?
+      @r['app_host']   = 'http://www.postivebid.com'
+      @r['asset_host'] = 'http://assets.positivebid.com'
+    else
+      @r['app_host']   = root_url.sub(/\/$/, "")
+      @r['asset_host'] = @r['app_host']
     end
   end
 

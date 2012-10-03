@@ -21,14 +21,34 @@ $document.bind 'mobileinit', () ->
 
 rivets.configure({ prefix: 'rv' })
 
+$document = $(document)
+
+$document.ajaxStart -> $.mobile.loading('show')
+$document.ajaxStop -> $.mobile.loading('hide')
+
 $ ->
   PB.$body = $('body')
   $('script').remove()
   $.mobile.initializePage()
   #Backbone.history.start()
-  PB.app.run "#/auctions"
   $('div.ui-page:not(.ui-page-active)').remove() # remove inital page.
   #Backbone.history.navigate()
+  
+  window.R ?=
+    app_host: ''
 
+  if PhoneGap?
+    #assign_rest R.app_host
+  else
+    #assign_rest()
+    #loadR R
+
+  setTimeout (->
+    console.log  "HEREEEEE"
+    if current_user?
+      PB.app.run "#/reload"
+    else
+      PB.app.run "#/reload"
+  ), 200 # TODO work out why a delay is required.
 
 
