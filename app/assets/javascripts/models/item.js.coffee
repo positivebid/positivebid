@@ -4,7 +4,7 @@ PB = window.PB ||= {}
 PB.Item = Backbone.Model.extend
   urlRoot: 'item'
   noIoBind: false
-  socket: window.socket
+  socket: window.global_room
 
   initialize: (args) ->
     @id = args.id
@@ -31,6 +31,7 @@ PB.Item = Backbone.Model.extend
       this.ioBind('delete', @serverDelete, @)
 
   viewUrl: -> "#/items/#{@id}"
+  imageUrl: -> @get('image_url') or "/img/logo/positivebid_rounded_128.png"
 
   lot: -> PB.lots.get(@lot_id)
 

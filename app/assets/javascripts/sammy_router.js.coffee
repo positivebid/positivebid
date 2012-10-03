@@ -68,7 +68,7 @@ PB.app = $.sammy(->
     render( new Sview('auctions_new', {auction: form_auction }) )
 
   @get "#/auctions/:id", (context) ->
-    window.socket.emit 'enter_auction', { id: context.params.id }
+    #OLD window.socket.emit 'enter_auction', { id: context.params.id }
     render( new Sview('auctions_show', {auction: PB.auctions.get(context.params.id)}) )
     
   @get "#/auctions/:auction_id/lots", (context) ->

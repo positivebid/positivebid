@@ -4,7 +4,7 @@ PB = window.PB ||= {}
 PB.User = Backbone.Model.extend
   urlRoot: 'user'
   noIoBind: false
-  socket: window.socket
+  socket: window.global_room
 
   initialize: (args) ->
     @id = args.id

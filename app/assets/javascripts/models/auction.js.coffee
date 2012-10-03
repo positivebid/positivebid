@@ -4,7 +4,7 @@ PB = window.PB ||= {}
 PB.Auction = Backbone.Model.extend
   urlRoot: 'auction'
   noIoBind: false
-  socket: window.socket
+  socket: window.global_room
 
   initialize: (args = {}) ->
     @name = args.name

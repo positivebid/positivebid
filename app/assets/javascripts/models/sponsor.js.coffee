@@ -4,7 +4,7 @@ PB = window.PB ||= {}
 PB.Sponsor = Backbone.Model.extend
   urlRoot: 'sponsor'
   noIoBind: false
-  socket: window.socket
+  socket: window.global_room
 
   initialize: (args) ->
     @id = args.id

@@ -4,10 +4,10 @@ PB = window.PB ||= {}
 PB.Users = Backbone.Collection.extend
   model: PB.User
   url: 'users'
-  socket: window.socket
+  socket: window.global_room
   initialize: () ->
     _.bindAll(@, 'serverCreate', 'collectionCleanup')
-    @ioBind('create', window.socket, @serverCreate, @)
+    @ioBind('create', window.global_room, @serverCreate, @)
 
   serverCreate: (data) ->
     console?.log('creating new user with', data)

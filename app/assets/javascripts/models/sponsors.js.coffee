@@ -4,10 +4,10 @@ PB = window.PB ||= {}
 PB.Sponsors = Backbone.Collection.extend
   model: PB.Sponsor
   url: 'sponsors'
-  socket: window.socket
+  socket: window.global_room
   initialize: () ->
     _.bindAll(@, 'serverCreate', 'collectionCleanup')
-    @ioBind('create', window.socket, @serverCreate, @)
+    @ioBind('create', window.global_room, @serverCreate, @)
 
   serverCreate: (data) ->
     console?.log('creating new lot with', data)

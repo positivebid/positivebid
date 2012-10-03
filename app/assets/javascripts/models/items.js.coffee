@@ -4,10 +4,10 @@ PB = window.PB ||= {}
 PB.Items = Backbone.Collection.extend
   model: PB.Item
   url: 'items'
-  socket: window.socket
+  socket: window.global_room
   initialize: () ->
     _.bindAll(@, 'serverCreate', 'collectionCleanup')
-    @ioBind('create', window.socket, @serverCreate, @)
+    @ioBind('create', window.global_room, @serverCreate, @)
 
   serverCreate: (data) ->
     console?.log('creating new item with', data)

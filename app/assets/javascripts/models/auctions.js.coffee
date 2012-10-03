@@ -4,10 +4,10 @@ PB = window.PB ||= {}
 PB.Auctions = Backbone.Collection.extend
   model: PB.Auction
   url: 'auctions'
-  socket: window.socket
+  socket: window.global_room
   initialize: () ->
     _.bindAll(@, 'serverCreate', 'collectionCleanup')
-    @ioBind('create', window.socket, @serverCreate, @)
+    @ioBind('create', window.global_room, @serverCreate, @)
 
   serverCreate: (data) ->
     console?.log('creating new auction with', data)

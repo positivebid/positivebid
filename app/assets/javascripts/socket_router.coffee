@@ -1,20 +1,20 @@
 
 PB = window.PB ||= {}
 
-# set the unique 'connection' cookie  used to identify re-connects
-unless $.cookie('nuid')?
-  $.cookie('nuid', window.nuid() , { path: '/' })
 
-#window.socket ?= io.connect()
-window.socket ?= NoDevent
+window.global_room = NoDevent.room('global_room')
+global_room.join (err) ->
+  console.log "error joining global_room", err
+  
+window.global_room
 
-socket_defaults(socket)
+socket_defaults(global_room)
 
-socket.on "auction_list", (data) ->
+global_room.on "auction_list", (data) ->
   console?.log("got auction_list", data)
   PB.auctions.reset(data.auctions)
 
-socket.on "user_entered", (data) ->
+global_room.on "user_entered", (data) ->
   #TODO add to model/collection
   # bind UI to model/collection events
   console?.log("got user_entered", data)
@@ -29,26 +29,26 @@ socket.on "user_entered", (data) ->
   , 4000
 
 
-socket.on "user_left", (data) ->
+global_room.on "user_left", (data) ->
   console?.log("got user_left", data)
 
-socket.on "viewer_entered", (data) ->
+global_room.on "viewer_entered", (data) ->
   console?.log("got viewer_entered", data)
 
-socket.on "viewer_left", (data) ->
+global_room.on "viewer_left", (data) ->
   console?.log("got viewer_left", data)
 
-socket.on "lot_list", (data) ->
+global_room.on "lot_list", (data) ->
   console?.log("got lot_list", data)
   PB.lots.reset(data.lots)
 
 
-socket.on "connect", ->
+global_room.on "connect", ->
   socket.emit('list_auctions')
 
   $("#status").removeClass("offline").addClass("online").find("p").text "You are online and can bid."
 
-socket.on "disconnect", ->
+global_room.on "disconnect", ->
   $("#connected").removeClass("on").find("strong").text "Offline"
   $("#status").removeClass("online").addClass("offline").find("p").text "You are offline. please wait..."
 

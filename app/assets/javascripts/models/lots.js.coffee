@@ -4,10 +4,10 @@ PB = window.PB ||= {}
 PB.Lots = Backbone.Collection.extend
   model: PB.Lot
   url: 'lots'
-  socket: window.socket
+  socket: window.global_room
   initialize: () ->
     _.bindAll(@, 'serverCreate', 'collectionCleanup')
-    @ioBind('create', window.socket, @serverCreate, @)
+    @ioBind('create', window.global_room, @serverCreate, @)
 
   serverCreate: (data) ->
     # make sure no duplicates, just in case
