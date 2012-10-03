@@ -1,0 +1,49 @@
+#lots_show
+  %div(data-role="page")
+    %div.ui-bar-b(data-role="header" data-theme="b")
+      %a(data-rv-href="auction:lotsUrl" data-icon="back" data-direction="reverse") Lots
+      %h1 Lot
+      %a(data-rv-href="lot:newItemUrl" data-icon="plus") Add Item
+
+    %div(data-role="content")
+      %h1
+        %span Lot
+        %span(data-rv-text="lot:number")
+        %span(data-rv-text="lot:name")
+
+    %div(data-role="content")
+      %div(data-rv-hide="lot.current_bid_id")
+        %p No Bids yet for this lot.
+      %div(data-rv-show="lot.current_bid_id")
+        %img.i80(data-rv-src="lot:current_bid_user_image < lot.current_bid_id")
+        %span Highest Bid
+        %strong(data-rv-text="lot:current_bid_amount < lot.current_bid_id")
+        %span _by_
+        %span(data-rv-text="lot:current_bid_user_name < lot.current_bid_id")
+        %span _at_
+        %span(data-rv-text="lot:current_bid_created_at < lot.current_bid_id")
+
+    %div(data-role="content" data-theme="b")
+      %form(action="#/bids" method="POST")
+        %input(type="hidden" name="bid[lot_id]" data-rv-value="lot:id")
+        %input#bid_amount(type="text" name="bid[amount]" data-rv-value="lot:next_bid_amount < lot.current_bid_id")
+        %input#bid_now(type="submit" value="Bid Now")
+
+
+    %div(data-role="content")
+      %h2 Items
+      %div(data-rv-hide="items:length < items.models")
+        %p No items for this lot found.
+
+      %ul(data-role="listview" data-inset="true" data-rv-show="items:length < items.models" data-rv-listview_refresh="items:length < items.models")
+        %li(data-icon="chevron-right" data-rv-each-item="items:models < items.models")
+          %a(data-rv-href="item:viewUrl")
+            %img.p80(data-rv-src="item:image_url")
+            %h3(data-rv-text="item:name")
+            %p
+              %span(data-rv-text="item:description")
+
+
+    %div.ui-bar-b(data-role="footer")
+      %h4 PositiveBid
+

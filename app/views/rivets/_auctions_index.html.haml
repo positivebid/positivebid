@@ -1,0 +1,25 @@
+#auctions_index
+  %div(data-role="page")
+    %div.ui-bar-b(data-role="header" data-theme="b")
+      %a(href="#/" data-icon="home" data-direction="reverse") Home
+      %h1 Auctions
+      %a(href="#/auctions/new" data-icon="plus") Add Auction
+
+    %div(data-role="content")
+
+      %a(href="#/login" data-role="button") Login
+
+      %div(data-rv-hide="auctions:length < auctions.models")
+        %p Hmmm, no auctions found.
+
+      %ul(data-role="listview" data-inset="true" data-rv-show="auctions:length < auctions.models" data-rv-listview_refresh="auctions:length < auctions.models")
+        %li(data-icon="chevron-right" data-rv-each-auction="auctions:models < auctions.models")
+          %a(data-rv-href="auction:viewUrl")
+            %img.p80(data-rv-src="auction:image_url") 
+            %h3(data-rv-text="auction:name")
+            %p
+              %span(data-rv-text="auction:description")
+
+    %div.ui-bar-b(data-role="footer")
+      %h4 PositiveBid
+

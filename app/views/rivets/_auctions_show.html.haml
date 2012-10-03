@@ -1,0 +1,16 @@
+#auctions_show
+  %div(data-role="page")
+    %div.ui-bar-b(data-role="header" data-theme="b")
+      %a(href="#/auctions" data-icon="back" data-direction="reverse") Auctions
+      %h1 Auction
+
+    %div(data-role="content")
+      %h1(data-rv-text="auction.name")
+      %p
+        %span(div-rv-text="auction.description")
+      
+      %a(data-rv-href="auction:lotsUrl" data-role="button")  View Lots
+
+    %div.ui-bar-b(data-role="footer")
+      %h4 PositiveBid
+

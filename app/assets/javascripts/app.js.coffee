@@ -1,0 +1,20 @@
+
+#= require plugins/nuid
+#= require plugins/jquery.cookie
+#= require plugins/rivets.js
+#= require vendor/underscore-min.js
+#= require vendor/backbone
+#= require vendor/backbone.iosync
+#= require vendor/backbone.iobind
+#= require rivets_routines
+#= require rivets_adapter
+#= require vendor/sammy/sammy
+#= require vendor/sammy/plugins/sammy.nested_params
+#= require pb
+#= require socket_defaults
+#= require socket_router
+#= require_tree ./models
+#= require sammy_router
+#= require sview
+#= require setup
+

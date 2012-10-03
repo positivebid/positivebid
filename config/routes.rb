@@ -1,6 +1,6 @@
 Positive::Application.routes.draw do
 
-  get "root/index"
+  match '/app' => 'root#app', :as => :app
 
   root :to => 'root#index'
 

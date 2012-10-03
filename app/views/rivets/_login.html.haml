@@ -1,0 +1,24 @@
+#login
+  %div(data-role="page")
+    %div(data-role="header")
+      %h1 PositiveBid
+    %div(data-role="content")
+      #container
+        #static &nbsp;
+
+        #active
+          %p SIGN IN USING
+          #oauth
+            %a#twitter_button.oauthbuttons.twitter(data-rel="external" href="/auth/twitter")
+              %img(src="img/twsml_opt.png" alt="twitterimage for button")
+            %a#facebook_button.oauthbuttons(href="#")
+              %img(src="img/fbsml_opt.png" alt="facebookimage for button")
+            %a#google_button.oauthbuttons(href="#")
+              %img(src="img/googsml_opt.png" alt="twitterimage for button")
+
+        #ormiddle OR
+
+        %div 
+          %a#create_account.myButton(href="#") CREATE ACCOUNT
+        .clear &nbsp;
+

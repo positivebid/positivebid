@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %title PositiveBid
+    %meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+    %meta{:charset => "utf-8"}
+    - if not params[:phonegap_template]
+      %link(rel="apple-touch-icon-precomposed" href="/phonegap/icons/Icon.png")
+      %link(rel="apple-touch-icon-precomposed" sizes="72x72" href="/phonegap/icons/Icon-72.png")
+      %link(rel="apple-touch-icon-precomposed" sizes="114x114" href="/phonegap/icons/Icon@2x.png")
+      %link(rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.css")
+      %script(src="http://code.jquery.com/jquery-1.8.2.min.js" charset="utf-8")
+      %script(src="/socket.io/socket.io.js" charset="utf8")
+      = stylesheet_link_tag    "app", :media => "all"
+      = javascript_include_tag "app", :charset => "utf-8"
+      %script(src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.js" charset="utf-8")
+    - else
+      %link(rel="stylesheet"){:href => stylesheet_path('app').sub(/\A(http:\/\/[^\/]*)?\//,'')}
+      %script(charset="utf-8" src="cordova.js")
+      %script(charset="utf-8"){:src => javascript_path('app').sub(/\A(http:\/\/[^\/]*)?\//,'')}
+      %script(charset="utf-8"){:src => javascript_path('app2').sub(/\A(http:\/\/[^\/]*)\//,'')}
+      %script(charset="utf-8"){:src => javascript_path('app_gap').sub(/\A(http:\/\/[^\/]*)\//,'')}
+    :javascript
+      var R = #{@r.to_json};
+    = csrf_meta_tags
+    - if Rails.env.production? and session[:admin_id].blank?
+      = render 'shared/google_analytics'
+  %body
+    = yield 
+
