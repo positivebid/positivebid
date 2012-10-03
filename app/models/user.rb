@@ -1,5 +1,23 @@
 class User < ActiveRecord::Base
-  attr_accessible :anonymous_bidder, :bid_confirmation,  :email, :first_name, :last_name, :mobile_number, :outbid_confirmation, :share_confirmation, :telephone_number, :time_zone, :password, :password_confirmation
+  USER_FIELDS  = [ 
+    :email, 
+    :first_name, 
+    :last_name, 
+    :mobile_number, 
+    :telephone_number, 
+    :outbid_confirmation, 
+    :share_confirmation, 
+    :bid_confirmation,  
+    :anonymous_bidder, 
+    :time_zone, 
+    :password, 
+    :password_confirmation ]
+
+  ADMIN_ONLY_FIELDS =  [ :positive_admin ]
+  ADMIN_FIELDS = USER_FIELDS + ADMIN_ONLY_FIELDS
+
+  attr_accessible *USER_FIELDS
+  attr_accessible *ADMIN_FIELDS, :as => :admin
 
   before_validation :strip_attributes
   validates_presence_of :first_name, :last_name, :time_zone

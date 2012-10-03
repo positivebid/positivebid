@@ -1,5 +1,27 @@
 class Auction < ActiveRecord::Base
-  attr_accessible :allow_anoymous_bids, :charity_approved, :charity_contact_email, :charity_contact_name, :charity_contact_telephone, :charity_name, :default_sale_end_at, :default_sale_start_at, :description, :event_end_at, :event_start_at, :fundraising_target, :hashtag, :location, :name, :payment_methods
+
+  USER_FIELDS = [ :name, 
+    :description, 
+    :location, 
+    :hashtag, 
+    :event_end_at, 
+    :event_start_at, 
+    :default_sale_end_at, 
+    :default_sale_start_at, 
+    :allow_anoymous_bids, 
+    :charity_contact_email, 
+    :charity_contact_name, 
+    :charity_contact_telephone, 
+    :charity_name, 
+    :charity_approved, 
+    :fundraising_target, 
+    :payment_methods ]
+
+  ADMIN_ONLY_FIELDS = [ :charity_approved ]
+  ADMIN_FIELDS = USER_FIELDS + ADMIN_ONLY_FIELDS
+
+  attr_accessible *USER_FIELDS
+  attr_accessible *ADMIN_FIELDS, :as => :admin
 
   validates_presence_of :name
   validates_length_of :name, :in => 2..255

@@ -1,5 +1,20 @@
 class Lot < ActiveRecord::Base
-  attr_accessible :buy_now_price, :collected, :min_increment, :name, :number, :paid, :payment_method, :payment_method, :published, :sale_end_at, :sale_start_at 
+  USER_FIELDS = [
+    :name, 
+    :number, 
+    :buy_now_price, 
+    :min_increment, 
+    :collected, 
+    :published, 
+    :sale_end_at, 
+    :sale_start_at ,
+  ]
+  
+  ADMIN_ONLY_FIELDS = [ :paid, :payment_method ]
+  ADMIN_FIELDS = USER_FIELDS + ADMIN_ONLY_FIELDS
+
+  attr_accessible *USER_FIELDS
+  attr_accessible *ADMIN_FIELDS, :as => :admin
 
   belongs_to :auction
   has_many :bids, :dependent => :destroy

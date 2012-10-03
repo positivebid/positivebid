@@ -1,5 +1,7 @@
 class Item < ActiveRecord::Base
-  attr_accessible :collection_info, :description, :donor_byline, :donor_name, :name, :terms, :organiser_notes
+  USER_FIELDS = [ :collection_info, :description, :donor_byline, :donor_name, :name, :terms, :organiser_notes ]
+
+  attr_accessible *USER_FIELDS
 
   belongs_to :lot
 
