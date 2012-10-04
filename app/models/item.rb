@@ -7,10 +7,9 @@ class Item < ActiveRecord::Base
 
   acts_as_list :scope => :lot_id
 
-  after_create :emit_create
-  after_update :emit_update
-
   scope :sorted, :order => 'position ASC'
+
+  include NodeventGlobal
 
   def self.order_by_ids(ids)
     transaction do
@@ -20,14 +19,6 @@ class Item < ActiveRecord::Base
     end
   end
 
-
-  def emit_create
-    NoDevent::Emitter.emit('global_room', 'items:create', self )
-  end
-
-  def emit_update
-    NoDevent::Emitter.emit('global_room', "item/#{id}:update", self )
-  end
 
 
 end

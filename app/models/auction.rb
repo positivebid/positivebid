@@ -32,6 +32,7 @@ class Auction < ActiveRecord::Base
   has_many :items, :through => :lots
   has_many :bids, :through => :lots
 
+  include NodeventGlobal
 
 
 end

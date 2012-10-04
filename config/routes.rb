@@ -19,6 +19,7 @@ Positive::Application.routes.draw do
     end
   end
 
+  resource :bids, :controller => :bidding, :only => [:create ]
 
   resources :users
   resource :home, :controller => :home do

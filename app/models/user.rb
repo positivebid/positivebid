@@ -79,5 +79,7 @@ class User < ActiveRecord::Base
   ########################## app stuff #############
   has_many :auctions, :dependent => :nullify
 
+  include NodeventGlobal
+
 
 end

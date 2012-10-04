@@ -31,6 +31,7 @@ window.loadR = (R = {}) ->
   PB.auctions.reset(R.auctions) if R.auctions?
   PB.lots.reset(R.lots) if R.lots?
   PB.items.reset(R.items) if R.items?
+  PB.users.reset(R.users) if R.users?
   #OLD if R.current_user?
   #OLD   PB.User.add(window.current_user = new PB.User(R.current_user))
 

@@ -124,8 +124,7 @@ PB.app = $.sammy(->
     render( new Sview('items_show', {item: item, lot: item.lot() }) )
 
   @post "#/bids",  (context) ->
-    new_bid = new PB.Bid(context.params.bid)
-    new_bid.save()
+    new_bid = PB.bids.create(context.params.bid)
     context.redirect("#/lots/#{new_bid.lot_id}")
     return false
 

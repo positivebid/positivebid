@@ -18,6 +18,7 @@ class Lot < ActiveRecord::Base
 
   belongs_to :auction
   has_many :bids, :dependent => :destroy
+  belongs_to :current_bid, :class_name => 'Bid'
   has_many :items, :dependent => :destroy
 
   validates_presence_of :name
@@ -28,6 +29,8 @@ class Lot < ActiveRecord::Base
   acts_as_list  :scope => :auction
 
   scope :sorted, :order => 'position ASC'
+
+  include NodeventGlobal
 
   def self.order_by_ids(ids)
     transaction do

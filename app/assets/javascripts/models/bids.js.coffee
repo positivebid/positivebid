@@ -3,8 +3,8 @@ PB = window.PB ||= {}
 
 PB.Bids = Backbone.Collection.extend
   model: PB.Bid
-  url: 'bids'
   socket: window.global_room
+  url: 'bids'
   initialize: () ->
     _.bindAll(@, 'serverCreate', 'collectionCleanup')
     @ioBind('create', window.global_room, @serverCreate, @)

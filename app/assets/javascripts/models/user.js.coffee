@@ -8,7 +8,6 @@ PB.User = Backbone.Model.extend
 
   initialize: (args) ->
     @id = args.id
-    @name = args.name
     @image = args.image
     @email = args.email
     @admin = args.admin
@@ -27,10 +26,9 @@ PB.User = Backbone.Model.extend
       this.ioBind('update', @serverChange, @)
       this.ioBind('delete', @serverDelete, @)
 
-  viewUrl: -> "#/bids/#{@id}"
+  viewUrl: -> "#/users/#{@id}"
 
-  lot: -> PB.lots.get(@lot_id)
-  user: -> PB.users.get(@user_id)
+  name: -> "#{@get('first_name')} #{@get('last_name')}"
 
 
   serverChange: (data) ->

@@ -2,7 +2,6 @@
 PB = window.PB ||= {}
 
 PB.Bid = Backbone.Model.extend
-  urlRoot: 'bid'
   noIoBind: false
   socket: window.global_room
 
@@ -23,8 +22,8 @@ PB.Bid = Backbone.Model.extend
 
   viewUrl: -> "#/bids/#{@id}"
 
-  lot: -> PB.lots.get(@lot_id)
-  user: -> PB.users.get(@user_id)
+  lot: -> PB.lots.get(@get('lot_id'))
+  user: -> PB.users.get(@get('user_id'))
 
 
   serverChange: (data) ->

@@ -4,7 +4,6 @@
 #= require plugins/rivets.js
 #= require vendor/underscore-min.js
 #= require vendor/backbone
-#= require vendor/backbone.iosync
 #= require vendor/backbone.iobind
 #= require rivets_routines
 #= require rivets_adapter
