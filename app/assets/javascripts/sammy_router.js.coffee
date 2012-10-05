@@ -129,14 +129,10 @@ PB.app = $.sammy(->
     return false
 
   @get "#/reload", (context) ->
-    console.log 'here1'
     render( new Sview('reload', {}) )
-    console.log 'here2'
     window.reverse_back = true
-    console.log 'here3'
     setTimeout ->
       reloadR( ->
-        console.log 'here4'
         context.redirect "#/auctions"
       , ->
         removeExistingModelData()

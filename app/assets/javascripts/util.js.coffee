@@ -54,7 +54,7 @@ window.reloadR = (callback, error_callback = null) ->
       callback.call()  if callback
 
     error: (data) ->
-      console.log "reload R error", data
+      console?.log "reload R error", data
       error_callback.call()  if callback
 
 window.D2 = (val) -> (if (val < 10) then "0" + val else val)

@@ -44,7 +44,6 @@ $ ->
     #loadR R
 
   setTimeout (->
-    console.log  "HEREEEEE"
     if current_user?
       PB.app.run "#/reload"
     else

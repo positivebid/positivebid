@@ -4,7 +4,7 @@ PB = window.PB ||= {}
 
 window.global_room = NoDevent.room('global_room')
 global_room.join (err) ->
-  console.log "error joining global_room", err
+  console?.log "error joining global_room", err
   
 window.global_room
 
