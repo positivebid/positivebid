@@ -30,3 +30,5 @@ npm install -g nodevent
 ./script/rails s
 npm start -g nodevent
 
+# go to homepage
+open http://localhost:3000/
