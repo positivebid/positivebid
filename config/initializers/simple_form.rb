@@ -57,7 +57,9 @@ SimpleForm.setup do |config|
   # Default class for buttons
   config.button_class = 'btn'
 
-  # Method used to tidy up errors.
+  # Method used to tidy up errors. Specify any Rails Array method.
+  # :first lists the first message for each field.
+  # Use :to_sentence to list all errors for each field.
   # config.error_method = :first
 
   # Default tag used for error notification helper.
@@ -116,6 +118,10 @@ SimpleForm.setup do |config|
   # matches the regexp as value.
   # config.input_mappings = { /count/ => :integer }
 
+  # Custom wrappers for input types. This should be a hash containing an input
+  # type as key and the wrapper that will be used for all inputs with specified type.
+  # config.wrapper_mappings = { :string => :prepend }
+
   # Default priority for time_zone inputs.
   # config.time_zone_priority = nil
 
@@ -136,3 +142,4 @@ SimpleForm.setup do |config|
 end
 
 require 'simple_form_extensions'
+

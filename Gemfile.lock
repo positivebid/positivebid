@@ -229,7 +229,7 @@ GEM
     rdiscount (1.6.8)
     rdoc (3.12)
       json (~> 1.4)
-    redis (3.0.1)
+    redis (3.0.2)
     rmagick (2.13.1)
     ruby-graphviz (1.0.8)
     ruby-rc4 (0.1.5)

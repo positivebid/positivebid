@@ -1,5 +1,13 @@
 class Item < ActiveRecord::Base
-  USER_FIELDS = [ :collection_info, :description, :donor_byline, :donor_name, :name, :terms, :organiser_notes ]
+  USER_FIELDS = [ 
+    :name, 
+    :description, 
+    :terms, 
+    :collection_info, 
+    :donor_name, 
+    :donor_byline, 
+    :organiser_notes 
+  ]
 
   attr_accessible *USER_FIELDS
 
