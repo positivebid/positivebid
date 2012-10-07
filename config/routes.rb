@@ -5,6 +5,10 @@ Positive::Application.routes.draw do
   root :to => 'root#index'
 
 
+  #omni auth
+  match '/auth/:provider/callback', to: 'user_sessions#callback', as: :callback
+  match "/auth/failure", to: "user_sessions#failure", as: :failure
+
   resources :password_resets, :only => [:new, :create, :edit, :update]
   match '/login' => 'user_sessions#new', :as => :login
   match '/logout' => 'user_sessions#destroy', :as => :logout

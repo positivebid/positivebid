@@ -1,5 +1,8 @@
 .row
   .span10.offset1
+    %a(href="/auth/twitter") Log in with Twitter
+
+  .span10.offset1
     = simple_form_for @user_session, url: { :action => :create }  do |f|
       %fieldset
         %legend Login

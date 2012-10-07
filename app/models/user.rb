@@ -26,10 +26,14 @@ class User < ActiveRecord::Base
 
 
   acts_as_authentic do |c|
-    c.transition_from_crypto_providers = [Authlogic::CryptoProviders::Sha512]
     c.crypto_provider = Authlogic::CryptoProviders::BCrypt
 
+    c.ignore_blank_passwords = true #ignoring passwords for omniauth
+    c.validate_password_field = false #ignoring validations for password fields
+
     c.merge_validates_length_of_password_field_options( { minimum: 8 } )
+    c.merge_validates_uniqueness_of_email_field_options({ :allow_nil => true })
+    c.merge_validates_format_of_email_field_options({ :allow_nil => true} )
     c.perishable_token_valid_for =  2.days # allow time for password reset
   end
 
@@ -74,6 +78,33 @@ class User < ActiveRecord::Base
   def is_admin?
     positive_admin
   end
+
+  ########################## omniauth stuff #############
+ 
+  def self.from_omniauth(auth)
+    where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
+  end
+
+  def self.create_from_omniauth(auth)
+    user = new do |user|
+      user.provider = auth["provider"]
+      user.uid = auth["uid"]
+      nameparts = auth["info"]["name"].split(/\s+/)
+      if nameparts.length > 1
+        user.first_name = nameparts.shift
+        user.last_name = nameparts.join(" ")
+      else
+        user.first = auth["info"]["name"]
+        user.last_name = auth["info"]["name"]
+      end
+      user.activated_at = Time.now
+      user.active = true
+    end
+    user.save!
+    user.reset_persistence_token!
+    user
+  end
+  
 
 
   ########################## app stuff #############

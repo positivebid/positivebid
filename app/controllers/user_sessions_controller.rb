@@ -62,6 +62,42 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  # omniauth
+  def callback
+    if env['omniauth.auth']
+      user = User.from_omniauth(env['omniauth.auth'])
+      UserSession.create(user)
+      
+      if user.is_admin?
+        session[:admin_id] = @user_session.user.id
+      end
+      respond_to do |format|
+        format.html {
+          flash[:notice] = "Login successful!"
+          if user.login_count < 2
+            session[:first_login] = true
+          end
+          if session[:return_to]
+            redirect_to session[:return_to]
+            session.delete(:return_to)
+          else
+            redirect_to home_url
+          end
+        }
+        format.json { render :json => {:success => true, :token => form_authenticity_token } }
+      end
+    else
+      redirect_to :root_url, :notice => 'Auth info not found'
+    end
+  end
+
+
+  # omniauth
+  def failure
+    flash[:notice] = "Sorry, You din't authorize"
+    redirect_to root_url
+  end
+
   def switch
     unless current_user and session[:admin_id]
       reset_session

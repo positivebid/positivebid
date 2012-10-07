@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001191215) do
+ActiveRecord::Schema.define(:version => 20121007151501) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name",                                               :null => false
@@ -99,13 +99,13 @@ ActiveRecord::Schema.define(:version => 20121001191215) do
   add_index "lots", ["state"], :name => "index_lots_on_state"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                  :null => false
+    t.string   "email"
     t.string   "first_name",                             :null => false
     t.string   "last_name",                              :null => false
     t.string   "image_url"
     t.string   "time_zone",           :default => "UTC", :null => false
-    t.string   "crypted_password",                       :null => false
-    t.string   "password_salt",                          :null => false
+    t.string   "crypted_password"
+    t.string   "password_salt"
     t.string   "persistence_token",                      :null => false
     t.string   "single_access_token",                    :null => false
     t.string   "perishable_token",                       :null => false
@@ -127,12 +127,16 @@ ActiveRecord::Schema.define(:version => 20121001191215) do
     t.boolean  "outbid_confirmation", :default => true
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token", :unique => true
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token", :unique => true
   add_index "users", ["positive_admin"], :name => "index_users_on_positive_admin"
+  add_index "users", ["provider", "uid"], :name => "index_users_on_provider_and_uid"
+  add_index "users", ["provider"], :name => "index_users_on_provider"
   add_index "users", ["single_access_token"], :name => "index_users_on_single_access_token", :unique => true
 
 end

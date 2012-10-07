@@ -32,8 +32,11 @@ gem 'rdiscount'
 gem 'RedCloth'
 gem 'state_machine'
 gem 'money'
-gem 'gocardless'
+#TOOD gem 'gocardless'
 gem 'exception_notification'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 gem "nodevent"
 
