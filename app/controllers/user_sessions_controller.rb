@@ -77,11 +77,11 @@ class UserSessionsController < ApplicationController
           if user.login_count < 2
             session[:first_login] = true
           end
-          if session[:return_to]
-            redirect_to session[:return_to]
-            session.delete(:return_to)
+
+          if request.env['omniauth.origin'] =~ /\/app/
+            redirect_to app_path
           else
-            redirect_to home_url
+            redirect_to home_path
           end
         }
         format.json { render :json => {:success => true, :token => form_authenticity_token } }

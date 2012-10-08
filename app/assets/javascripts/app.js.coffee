@@ -14,6 +14,7 @@
 #= require socket_router
 #= require util
 #= require_tree ./models
+#= require forms
 #= require sammy_router
 #= require sview
 #= require setup

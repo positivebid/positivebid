@@ -55,7 +55,7 @@ PB.app = $.sammy(->
     render( new Sview('login', {}) )
   
   @get "#/auctions",  (context) ->
-    render( new Sview('auctions_index', {auctions: PB.auctions}) )
+    render( new Sview('auctions_index', {auctions: PB.auctions, current_user: window.current_user }) )
 
   @post "#/auctions",  (context) ->
     new_auction = new PB.Auction(context.params.auction)

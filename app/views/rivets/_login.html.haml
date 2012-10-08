@@ -3,22 +3,19 @@
     %div(data-role="header")
       %h1 PositiveBid
     %div(data-role="content")
-      #container
-        #static &nbsp;
+      %p SIGN IN USING
 
-        #active
-          %p SIGN IN USING
-          #oauth
-            %a#twitter_button.oauthbuttons.twitter(data-rel="external" href="/auth/twitter")
-              %img(src="img/twsml_opt.png" alt="twitterimage for button")
-            %a#facebook_button.oauthbuttons(href="#")
-              %img(src="img/fbsml_opt.png" alt="facebookimage for button")
-            %a#google_button.oauthbuttons(href="#")
-              %img(src="img/googsml_opt.png" alt="twitterimage for button")
+      %p
+        %a.spin(data-role="button" data-rel="external" href="/auth/twitter")
+          twitter
+        %a.spin(data-role="button" href="#")
+          facebook
+        %a.spin(data-role="button" href="#")
+          google
 
-        #ormiddle OR
+      %p OR
 
-        %div 
-          %a#create_account.myButton(href="#") CREATE ACCOUNT
-        .clear &nbsp;
+      %p
+        %a(data-role="button" data-rel="external" href="/signup") CREATE ACCOUNT
+
 

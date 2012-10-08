@@ -6,8 +6,10 @@ PB.User = Backbone.Model.extend
   noIoBind: false
   socket: window.global_room
 
-  initialize: (args) ->
+  initialize: (args = {}) ->
     @id = args.id
+    @first_name = args.first_name
+    @last_name = args.last_name
     @image_url = args.image_url
     @email = args.email
     @admin = args.admin

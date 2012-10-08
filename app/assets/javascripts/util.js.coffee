@@ -33,12 +33,14 @@ window.loadR = (R = {}) ->
   PB.items.reset(R.items) if R.items?
   PB.users.reset(R.users) if R.users?
   PB.bids.reset(R.bids) if R.bids?
-  #OLD if R.current_user?
-  #OLD   PB.User.add(window.current_user = new PB.User(R.current_user))
+  if R.current_user?
+    window.current_user = new PB.User(R.current_user)
+  else
+    window.current_user = null
 
 window.removeExistingModelData = ->
   window.current_user = null
-  for m in [ PB.auctions, PB.lots, PB.items ]
+  for m in [ PB.auctions, PB.lots, PB.items, PB.bids, PB.users ]
     m.reset()
 
 
