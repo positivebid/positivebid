@@ -8,7 +8,7 @@ PB.User = Backbone.Model.extend
 
   initialize: (args) ->
     @id = args.id
-    @image = args.image
+    @image_url = args.image_url
     @email = args.email
     @admin = args.admin
     @telephone_number = args.telephone_number

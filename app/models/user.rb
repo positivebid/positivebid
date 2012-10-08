@@ -89,12 +89,13 @@ class User < ActiveRecord::Base
     user = new do |user|
       user.provider = auth["provider"]
       user.uid = auth["uid"]
+      user.image_url = auth["info"]["image"]
       nameparts = auth["info"]["name"].split(/\s+/)
       if nameparts.length > 1
         user.first_name = nameparts.shift
         user.last_name = nameparts.join(" ")
       else
-        user.first = auth["info"]["name"]
+        user.first_name = auth["info"]["name"]
         user.last_name = auth["info"]["name"]
       end
       user.activated_at = Time.now
