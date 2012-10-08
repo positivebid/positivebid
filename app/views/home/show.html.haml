@@ -3,5 +3,9 @@
   .span8.offset2
     %h1 Welcome #{current_user.name}
   .span8.offset2
-    %a{:href => resource_auctions_path} My Auctions
+    %p
+      %a.btn{:href => app_path} Auctions &amp; Bidding &rarr;
+  .span8.offset2
+    %p
+      %a{:href => resource_auctions_path} Auction Setup
 
