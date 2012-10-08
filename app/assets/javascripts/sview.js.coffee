@@ -5,7 +5,8 @@ class Sview
 
   constructor: (template_name, data) ->
     @template_name = template_name
-    @html = Sview.tc[@template_name].clone()
+    #jlt @html = Sview.tc[@template_name].clone()
+    @html = window.tc[@template_name].jlt(data)
     @rivet = rivets.bind(@html, data)
 
   rerender: ->
@@ -22,8 +23,8 @@ class Sview
 window.Sview = Sview
 
 
-$(document).ready ->
-  $("#templates").remove().children().each ->
-    $this = $(this)
-    Sview.tc[$this.attr("id")] = $this.children()
+#jlt $(document).ready ->
+#jlt   $("#templates").remove().children().each ->
+#jlt     $this = $(this)
+#jlt     Sview.tc[$this.attr("id")] = $this.children()
 

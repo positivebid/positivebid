@@ -4,11 +4,11 @@
       %a(href="#/" data-icon="home" data-direction="reverse") Home
       %h1 Auctions
 
-    %div(data-role="content" data-theme="b")
+    %div(data-role="content" data-theme="b" jnif="current_user")
 
       %a(href="#/login" data-role="button") Login
 
-    %div(data-role="content" data-theme="a")
+    %div(data-role="content" data-theme="a" jif="current_user")
       %p
         Logged in and bidding as 
         %span(data-rv-text="current_user:name")
