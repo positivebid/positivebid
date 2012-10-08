@@ -1,6 +1,3 @@
-
-%h1 hello
-
 #templates
   - for i in Dir.entries(Rails.root + "app/views/rivets").select{|f| f.match(/^_.*.html.haml/)}
     = render "rivets/#{i.sub(/^_/,'')}"
