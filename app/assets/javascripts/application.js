@@ -11,5 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery_ujs
+//= require plugins/jquery-ui-timepicker-addon
+//= require moment
+//= require internal
 
 

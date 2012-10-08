@@ -6,8 +6,8 @@ class Lot < ActiveRecord::Base
     :min_increment, 
     :collected, 
     :published, 
-    :sale_end_at, 
-    :sale_start_at ,
+    :sale_start_at,
+    :sale_end_at
   ]
   
   ADMIN_ONLY_FIELDS = [ :paid, :payment_method ]
