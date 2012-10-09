@@ -1,16 +1,20 @@
 development: &development
   host: 'http://localhost:8080'
-  namespace: '/nodevent'
+  namespace: '/positive'
 
 test: &test
   host: 'http://localhost:8080'
-  namespace: '/nodevent'
+  namespace: '/positive'
 
 cucumber:
   <<: *test
 
+staging:
+  host: 'http://alpha.positivebid.com:8080'
+  namespace: '/positive'
+
 production:
-  host: 'http://nodevent.com:8080'
-  namespace: '/nodevent'
+  host: 'http://www.positivebid.com:8080'
+  namespace: '/positive'
   
 
