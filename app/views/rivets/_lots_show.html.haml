@@ -9,8 +9,10 @@
         %span Lot
         %span(data-rv-text="lot:number")
         %span(data-rv-text="lot:name")
+      %p
+        %strong(data-rv-text="lot.state")
 
-    %div(data-role="content")
+    %div(data-role="content" data-theme="e")
       %div(data-rv-hide="lot.current_bid_id")
         %p No Bids yet for this lot.
       %div(data-rv-show="lot.current_bid_id")

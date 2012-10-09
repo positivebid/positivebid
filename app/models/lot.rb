@@ -16,10 +16,14 @@ class Lot < ActiveRecord::Base
   attr_accessible *USER_FIELDS
   attr_accessible *ADMIN_FIELDS, :as => :admin
 
+  STATES = %w( draft published withdrawn forsale bought closing sold paid )
+  validates_inclusion_of :state, in: STATES
+
   belongs_to :auction
   has_many :bids, :dependent => :destroy
   belongs_to :current_bid, :class_name => 'Bid'
   has_many :items, :dependent => :destroy
+
 
   validates_presence_of :name
   validates_inclusion_of :min_increment, :in => 1..100
@@ -30,7 +34,65 @@ class Lot < ActiveRecord::Base
 
   scope :sorted, :order => 'position ASC'
 
+  scope :draft, where(:state => 'draft')
+  scope :published, where(:state => 'published')
+  scope :forsale, where(:state => 'forsale')
+  scope :bought, where(:state => 'bought')
+  scope :sold, where(:state => 'sold')
+  scope :closing, where(:state => 'closing')
+  scope :paid, where(:state => 'paid')
+
   include NodeventGlobal
+
+
+  state_machine :initial => :draft do
+
+    event :organiser_publish do
+      transition :draft => :published
+    end
+
+    event :auto_open do
+      transition :published => :forsale
+    end
+
+    event :auto_close_start do
+      transition :forsale => :closing
+    end
+
+    event :auto_close_done do
+      transition :closing => :sold
+    end
+
+    event :buy_now do
+      transition :forsale => :bought
+    end
+
+    event :payment do
+      transition :bought  => :paid
+      transition :sold => :paid
+    end
+
+    before_transition any => :paid do |lot, transition|
+      lot.paid = true
+      true # need this
+    end
+
+    before_transition any => any do |lot, transition|
+      lot.append_to_log %|Transitioning from state "#{transition.from}" to state "#{transition.to}" due to event "#{transition.human_event}"|
+    end
+
+  end
+
+  def append_to_log(text)
+    if self.new_record?
+      logger.info("#{Time.now.to_s} Deal New: #{text}\n")
+      self.log = (log || '') + "#{Time.now.to_s} #{text}\n"
+    else
+      logger.info("#{Time.now.to_s} Deal #{id}: #{text}\n")
+      self.update_column(:log, (log || '') + "#{Time.now.to_s} #{text}\n")
+    end
+  end
+
 
   def self.order_by_ids(ids)
     transaction do
