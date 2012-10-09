@@ -390,4 +390,37 @@ cd utils
 ./install_sever.sh   # 6379
 
 
+# NODEVENT
+npm install -g coffee-script
+npm install -g nodevent
+
+# nodeevent config
+cat > /etc/nodevent.json <<EOF
+{
+  "port" : 8080,
+    "/positive" : { 
+      "redis" : {"port" :6379 ,"host" : "localhost"}
+    }
+}
+EOF
+
+# nodevent init script
+cat > /etc/init/nodevent.conf <<EOF
+description "nodevent"
+
+start on (filesystem and net-device-up IFACE=lo)
+stop on shutdown
+
+respawn
+respawn limit 99 5
+
+script
+    exec /usr/bin/npm start -g nodevent
+end script
+EOF
+
+start nodevent
+status nodevent
+
+
 
