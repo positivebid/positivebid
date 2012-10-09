@@ -102,5 +102,18 @@ class Lot < ActiveRecord::Base
     end
   end
 
+  def self.minute_process
+    sleep 1 
+    Lot.published.where("sale_start_at < ?", Time.now).find_each do |lot|
+      lot.auto_open
+    end
+    Lot.forsale.where("sale_end_at < ?", Time.now).find_each do |lot|
+      lot.auto_close_start
+    end
+    Lot.closing.where("updated_at < ?", Time.now - 1.minute).find_each do |lot|
+      lot.auto_close_done
+    end
+  end
+
 
 end

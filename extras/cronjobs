@@ -1,0 +1,18 @@
+# production
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+* * * * * /home/postive/www.positivebid.com/postive/current/script/rails runner --environment=production Lot.minute_process
+
+
+
+
+
+# staging
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+#TODO 40 10 * * * cd /home/postive/alpha.positivebid.com/postive/current && SAVETO="/home/postive/alpha.positivebid.com/postive/remote-backups" cap production db:daily_dump
+
+
+
+
+
