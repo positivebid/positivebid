@@ -1,0 +1,375 @@
+
+# savenode l......  jason+linode@positivebid.com
+
+# linode244527  bid1.positivebid.com 178.79.190.201    london
+# My Ubuntu 12.04 LTS Profile (Latest 3.4 (3.4.2-linode44))
+
+
+# set the hostname
+echo "bid1" > /etc/hostname
+hostname -F /etc/hostname
+
+# vi /etc/resolv.conf
+#domain rotaville.com
+#search rotaville.com
+
+# vi /etc/hosts
+# add hostname (required for postfix)
+# 178.79.190.201   bid1  bid1.positivebid.com
+
+
+# configure timezone
+dpkg-reconfigure tzdata
+
+apt-get -y update
+apt-get -y upgrade --show-upgraded
+apt-get -y dist-upgrade
+
+
+# fix locale settings
+locale-gen en_US.UTF-8
+update-locale LANG=en_US.UTF-8
+
+#use localepurge to keep the filesystem on a diet: 
+apt-get install localepurge
+localepurge
+
+reboot/login
+
+
+apt-get -y install build-essential
+apt-get -y install zlib1g-dev libssl-dev libreadline-dev openssl autoconf libtool automake
+apt-get -y install ghostscript libgs-dev ttf-dejavu 
+apt-get -y install imagemagick libmagick++-dev
+###NA apt-get -y install graphicsmagick-libmagick-dev-compat graphicsmagick
+apt-get -y install libsqlite3-dev sqlite3 sqlite3-doc
+apt-get -y install postgresql libpq-dev
+apt-get -y install libcurl4-openssl-dev 
+apt-get -y install libxslt-dev libxml2-dev
+apt-get -y install libpcre3-dev libpcre3-dbg libpcre3-dbg
+apt-get -y install libyaml-dev
+apt-get -y install vim vim-rails nodejs
+
+
+apt-get -y install git-core
+
+
+#NA # latest imagemagick compile with gs bindings
+#NA mkdir -p /usr/local/src
+#NA cd /usr/local/src
+#NA wget ftp://mirror.aarnet.edu.au/pub/imagemagick/ImageMagick-6.6.9-10.tar.gz
+#NA tar -xvzf ImageMagick-6.6.9-10.tar.gz
+#NA cd ImageMagick-6.6.9-10
+#NA ./configure --with-gs=yes
+#NA make
+#NA make install
+#NA ldconfig /usr/local/lib
+
+apt-get -y install memcached memcachedb
+
+#NA # for google closure compiler, etc.
+#NA # add these lines 
+#NA cat >> /etc/apt/sources.list << END
+#NA deb http://archive.canonical.com/ lucid partner
+#NA END
+#NA # and then 
+#NA apt-get update
+#NA # and manual license accept with....
+#NA apt-get -y install sun-java6-jdk
+
+
+# this passwords not working this way...
+useradd -c "PositiveBid App" -m -s /bin/bash positive
+passwd positive
+
+
+# from remote, install ssh keys
+ssh root@bid1.positivebid.com mkdir .ssh
+scp ~/.ssh/id_dsa.pub root@bid1.positivebid.com:.ssh/authorized_keys
+ssh positive@bid1.positivebid.com mkdir .ssh
+scp ~/.ssh/id_dsa.pub positive@bid1.positivebid.com:.ssh/authorized_keys
+
+# create ~save/.ssh/environment
+su - positive
+cat > .ssh/environment <<EOF
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/bin
+RAILS_ENV=production
+USE_DELAYED_JOB=true
+EOF
+exit
+
+
+cat >> /etc/ssh/sshd_config << EOF
+# listen on Port 443 as well as 22
+Port 443
+# allow ~/.ssh/environment files. Added by Jason.
+PermitUserEnvironment yes
+# disable password authentication. Added by Jason.
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+
+EOF
+
+service ssh restart
+
+#ree
+#cd  /tmp
+#wget http://rubyenterpriseedition.googlecode.com/files/ruby-enterprise-1.8.7-2011.03.tar.gz
+#tar -xzvf ruby-enterprise-1.8.7-2011.03.tar.gz
+#./ruby-enterprise-1.8.7-2011.03/installer
+#
+#cat >> /etc/profile <<EOF
+#PATH=$PATH:/opt/ruby-enterprise-1.8.7-2011.03/bin
+#export PATH
+#EOF
+#
+#PATH=$PATH:/opt/ruby-enterprise-1.8.7-2011.03/bin
+#export PATH
+#
+#gem update --system
+#
+#gem install rmagick less prawn super_exception_notifier json twitter grit rails haml newrelic_rpm fleximage pg bundler fastercsv httparty rchardet hpricot coffee-script prawn capistrano capistrano_colors delayed_job
+#
+
+## libyaml for ruby 1.9.3
+#
+#mkdir -p /usr/local/src
+#cd /usr/local/src
+#wget http://pyyaml.org/download/libyaml/yaml-0.1.4.tar.gz
+#tar xzvf yaml-0.1.4.tar.gz
+#cd yaml-0.1.4
+#./configure --prefix=/usr/local
+#make
+#make install
+
+# ruby 1.9.3
+PATH=/usr/local/bin:$PATH
+export PATH
+cd /usr/local/src
+wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p194.tar.gz
+tar xzvf ruby-1.9.3-p194.tar.gz
+cd ruby-1.9.3-p194
+./configure --prefix=/usr/local --enable-shared --with-opt-dir=/usr/local/lib
+make
+make install
+
+cd
+echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
+gem update --system
+gem install bundler capistrano capistrano_colors passenger twitter grit
+
+
+
+# postgres
+su - postgres
+#createuser rota --pwprompt  
+#createuser bigname --pwprompt  
+#createuser brinslog --pwprompt  
+#createuser notify --pwprompt  
+#createuser manual --pwprompt  
+createuser positive --pwprompt  
+
+#NA # for binary images and fleximge
+#NA ALTER ROLE positivebid SET bytea_output TO 'escape';
+#NA ALTER ROLE positivebid RESET bytea_output;
+
+
+# double check postgres encoding..
+# psql -l
+#
+# #su postgres
+# #pg_dropcluster --stop 8.4 main
+# #pg_createcluster --start -e UTF-8 8.4 main
+# #exit
+# #sudo /etc/init.d/postgresql restart
+
+#http://engineering.gomiso.com/2011/07/28/adventures-in-scaling-part-2-postgresql/
+# 
+# rota1/big1 settings from /etc/postgresql/9.1/main/postgresql.conf 
+# max_connections = 100
+# shared_buffers = 64MB
+# work_mem = 8MB
+# maintenance_work_mem = 32MB
+# checkpoint_segments = 8  
+# effective_cache_size = 1GB
+
+
+# shared memory
+# http://developer.postgresql.org/pgdocs/postgres/kernel-resources.html
+# increase to 150Mb ( 128MB shared buffers plus some connections) 
+# shmmax 150 * 1024 * 1024  = 157286400
+# shmall = shmmax / pagesize = 157286400 / 4096 = 38400
+#
+sysctl -w kernel.shmmax=157286400
+sysctl -w kernel.shmall=38400
+cat >> /etc/sysctl.conf <<END
+kernel.shmmax=157286400
+kernel.shmall=38400
+END
+
+
+
+
+## the $@ below might not cut'n'paste correctly.
+cat > /usr/local/bin/tuned_ruby <<EOF
+#!/bin/bash
+export RUBY_HEAP_MIN_SLOTS=1000000
+export RUBY_HEAP_SLOTS_INCREMENT=1000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=1000000000
+export RUBY_HEAP_FREE_MIN=500000
+exec /usr/local/bin/ruby "$@"
+EOF
+chmod 755 /usr/local/bin/tuned_ruby 
+
+
+
+# nginx
+#mkdir -p /usr/local/src
+#cd /usr/local/src
+#wget http://www.nginx.org/download/nginx-1.2.1.tar.gz
+#tar -zxvof nginx-1.2.1.tar.gz
+
+# this next commands compiles and installs nginx
+passenger-install-nginx-module
+# choose option 1 (download install)
+
+
+# nginx init script
+wget -O init-deb.sh http://library.linode.com/assets/660-init-deb.sh
+mv init-deb.sh /etc/init.d/nginx
+chmod +x /etc/init.d/nginx
+/usr/sbin/update-rc.d -f nginx defaults
+
+# vi /etc/init.d/nginx  
+# and add /usr/local/bin to PATH
+
+
+#ngiconfig
+cat > /opt/nginx/conf/nginx.conf <<END
+
+#user  nobody;
+worker_processes  2;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    server_tokens off;
+
+    passenger_root /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.13;
+    passenger_ruby /usr/local/bin/tuned_ruby;
+    passenger_max_instances_per_app 3;
+    passenger_max_pool_size 5;
+
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for" '
+                      '$request_time $upstream_response_time $pipe $gzip_ratio';
+
+    access_log  logs/access.log  main;
+
+    sendfile        on;
+    tcp_nopush        on;
+    tcp_nodelay       off;
+
+    keepalive_timeout  65;
+    client_max_body_size 10M;
+
+    index  index.html index.htm;
+
+    gzip            on;
+    gzip_http_version 1.1;
+    gzip_comp_level 2;
+
+    gzip_static on;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_disable        "msie6";
+    gzip_types  text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript image/svg+xml application/vnd.ms-fontobject application/x-font-ttf font/opentype;
+
+    include /home/positivebid/www.positivebid.com/positivebid/current/extras/nginx-production.conf;
+}
+END
+
+# add the following lines to /opt/nginx/config/mime.types
+# remove existing entry for eot
+#     application/vnd.ms-fontobject      eot;
+#     application/x-font-ttf             ttf;
+#     font/opentype                      ott;
+#     font/x-font-woff                   woff;
+
+
+
+# Postfix
+apt-get -y install postfix # Satellite system, system name "positivebid.com"
+apt-get -y install bsd-mailx mutt
+
+# 
+cat > /etc/postfix/sasl_passwd <<EOF
+in.mailjet.com:587 2ac75b8b1f9b94e4a066d70439a2e41a:fb730a37415b19cb87bd96d72d31062c
+in.mailjet.com 2ac75b8b1f9b94e4a066d70439a2e41a:fb730a37415b19cb87bd96d72d31062c
+EOF
+
+chmod 600 /etc/postfix/sasl_passwd 
+postmap hash:/etc/postfix/sasl_passwd
+
+#change/append settings in /etc/postfix/main.cf
+# smtp_sasl_auth_enable = yes
+# smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+# smtp_tls_security_level = any
+#
+#change/append settings in /etc/postfix/main.cf
+#relayhost = in.mailjet.com:587
+
+
+# update /etc/hosts 
+# with IP ADDRESSS and hostname.fqdn
+
+postfix reload
+echo "postfix installed" | mailx root jlsync@gmail.com
+
+# add to /etc/aliases
+#root: jason@positivebid.com
+#positive: jason@positivebid.com
+# newalises
+
+# echo "positivebid.com" > /etc/mailname
+
+
+
+
+## modify config/deploy.rb
+## ...
+#cap RAILS_ENV=production deploy:setup
+#cap RAILS_ENV=production deploy:cold
+
+#cd ~positivebid/www.positivebid.com/positivebid/shared/cached-copy
+#rake gems:install
+#chown -R positivebid .
+
+
+mkdir -p /opt/www/logs/www.positivebid.com 
+
+
+
+# import old database
+#pg_dump  -U postgres -f positivebid_production_dump.sql positivebid_production
+#scp positivebid_production_dump.sql positivebid@bid1.positivebid.com:
+#su - positivebid
+#dropdb positivebid_production
+#createdb positivebid_production
+#psql positivebid_production
+#\i positivebid_production_dump.sql 
+
+
