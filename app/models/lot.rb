@@ -103,7 +103,6 @@ class Lot < ActiveRecord::Base
   end
 
   def self.minute_process
-    sleep 1 
     Lot.published.where("sale_start_at < ?", Time.now).find_each do |lot|
       lot.auto_open
     end
