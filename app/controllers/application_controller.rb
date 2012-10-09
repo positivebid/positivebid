@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
     @r = {} # converted to_json as "R" in application layout
     @r['current_user'] = current_user if current_user
     if Rails.env.production?
-      @r['app_host']   = 'http://www.postivebid.com'
+      @r['app_host']   = 'http://www.positivebid.com'
       @r['asset_host'] = 'http://assets.positivebid.com'
     else
       @r['app_host']   = root_url.sub(/\/$/, "")

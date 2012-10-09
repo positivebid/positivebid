@@ -70,7 +70,7 @@ Positive::Application.configure do
   
   Positive::Application.config.middleware.use ExceptionNotifier,
     :email_prefix => "[PositiveBid PROD] ",
-    :sender_address => %{"PostiveBid notifier" <tech@postivebid.com>},
-    :exception_recipients => %w{tech@postivebid.com}
+    :sender_address => %{"PositiveBid notifier" <tech@positivebid.com>},
+    :exception_recipients => %w{tech@positivebid.com}
   
 end

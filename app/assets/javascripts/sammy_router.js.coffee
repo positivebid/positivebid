@@ -138,7 +138,7 @@ PB.app = $.sammy(->
         removeExistingModelData()
         delete R.current_user
         context.redirect "#/root"
-        gritter
+        console?.log
           title: "Data Error"
           text: "logging you out!"
       )

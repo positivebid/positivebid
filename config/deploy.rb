@@ -113,11 +113,11 @@ end
 after "deploy:symlink", "deploy:symlink_shared_cache"
 
 
-before "deploy:restart", "delayed_job:stop"
-after  "deploy:restart", "delayed_job:start"
+#TOOD before "deploy:restart", "delayed_job:stop"
+#TOOD after  "deploy:restart", "delayed_job:start"
 
-after "deploy:stop",  "delayed_job:stop"
-after "deploy:start", "delayed_job:start"
+#TOOD after "deploy:stop",  "delayed_job:stop"
+#TOOD after "deploy:start", "delayed_job:start"
 
 
 require './config/capistrano_db_dump_and_clone_to_local'

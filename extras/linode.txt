@@ -48,10 +48,17 @@ apt-get -y install libcurl4-openssl-dev
 apt-get -y install libxslt-dev libxml2-dev
 apt-get -y install libpcre3-dev libpcre3-dbg libpcre3-dbg
 apt-get -y install libyaml-dev
-apt-get -y install vim vim-rails nodejs
+apt-get -y install vim vim-rails 
 
 
 apt-get -y install git-core
+
+# NODEJS
+apt-get install python-software-properties
+add-apt-repository ppa:chris-lea/node.js
+apt-get update
+apt-get install nodejs npm
+apt-get install nodejs-dev
 
 
 #NA # latest imagemagick compile with gs bindings
@@ -351,10 +358,10 @@ echo "postfix installed" | mailx root jlsync@gmail.com
 
 ## modify config/deploy.rb
 ## ...
-#cap RAILS_ENV=production deploy:setup
-#cap RAILS_ENV=production deploy:cold
+#cap production deploy:setup
+#cap production deploy:cold
 
-#cd ~positivebid/www.positivebid.com/positivebid/shared/cached-copy
+#cd ~positive/www.positivebid.com/positive/shared/cached-copy
 #rake gems:install
 #chown -R positivebid .
 
@@ -371,5 +378,16 @@ mkdir -p /opt/www/logs/www.positivebid.com
 #createdb positivebid_production
 #psql positivebid_production
 #\i positivebid_production_dump.sql 
+
+
+# REDIS
+cd /usr/local/src
+git clone git://github.com/antirez/redis.git
+cd redis
+make
+make install
+cd utils
+./install_sever.sh   # 6379
+
 
 

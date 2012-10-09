@@ -21,7 +21,6 @@ rake db:create
 rake db:setup
 
 # NoDevent
-
 ## install
 brew install redis
 npm install -g nodevent
