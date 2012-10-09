@@ -6,10 +6,10 @@ class Bid < ActiveRecord::Base
 
   validates_presence_of :lot, :user, :amount
   validates_numericality_of :amount, :greater_than_or_equal_to => 0
+  validate :check_greater
 
   include NodeventGlobal
 
-  before_create :check_greater
   after_create :update_current_bid
 
   def check_greater

@@ -1,10 +1,10 @@
 development: &development
   host: 'http://localhost:8080'
-  namespace: '/positive'
+  namespace: '/nodevent'
 
 test: &test
   host: 'http://localhost:8080'
-  namespace: '/positive'
+  namespace: '/nodevent'
 
 cucumber:
   <<: *test
