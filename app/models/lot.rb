@@ -26,6 +26,8 @@ class Lot < ActiveRecord::Base
   belongs_to :current_bid, :class_name => 'Bid'
   has_many :items, :dependent => :destroy
 
+  after_save :outbid_notify # TODO MAKE ASYNC?
+
 
   validates_presence_of :name
   validates_inclusion_of :min_increment, :in => 1..100
@@ -45,6 +47,20 @@ class Lot < ActiveRecord::Base
   scope :paid, where(:state => 'paid')
 
   include NodeventGlobal
+
+  def outbid_notify
+    Rails.logger.info changes.inspect
+    if changes["current_bid_id"].present? and (old_id = changes["current_bid_id"][0]).present?
+      old_bid = Bid.find(old_id)
+      if old_bid.user_id != current_bid.user_id and (old_user = old_bid.user).present?
+        if old_user.outbid_confirmation
+          room = NoDevent::Emitter.room(old_user)
+          Rails.logger.info("ROOM IS #{room.inspect}")
+          NoDevent::Emitter.emit(room, 'message', "Alert: You have been outbid on Lot #{id} #{name} by #{current_bid.user.name}" )
+        end
+      end
+    end
+  end
 
   def set_defaults
     self.sale_start_at ||= auction.try(:default_sale_start_at)

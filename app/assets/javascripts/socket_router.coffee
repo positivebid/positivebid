@@ -29,6 +29,19 @@ global_room.on "user_entered", (data) ->
   , 4000
 
 
+window.message_popup = (text) ->
+  sv = new Sview('popups_message', {message: text})
+  $.mobile.activePage.append(sv.html)
+  sv.html.popup({history: false})
+  sv.html.popup('open')
+  setTimeout ->
+    sv.html.popup('close')
+    sv.html.remove()
+    sv.destroy()
+  , 4000
+
+global_room.on "message", message_popup
+
 global_room.on "user_left", (data) ->
   console?.log("got user_left", data)
 

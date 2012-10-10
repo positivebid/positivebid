@@ -7,8 +7,6 @@ class BiddingController < ApplicationController
       return :json => {:message => "please log in"}
     end
 
-    puts "HERE " + params.inspect
-
     bid = Bid.new(params[:bidding])
     bid.user = current_user
 

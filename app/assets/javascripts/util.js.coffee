@@ -35,6 +35,14 @@ window.loadR = (R = {}) ->
   PB.bids.reset(R.bids) if R.bids?
   if R.current_user?
     window.current_user = new PB.User(R.current_user)
+
+    # TODO relocate some where better
+    
+    setTimeout ->
+      room = NoDevent.room("User_#{current_user.id}")
+      room.join()
+      room.on('message', message_popup)
+    , 1
   else
     window.current_user = null
 
