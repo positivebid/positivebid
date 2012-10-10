@@ -1,7 +1,9 @@
 # production
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 
-* * * * * /home/positive/www.positivebid.com/positive/current/script/rails runner --environment=production Lot.minute_process
+#OLD * * * * * /home/positive/www.positivebid.com/positive/current/script/rails runner --environment=production Lot.minute_process
+
+* * * * * curl -s http://cron:access@www.positivebid.com/minute > /dev/null
 
 
 
