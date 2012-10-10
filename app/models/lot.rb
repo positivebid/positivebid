@@ -19,6 +19,8 @@ class Lot < ActiveRecord::Base
   STATES = %w( draft published withdrawn forsale bought closing sold paid )
   validates_inclusion_of :state, in: STATES
 
+  after_initialize :set_defaults
+
   belongs_to :auction
   has_many :bids, :dependent => :destroy
   belongs_to :current_bid, :class_name => 'Bid'
@@ -43,6 +45,11 @@ class Lot < ActiveRecord::Base
   scope :paid, where(:state => 'paid')
 
   include NodeventGlobal
+
+  def set_defaults
+    self.sale_start_at ||= auction.try(:default_sale_start_at)
+    self.sale_end_at ||= auction.try(:default_sale_end_at)
+  end
 
 
   state_machine :initial => :draft do

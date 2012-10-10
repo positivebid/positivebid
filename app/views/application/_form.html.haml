@@ -1,7 +1,7 @@
 
 - for column in f.object.class.attr_accessible[@attr_role || :default].to_a.reject(&:blank?)
   - if column.match(/_at$/)
-    = f.input column, as: :string, input_html: { class: 'ui-datetime-picker span2' }
+    = f.input column, as: :string, input_html: { class: 'ui-datetime-picker span2' , :value => f.object.send(column).strftime("%Y-%m-%d %H:%M")}
   - elsif column.match(/_on$/)
     = f.input column, as: :string, input_html: { class: 'ui-date-picker span2' }
   - else
