@@ -15,7 +15,7 @@
         Bidding from 
         %span(data-rv-text="lot.sale_start_at | nice_datetime")
         (
-        %span(data-rv-text="lot.sale_start_at | fromNow")>
+        %time.fromNow(data-rv-datetime="lot.sale_start_at" data-rv-text="lot.sale_start_at | fromNow")>
         )
         to
         %span(data-rv-text="lot.sale_end_at | nice_datetime")
@@ -23,7 +23,7 @@
         Closing at
         %span(data-rv-text="lot.sale_end_at | nice_datetime")
         (
-        %span(data-rv-text="lot.sale_end_at | fromNow")>
+        %time.fromNow(data-rv-datetime="lot.sale_end_at" data-rv-text="lot.sale_end_at | fromNow")>
         )
       %p(data-rv-show="lot:is_closing < lot.state")
         %strong Closing Now!
@@ -35,14 +35,14 @@
         %span at
         %span(data-rv-text="lot.sold_at | nice_datetime")
         (
-        %span(data-rv-text="lot.sold_at | fromNow")>
+        %time.fromNow(data-rv-datetime="lot.sold_at" data-rv-text="lot.sold_at | fromNow")>
         )
       %p(data-rv-show="lot:is_paid < lot.state")
         %strong Paid for
         %span at
         %span(data-rv-text="lot.paid_at | nice_datetime")
         (
-        %span(data-rv-text="lot.paid_at | fromNow")>
+        %time.fromNow(data-rv-datetime="lot.paid_at" data-rv-text="lot.paid_at | fromNow")>
         )
 
 
@@ -55,8 +55,7 @@
         %strong(data-rv-text="lot:current_bid_amount < lot.current_bid_id | pound")
         %span by
         %span(data-rv-text="lot:current_bid_user_name < lot.current_bid_id")
-        %span at
-        %span(data-rv-text="lot:current_bid_created_at < lot.current_bid_id | fromNow")
+        %time.fromNow(data-rv-datetime="lot:current_bid_created_at < lot.current_bid_id" data-rv-text="lot:current_bid_created_at < lot.current_bid_id | fromNow")
 
     %div(data-role="content" data-theme="b")
       %form(action="#/bids" method="POST")

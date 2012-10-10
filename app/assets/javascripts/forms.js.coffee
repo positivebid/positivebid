@@ -23,3 +23,12 @@ window.moment.calendar =
   lastWeek : '[last] dddd [at] LT'
   nextWeek : 'dddd [at] LT'
   sameElse : 'L [at] LT'
+
+
+setInterval( ->
+  $('time.fromNow').each ->
+    $this = $(this)
+    if dt = $this.attr('datetime')
+      $this.text  moment(dt).fromNow()
+, 10000 )
+

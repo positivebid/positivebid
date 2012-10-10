@@ -5,6 +5,9 @@ window.rivets.routines.href = (el, value) ->
 window.rivets.routines.src = (el, value) ->
   el.src = value
 
+window.rivets.routines.datetime = (el, value) ->
+  el.setAttribute 'datetime', value
+
 # dummy routine that runs jquerymobile listview('refresh') on the next tick
 # after the dom has been updated with new raw markup
 window.rivets.routines.listview_refresh = (el, value) ->
@@ -23,7 +26,13 @@ window.rivets.formatters.nice_datetime = (value) ->
   return moment(value)?.calendar()
 
 window.rivets.formatters.fromNow = (value) ->
-  return moment(value)?.fromNow()
+  if mv = moment(value)
+    if (mv > moment().subtract('s',20)) and (mv < moment())
+      return "just now"
+    else
+      return moment(value)?.fromNow()
+  else
+    return "unknown time"
 
 window.rivets.formatters.pound = (value) ->
   return "£#{value}"
