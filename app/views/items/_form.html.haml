@@ -1,0 +1,21 @@
+
+- for column in f.object.class.attr_accessible[@attr_role || :default].to_a.reject(&:blank?)
+  - if column.match(/_at$/)
+    = f.input column, as: :string, input_html: { class: 'ui-datetime-picker span2' , :value => f.object.send(column).try(:strftime,"%Y-%m-%d %H:%M")}
+  - elsif column.match(/_on$/)
+    = f.input column, as: :string, input_html: { class: 'ui-date-picker span2' }
+  - elsif f.object.respond_to?(column.to_sym)
+    = f.input column
+
+.control-group
+  .controls
+    - if resource.picture.try(:id)
+      %img.m#item_photo{:src => m_picture_path(resource.picture, :format => :jpg)}
+    - else
+      %img.s#item_photo
+
+- f.object.picture or f.object.build_picture
+= f.simple_fields_for :picture do |p|
+  = p.input :image_file, as: :file, label: 'Photo File'
+  = p.input :image_file_url, as: :url, label: 'Photo URL', hint: "You can either choose a file to upload as your photo, or supply the URL to a photo and we'll grab it for you.", input_html: { class: 'w100' }
+

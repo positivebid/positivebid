@@ -37,6 +37,13 @@ GIT
       rails (>= 3.1.0)
 
 GIT
+  remote: git://github.com/josevalim/active_model_serializers.git
+  revision: 634f5ba91e6b1218319dace0fee9e10a9b2ec8b8
+  specs:
+    active_model_serializers (0.5.2)
+      activemodel (>= 3.0)
+
+GIT
   remote: git://github.com/kirillrdy/railroad3.git
   revision: 54ee4f46ec75746aca2b1d69555e3e2b9fd2cd91
   specs:
@@ -269,6 +276,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
+  active_model_serializers!
   acts_as_list!
   acts_as_singleton
   authlogic (= 3.1.0)

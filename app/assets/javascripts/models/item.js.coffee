@@ -31,7 +31,17 @@ PB.Item = Backbone.Model.extend
       this.ioBind('delete', @serverDelete, @)
 
   viewUrl: -> "#/items/#{@id}"
-  imageUrl: -> @get('image_url') or "/img/logo/positivebid_rounded_128.png"
+  imageUrl: ->
+    if id = @get('picture_id')
+      "/pictures/#{id}/p80.jpg"
+    else
+      "/img/logo/positivebid_rounded_128.png"
+
+  imageLargeUrl: ->
+    if id = @get('picture_id')
+      "/pictures/#{id}/p200.jpg"
+    else
+      "/img/logo/positivebid_rounded_128.png"
 
   lot: -> PB.lots.get(@lot_id)
 

@@ -1,0 +1,7 @@
+
+resource.operate do |photo|
+
+  photo.resize '160x160', :stretch => false, :crop => true, :upsample => true
+
+end
+

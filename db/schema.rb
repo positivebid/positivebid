@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121010091646) do
+ActiveRecord::Schema.define(:version => 20121010155222) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name",                                               :null => false
@@ -100,6 +100,22 @@ ActiveRecord::Schema.define(:version => 20121010091646) do
   add_index "lots", ["auction_id", "state"], :name => "index_lots_on_auction_id_and_state"
   add_index "lots", ["auction_id"], :name => "index_lots_on_auction_id"
   add_index "lots", ["state"], :name => "index_lots_on_state"
+
+  create_table "pictures", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.binary   "image_file_data"
+    t.string   "image_filename"
+    t.integer  "image_width"
+    t.integer  "image_height"
+    t.string   "image_format"
+    t.integer  "creator_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "pictures", ["creator_id"], :name => "index_pictures_on_creator_id"
+  add_index "pictures", ["owner_id", "owner_type"], :name => "index_pictures_on_owner_id_and_owner_type"
 
   create_table "users", :force => true do |t|
     t.string   "email"

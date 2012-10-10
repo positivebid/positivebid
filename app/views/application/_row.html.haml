@@ -1,7 +1,8 @@
 - for resource in resources
   %tr
     - for column in controller.resource_service.attr_accessible[@attr_role || :default].to_a.reject(&:blank?)
-      %td= h resource.send(column)
+      - if resource.respond_to?(column.to_sym)
+        %td= resource.send(column)
     %td
       = link_to 'Show', resource_path(resource)
       - if path_exists?(:edit_resource_path, resource)

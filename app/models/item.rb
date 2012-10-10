@@ -6,12 +6,17 @@ class Item < ActiveRecord::Base
     :collection_info, 
     :donor_name, 
     :donor_byline, 
-    :organiser_notes 
+    :organiser_notes,
+    :picture_attributes
   ]
 
   attr_accessible *USER_FIELDS
 
   belongs_to :lot
+
+  has_one :picture, as: :owner, dependent: :destroy, select: Picture::LITE_SELECT
+  has_one :full_picture, as: :owner, class_name: 'Picture'
+  accepts_nested_attributes_for :picture
 
   acts_as_list :scope => :lot_id
 
@@ -27,6 +32,7 @@ class Item < ActiveRecord::Base
     end
   end
 
+  after_save -> { self.create_picture if self.picture.nil? }
 
 
 end

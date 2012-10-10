@@ -1,5 +1,31 @@
 Positive::Application.routes.draw do
 
+
+  def photo_sizes
+    member do
+      get 'xs'
+      get 'p20'
+      get 's'
+      get 'p40'
+      get 'm'
+      get 'p80'
+      get 'l'
+      get 'p100'
+      get 'p160'
+      get 'p200'
+      get 'xl'
+      get 'p320'
+      get 'p400'
+      get 'xxl'
+      get 'p640'
+      get 'o' # original
+    end
+  end
+
+  resources :pictures, only: [:show] do
+    photo_sizes
+  end
+
   match '/app' => 'root#app', :as => :app
 
   root :to => 'root#index'

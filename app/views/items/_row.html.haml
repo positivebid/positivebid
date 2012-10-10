@@ -1,0 +1,19 @@
+- for resource in resources
+  %tr
+    %td
+      - if resource.picture
+        %img.p80{:src => p80_picture_path(resource.picture, :format => :jpg)}
+    %td
+      = truncate(resource.name)
+      %br
+      %em= truncate(resource.description)
+    %td= truncate resource.terms
+    %td= truncate resource.collection_info
+    %td= truncate resource.donor_name
+    %td= truncate resource.donor_byline
+    %td= truncate resource.organiser_notes
+    %td
+      = link_to 'Show', resource_path(resource)
+      - if path_exists?(:edit_resource_path, resource)
+        = link_to 'Edit', edit_resource_path(resource)
+        = link_to 'Destroy', resource_path(resource) , 'data-confirm' => 'Are you sure?', 'data-method' => :delete
