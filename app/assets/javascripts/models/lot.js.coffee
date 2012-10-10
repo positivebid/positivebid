@@ -37,7 +37,12 @@ PB.Lot = Backbone.Model.extend
   # view helpers
   viewUrl: -> "#/lots/#{@id}"
   newItemUrl: -> "#/lots/#{@id}/items/new"
-  imageUrl: -> @get('image_url') or "/img/logo/positivebid_rounded_128.png"
+  imageUrl: ->
+    if fl = @items.first()
+      fl.imageUrl()
+    else
+      "/img/logo/positivebid_rounded_128.png"
+
   current_bid_user_name: -> @current_bid()?.user()?.name()
   current_bid_user_image_url: -> @current_bid()?.user()?.image_url
   current_bid_amount: -> @current_bid()?.amount or 0
