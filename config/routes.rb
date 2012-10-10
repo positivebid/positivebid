@@ -27,6 +27,8 @@ Positive::Application.routes.draw do
   end
 
   match '/app' => 'root#app', :as => :app
+  match '/minute' => 'root#minute', :as => :minute
+
 
   root :to => 'root#index'
 
