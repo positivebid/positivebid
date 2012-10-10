@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009212905) do
+ActiveRecord::Schema.define(:version => 20121010091646) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name",                                               :null => false
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(:version => 20121009212905) do
     t.boolean  "sold",           :default => false
     t.string   "payment_method"
     t.boolean  "collected",      :default => false
-    t.boolean  "published",      :default => false
     t.datetime "sale_start_at"
     t.datetime "sale_end_at"
     t.integer  "buy_now_price"
@@ -91,6 +90,8 @@ ActiveRecord::Schema.define(:version => 20121009212905) do
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.text     "log"
+    t.datetime "sold_at"
+    t.datetime "paid_at"
   end
 
   add_index "lots", ["auction_id", "number"], :name => "index_lots_on_auction_id_and_number"

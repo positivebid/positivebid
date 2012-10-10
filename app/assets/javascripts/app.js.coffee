@@ -1,4 +1,6 @@
 
+
+#= require moment
 #= require plugins/nuid
 #= require plugins/jquery.cookie
 #= require plugins/rivets.js

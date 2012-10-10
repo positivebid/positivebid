@@ -46,6 +46,16 @@ PB.Lot = Backbone.Model.extend
 
   createOrUpdate: -> if not @id? then 'Create' else 'Update'
 
+  is_draft: -> @get('state') is "draft"
+  is_published: -> @get('state') is "published"
+  is_draft_or_published: -> @is_draft() or @is_published()
+  is_forsale: -> @get('state') is "forsale"
+  is_closing: -> @get('state') is "closing"
+  is_sold: -> @get('state') is "sold"
+  is_bought: -> @get('state') is "bought"
+  is_bought_or_sold: -> @is_bought() or @is_sold()
+  is_paid: -> @get('state') is "paid"
+
   errors_base: -> ''  #todo
   errors_name: -> ''  #todo
   errors_description: -> ''  #todo

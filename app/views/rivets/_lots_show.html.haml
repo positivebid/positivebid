@@ -9,8 +9,42 @@
         %span Lot
         %span(data-rv-text="lot:number")
         %span(data-rv-text="lot:name")
-      %p
+      %p(data-rv-show="lot:is_draft < lot.state")
         %strong(data-rv-text="lot.state")
+      %p(data-rv-show="lot:is_draft_or_published < lot.state")
+        Bidding from 
+        %span(data-rv-text="lot.sale_start_at | nice_datetime")
+        (
+        %span(data-rv-text="lot.sale_start_at | fromNow")>
+        )
+        to
+        %span(data-rv-text="lot.sale_end_at | nice_datetime")
+      %p(data-rv-show="lot:is_forsale < lot.state")
+        Closing at
+        %span(data-rv-text="lot.sale_end_at | nice_datetime")
+        (
+        %span(data-rv-text="lot.sale_end_at | fromNow")>
+        )
+      %p(data-rv-show="lot:is_closing < lot.state")
+        %strong Closing Now!
+      %p(data-rv-show="lot:is_sold < lot.state")
+        %strong Sold
+      %p(data-rv-show="lot:is_bought < lot.state")
+        %strong Bought
+      %p(data-rv-show="lot:is_bought_or_sold < lot.state")
+        %span at
+        %span(data-rv-text="lot.sold_at | nice_datetime")
+        (
+        %span(data-rv-text="lot.sold_at | fromNow")>
+        )
+      %p(data-rv-show="lot:is_paid < lot.state")
+        %strong Paid for
+        %span at
+        %span(data-rv-text="lot.paid_at | nice_datetime")
+        (
+        %span(data-rv-text="lot.paid_at | fromNow")>
+        )
+
 
     %div(data-role="content" data-theme="e")
       %div(data-rv-hide="lot.current_bid_id")
@@ -18,11 +52,11 @@
       %div(data-rv-show="lot.current_bid_id")
         %img.i80(data-rv-src="lot:current_bid_user_image_url < lot.current_bid_id")
         %span Highest Bid
-        %strong(data-rv-text="lot:current_bid_amount < lot.current_bid_id")
+        %strong(data-rv-text="lot:current_bid_amount < lot.current_bid_id | pound")
         %span by
         %span(data-rv-text="lot:current_bid_user_name < lot.current_bid_id")
         %span at
-        %span(data-rv-text="lot:current_bid_created_at < lot.current_bid_id")
+        %span(data-rv-text="lot:current_bid_created_at < lot.current_bid_id | fromNow")
 
     %div(data-role="content" data-theme="b")
       %form(action="#/bids" method="POST")

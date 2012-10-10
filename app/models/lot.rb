@@ -5,7 +5,6 @@ class Lot < ActiveRecord::Base
     :buy_now_price, 
     :min_increment, 
     :collected, 
-    :published, 
     :sale_start_at,
     :sale_end_at
   ]
@@ -62,9 +61,15 @@ class Lot < ActiveRecord::Base
     event :auto_close_done do
       transition :closing => :sold
     end
+    before_transition any => :sold do |lot, transition|
+      lot.sold_at = Time.now
+    end
 
     event :buy_now do
       transition :forsale => :bought
+    end
+    before_transition any => :bought do |lot, transition|
+      lot.sold_at = Time.now
     end
 
     event :payment do
@@ -73,6 +78,7 @@ class Lot < ActiveRecord::Base
     end
 
     before_transition any => :paid do |lot, transition|
+      lot.paid_at = Time.now
       lot.paid = true
       true # need this
     end
