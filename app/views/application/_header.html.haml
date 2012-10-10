@@ -1,0 +1,3 @@
+%tr
+  - for column in controller.resource_service.attr_accessible[@attr_role || :default].to_a.reject(&:blank?)
+    %th= column.humanize

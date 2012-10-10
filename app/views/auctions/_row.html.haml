@@ -1,0 +1,16 @@
+- for resource in resources
+  %tr
+    %td
+      #{resource.name}
+      %br
+      %em #{truncate(resource.description)}
+    %td #{truncate(resource.location)}
+    %td 
+      #{resource.event_start_at}
+      %br
+      #{resource.event_end_at}
+    %td
+      = link_to 'Show', resource_path(resource)
+      - if path_exists?(:edit_resource_path, resource)
+        = link_to 'Edit', edit_resource_path(resource)
+        = link_to 'Destroy', resource_path(resource) , 'data-confirm' => 'Are you sure?', 'data-method' => :delete
