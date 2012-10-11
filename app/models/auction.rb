@@ -3,6 +3,7 @@ class Auction < ActiveRecord::Base
   USER_FIELDS = [ :name, 
     :description, 
     :location, 
+    :time_zone,
     :hashtag, 
     :event_start_at, 
     :event_end_at, 
@@ -17,6 +18,7 @@ class Auction < ActiveRecord::Base
     :fundraising_target, 
     :payment_methods ,
     :picture_attributes
+
   ]
 
   ADMIN_ONLY_FIELDS = [ :charity_approved ]

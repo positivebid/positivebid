@@ -1,7 +1,7 @@
 #auctions_index
   %div(data-role="page")
     %div.ui-bar-b(data-role="header" data-theme="b")
-      %a(href="#/reload" data-icon="home" data-direction="reverse") Reload
+      %a(href="#/reload" data-icon="refresh" data-direction="reverse") Reload
       %h1 Auctions
 
     %div(data-role="content" data-theme="b" jnif="current_user")
@@ -23,7 +23,7 @@
         %p Hmmm, no auctions found.
 
       %ul(data-role="listview" data-inset="true" data-rv-show="auctions:length < auctions.models" data-rv-listview_refresh="auctions:length < auctions.models")
-        %li(data-icon="chevron-right" data-rv-each-auction="auctions:models < auctions.models")
+        %li(data-rv-each-auction="auctions:models < auctions.models")
           %a(data-rv-href="auction:viewUrl")
             %img.p80(data-rv-src="auction:imageUrl < auction.picture_id") 
             %h3(data-rv-text="auction:name")

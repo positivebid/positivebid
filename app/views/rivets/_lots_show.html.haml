@@ -70,7 +70,7 @@
         %p No items for this lot found.
 
       %ul(data-role="listview" data-inset="true" data-rv-show="items:length < items.models" data-rv-listview_refresh="items:length < items.models")
-        %li(data-icon="chevron-right" data-rv-each-item="items:models < items.models")
+        %li(data-rv-each-item="items:models < items.models")
           %a(data-rv-href="item:viewUrl")
             %img.p80(data-rv-src="item:imageUrl < item.picture_id")
             %h3(data-rv-text="item.name")

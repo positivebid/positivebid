@@ -6,10 +6,17 @@
         for #{link_to enclosing_resource_name, enclosing_resource_path}
 
     %table.table.table-striped.table-bordered
-      - for column in controller.resource_service.content_columns
+      - for column in  [ :name, :number, :buy_now_price, :min_increment, :collected, :sale_start_at, :sale_end_at , :state]
         %tr
-          %th= column.human_name
-          %td= resource.send(column.name)
+          %th= column.to_s.humanize
+          %td
+            - if column.to_s.match(/_at$/)
+              = resource.send(column).try(:to_s, :long)
+            - else
+              = resource.send(column)
+
+
+
 
     - if path_exists?(:resource_items_path)
       %p

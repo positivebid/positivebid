@@ -59,10 +59,11 @@ class Picture < ActiveRecord::Base
 
   # special code here for generating new_ids (to help with image caching)
   before_save :new_id
-  after_save :reload_owner
+
+  #BREAKING after_save :reload_owner
 
   def new_id
-    if !new_record?
+    if !new_record? and changes.present?
       @old_id = id
       next_id = nil  # for variable scoping.
       transaction do

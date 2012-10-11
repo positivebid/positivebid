@@ -2,8 +2,14 @@ class LotsController < ApplicationController
 
   resources_controller_for :lots
 
+  append_before_filter :set_time_zone
+
 
   private 
+
+  def set_time_zone
+    Time.zone = enclosing_resource.time_zone if enclosing_resource.try(:time_zone)
+  end
 
   def clean_params
     # on this controller filter out state_event params that dont 

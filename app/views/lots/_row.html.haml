@@ -4,9 +4,9 @@
     %td= resource.buy_now_price
     %td £#{resource.min_increment}
     %td
-      = resource.sale_start_at
+      = resource.sale_start_at.to_s(:long)
       %br
-      = resource.sale_end_at
+      = resource.sale_end_at.to_s(:long)
     %td
       = resource.state
     %td
