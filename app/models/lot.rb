@@ -139,7 +139,7 @@ class Lot < ActiveRecord::Base
     Lot.forsale.where("sale_end_at < ?", Time.now).find_each do |lot|
       lot.auto_close_start
     end
-    Lot.closing.where("updated_at < ?", Time.now - 1.minute).find_each do |lot|
+    Lot.closing.where("updated_at < ?", Time.now - 55.seconds).find_each do |lot|
       lot.auto_close_done
     end
   end
