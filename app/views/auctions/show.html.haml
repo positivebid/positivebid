@@ -11,6 +11,11 @@
         %tr
           %th= column.human_name
           %td= resource.send(column.name)
+      %tr
+        %th Picture
+        %td
+          - if resource.picture.id
+            %img.p100{:src => p100_picture_path(resource.picture, :format => :jpg)}
 
     - if path_exists?(:resource_lots_path)
       %p

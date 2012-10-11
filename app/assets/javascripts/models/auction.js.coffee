@@ -10,7 +10,6 @@ PB.Auction = Backbone.Model.extend
     @name = args.name
     @id = args.id
     @description = args.description
-    @image_url = "/img/logo/positivebid_rounded_128.png"
     _.bindAll(@, 'serverChange', 'serverDelete', 'modelCleanup')
 
     # if we are creating a new model to push to the server we don't want
@@ -23,6 +22,17 @@ PB.Auction = Backbone.Model.extend
   viewUrl: -> "#/auctions/#{@id}"
   newLotUrl: -> "#/auctions/#{@id}/lots/new"
   lotsUrl: -> "#/auctions/#{@id}/lots"
+  imageUrl: ->
+    if id = @get('picture_id')
+      "/pictures/#{id}/p80.jpg"
+    else
+      "/img/logo/positivebid_rounded_128.png"
+
+  imageLargeUrl: ->
+    if id = @get('picture_id')
+      "/pictures/#{id}/p200.jpg"
+    else
+      "/img/logo/positivebid_rounded_128.png"
 
   sponsors: -> PB.sponsors.for_auction(@auction_id)
 

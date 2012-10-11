@@ -7,7 +7,9 @@
     %div(data-role="content")
       %h1(data-rv-text="auction.name")
       %p
-        %span(div-rv-text="auction.description")
+        %span(data-rv-text="auction.description")
+      %p
+        %img.p200(data-rv-src="auction:imageLargeUrl < auction.picture_id")
       
       %a(data-rv-href="auction:lotsUrl" data-role="button")  View Lots
 

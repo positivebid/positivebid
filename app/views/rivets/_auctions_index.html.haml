@@ -25,7 +25,7 @@
       %ul(data-role="listview" data-inset="true" data-rv-show="auctions:length < auctions.models" data-rv-listview_refresh="auctions:length < auctions.models")
         %li(data-icon="chevron-right" data-rv-each-auction="auctions:models < auctions.models")
           %a(data-rv-href="auction:viewUrl")
-            %img.p80(data-rv-src="auction:image_url") 
+            %img.p80(data-rv-src="auction:imageUrl < auction.picture_id") 
             %h3(data-rv-text="auction:name")
             %p
               %span(data-rv-text="auction:description")

@@ -8,7 +8,7 @@ class Auction < ActiveRecord::Base
     :event_end_at, 
     :default_sale_start_at, 
     :default_sale_end_at, 
-    :allow_anoymous_bids, 
+    :allow_anonymous_bids, 
     :charity_contact_email, 
     :charity_contact_name, 
     :charity_contact_telephone, 
