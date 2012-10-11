@@ -1,8 +1,6 @@
 
 
 #= require moment
-#= require plugins/nuid
-#= require plugins/jquery.cookie
 #= require plugins/rivets.js
 #= require jlt
 #= require vendor/underscore-min.js
@@ -22,3 +20,4 @@
 #= require sview
 #= require setup
 
+# #NOT CURRENT USED = require plugins/jquery.cookie
