@@ -2,7 +2,7 @@ class AuctionsController < ApplicationController
 
   resources_controller_for :auctions
 
-  def new_resource(attributes)
+  def new_resource(attributes = nil )
     super(attributes) do |r|
       Time.zone = r.time_zone if r.time_zone
     end
