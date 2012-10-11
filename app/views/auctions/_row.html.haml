@@ -10,9 +10,9 @@
     %td #{truncate(resource.location)}
     %td 
       - Time.zone = resource.time_zone  # FIXME
-      #{resource.event_start_at}
+      #{resource.event_start_at.try(:to_s, :long)}
       %br
-      #{resource.event_end_at}
+      #{resource.event_end_at.try(:to_s, :long)}
     %td
       = link_to 'Show', resource_path(resource)
       - if path_exists?(:edit_resource_path, resource)
