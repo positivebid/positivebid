@@ -9,6 +9,7 @@
       %em #{truncate(resource.description)}
     %td #{truncate(resource.location)}
     %td 
+      - Time.zone = resource.time_zone  # FIXME
       #{resource.event_start_at}
       %br
       #{resource.event_end_at}
