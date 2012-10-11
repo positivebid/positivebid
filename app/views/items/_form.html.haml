@@ -1,11 +1,11 @@
 
-- for column in f.object.class.attr_accessible[@attr_role || :default].to_a.reject(&:blank?)
-  - if column.match(/_at$/)
-    = f.input column, as: :string, input_html: { class: 'ui-datetime-picker span2' , :value => f.object.send(column).try(:strftime,"%Y-%m-%d %H:%M")}
-  - elsif column.match(/_on$/)
-    = f.input column, as: :string, input_html: { class: 'ui-date-picker span2' }
-  - elsif f.object.respond_to?(column.to_sym)
-    = f.input column
+= f.input :name, label: 'Item Name', input_html: { class: 'span6' }
+= f.input :description, input_html: { rows: 5 , class: 'span6' }
+= f.input :terms, input_html: { rows: 4 , class: 'span6' }
+= f.input :collection_info, input_html: { rows: 4, class: 'span6'  }
+= f.input :donor_name, input_html: { class: 'span6' }
+= f.input :donor_byline, input_html: { rows: 2, class: 'span6'  }
+= f.input :organiser_notes, input_html: { rows: 4, class: 'span6'  }
 
 .control-group
   .controls
@@ -14,8 +14,9 @@
     - else
       %img.s#item_photo
 
+
 - f.object.picture or f.object.build_picture
 = f.simple_fields_for :picture do |p|
   = p.input :image_file, as: :file, label: 'Photo File'
-  = p.input :image_file_url, as: :url, label: 'Photo URL', hint: "You can either choose a file to upload as your photo, or supply the URL to a photo and we'll grab it for you.", input_html: { class: 'w100' }
+  = p.input :image_file_url, as: :url, label: 'Photo URL', hint: "You can either choose a file to upload as your photo, or supply the URL to a photo and we'll grab it for you.", input_html: { class: 'span6' }
 
