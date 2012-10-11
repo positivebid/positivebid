@@ -15,13 +15,19 @@ class Auction < ActiveRecord::Base
     :charity_name, 
     :charity_approved, 
     :fundraising_target, 
-    :payment_methods ]
+    :payment_methods ,
+    :picture_attributes
+  ]
 
   ADMIN_ONLY_FIELDS = [ :charity_approved ]
   ADMIN_FIELDS = USER_FIELDS + ADMIN_ONLY_FIELDS
 
   attr_accessible *USER_FIELDS
   attr_accessible *ADMIN_FIELDS, :as => :admin
+
+  has_one :picture, as: :owner, dependent: :destroy, select: Picture::LITE_SELECT
+  has_one :full_picture, as: :owner, class_name: 'Picture'
+  accepts_nested_attributes_for :picture
 
   validates_presence_of :name
   validates_length_of :name, :in => 2..255

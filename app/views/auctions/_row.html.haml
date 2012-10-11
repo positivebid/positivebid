@@ -1,6 +1,9 @@
 - for resource in resources
   %tr
     %td
+      - if resource.picture
+        %img.p80{:src => p80_picture_path(resource.picture, :format => :jpg)}
+    %td
       #{resource.name}
       %br
       %em #{truncate(resource.description)}
