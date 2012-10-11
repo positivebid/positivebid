@@ -1,4 +1,6 @@
 
+$ = jQuery
+
 window.rivets.routines.href = (el, value) ->
   el.href = value
 
@@ -7,6 +9,13 @@ window.rivets.routines.src = (el, value) ->
 
 window.rivets.routines.datetime = (el, value) ->
   el.setAttribute 'datetime', value
+
+window.rivets.routines.submitdisabled = (el, value) ->
+  $el = $(el)
+  if value
+    $el.closest('div.ui-btn').addClass('ui-disabled')
+  else
+    $el.closest('div.ui-btn').removeClass('ui-disabled')
 
 # dummy routine that runs jquerymobile listview('refresh') on the next tick
 # after the dom has been updated with new raw markup

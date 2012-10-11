@@ -60,8 +60,8 @@
     %div(data-role="content" data-theme="b")
       %form(action="#/bids" method="POST")
         %input(type="hidden" name="bid[lot_id]" data-rv-value="lot:id")
-        %input#bid_amount(type="text" name="bid[amount]" data-rv-value="lot:next_bid_amount < lot.current_bid_id")
-        %input#bid_now(type="submit" value="Bid Now")
+        %input#bid_amount(type="text" name="bid[amount]" data-rv-value="lot:next_bid_amount < lot.current_bid_id" data-rv-class-ui-disabled="lot:isBiddingDisabled < lot.state")
+        %input#bid_now(type="submit" value="Bid Now" data-rv-submitdisabled="lot:isBiddingDisabled < lot.state")
 
 
     %div(data-role="content")

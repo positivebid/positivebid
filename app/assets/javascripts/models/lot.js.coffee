@@ -61,6 +61,8 @@ PB.Lot = Backbone.Model.extend
   is_bought_or_sold: -> @is_bought() or @is_sold()
   is_paid: -> @get('state') is "paid"
 
+  isBiddingDisabled: -> not ( @is_forsale() or @is_closing() )
+
   errors_base: -> ''  #todo
   errors_name: -> ''  #todo
   errors_description: -> ''  #todo
