@@ -17,12 +17,7 @@ class ApplicationController < ActionController::Base
   map_enclosing_resource :home, :singleton => true, :class => User, :find => :current_user
 
 
-  before_filter :set_user_time_zone
   before_filter :set_r_var
-
-  def set_user_time_zone
-    Time.zone = current_user.time_zone if current_user
-  end
 
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
