@@ -1,0 +1,9 @@
+- @page_title = @post.title
+.row
+  .span6.offset3
+    %p
+      %a{:href => "/blog"} &larr; back to PositiveBid Blog
+
+.row
+  .span8.offset2
+    = render @post

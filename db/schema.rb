@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121011103543) do
+ActiveRecord::Schema.define(:version => 20121015123527) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name",                                               :null => false
@@ -117,6 +117,20 @@ ActiveRecord::Schema.define(:version => 20121011103543) do
 
   add_index "pictures", ["creator_id"], :name => "index_pictures_on_creator_id"
   add_index "pictures", ["owner_id", "owner_type"], :name => "index_pictures_on_owner_id_and_owner_type"
+
+  create_table "posts", :force => true do |t|
+    t.string   "title",                           :null => false
+    t.text     "body",                            :null => false
+    t.string   "author",                          :null => false
+    t.datetime "published_at",                    :null => false
+    t.boolean  "published",    :default => false, :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "posts", ["published", "published_at"], :name => "index_posts_on_published_and_published_at"
+  add_index "posts", ["published"], :name => "index_posts_on_published"
+  add_index "posts", ["published_at"], :name => "index_posts_on_published_at"
 
   create_table "users", :force => true do |t|
     t.string   "email"

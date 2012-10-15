@@ -69,7 +69,7 @@ class UserSessionsController < ApplicationController
       UserSession.create(user)
       
       if user.is_admin?
-        session[:admin_id] = @user_session.user.id
+        session[:admin_id] = user.id
       end
       respond_to do |format|
         format.html {

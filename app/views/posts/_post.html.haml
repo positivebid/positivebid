@@ -1,0 +1,15 @@
+.row[post]
+  .span7
+    %header
+      %h2 
+        %a{:href => blog_post_path(post)} #{post.title}
+      %p.postinfo
+        posted by
+        %span.author= post.author
+        on
+        %a.posted_at{:href => blog_post_path(post)} #{post.display_at.day.ordinalize} #{post.display_at.strftime("%B %Y")}
+    :markdown
+      #{post.body}
+
+
+   
