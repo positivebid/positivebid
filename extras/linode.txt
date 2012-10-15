@@ -88,6 +88,8 @@ apt-get -y install memcached memcachedb
 # this passwords not working this way...
 useradd -c "PositiveBid App" -m -s /bin/bash positive
 passwd positive
+useradd -c "PositiveBid Alpha" -m -s /bin/bash alpha
+passwd alpha
 
 
 # from remote, install ssh keys
@@ -95,6 +97,8 @@ ssh root@bid1.positivebid.com mkdir .ssh
 scp ~/.ssh/id_dsa.pub root@bid1.positivebid.com:.ssh/authorized_keys
 ssh positive@bid1.positivebid.com mkdir .ssh
 scp ~/.ssh/id_dsa.pub positive@bid1.positivebid.com:.ssh/authorized_keys
+ssh alpha@bid1.positivebid.com mkdir .ssh
+scp ~/.ssh/id_dsa.pub alpha@bid1.positivebid.com:.ssh/authorized_keys
 
 # create ~save/.ssh/environment
 su - positive

@@ -3,7 +3,6 @@ require "delayed/recipes"
 
 set :application, "positive"
 set :stage, nil
-set :user, "positive"
 set :rake, "bundle exec rake"
 
 
@@ -15,6 +14,7 @@ task :production do
   set :website, "www.positivebid.com"
   set :web_server,  "bid1.positivebid.com"
   set :branch, "stable"
+  set :user, "positive"
   set :keep_releases, 4
   set :gitwee, false
   set :deploy_to, "/home/#{user}/#{website}/#{application}"
@@ -29,8 +29,9 @@ task :staging do
   set :rails_env, "staging"
   set :my_rails_env, "staging"
   set :website, "alpha.positivebid.com"
-  set :web_server,  "bid2.positivebid.com"
+  set :web_server,  "bid1.positivebid.com"
   set :branch, "master"
+  set :user, "positive"
   set :keep_releases, 2
   set :gitwee, false
   set :deploy_to, "/home/#{user}/#{website}/#{application}"
