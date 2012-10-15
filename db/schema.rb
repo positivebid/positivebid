@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121015123527) do
+ActiveRecord::Schema.define(:version => 20121015140744) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name",                                               :null => false
@@ -53,6 +53,25 @@ ActiveRecord::Schema.define(:version => 20121015123527) do
   add_index "bids", ["lot_id", "created_at"], :name => "index_bids_on_lot_id_and_created_at"
   add_index "bids", ["lot_id"], :name => "index_bids_on_lot_id"
   add_index "bids", ["user_id"], :name => "index_bids_on_user_id"
+
+  create_table "faqs", :force => true do |t|
+    t.string   "owner_type",                             :null => false
+    t.integer  "owner_id",                               :null => false
+    t.string   "title",                                  :null => false
+    t.boolean  "show_index",          :default => false
+    t.text     "before_html"
+    t.text     "after_html"
+    t.boolean  "show_position"
+    t.boolean  "show_answers_on_faq", :default => true
+    t.boolean  "published",           :default => false
+    t.string   "key",                                    :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  add_index "faqs", ["key"], :name => "index_faqs_on_key", :unique => true
+  add_index "faqs", ["owner_id", "owner_type"], :name => "index_faqs_on_owner_id_and_owner_type"
+  add_index "faqs", ["published"], :name => "index_faqs_on_published"
 
   create_table "items", :force => true do |t|
     t.integer  "lot_id",            :null => false
@@ -131,6 +150,24 @@ ActiveRecord::Schema.define(:version => 20121015123527) do
   add_index "posts", ["published", "published_at"], :name => "index_posts_on_published_and_published_at"
   add_index "posts", ["published"], :name => "index_posts_on_published"
   add_index "posts", ["published_at"], :name => "index_posts_on_published_at"
+
+  create_table "public_owners", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "questions", :force => true do |t|
+    t.integer  "faq_id",                        :null => false
+    t.integer  "position",                      :null => false
+    t.string   "title",                         :null => false
+    t.text     "body"
+    t.boolean  "published",  :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "questions", ["faq_id", "position", "published"], :name => "index_questions_on_faq_id_and_position_and_published"
+  add_index "questions", ["faq_id"], :name => "index_questions_on_faq_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"

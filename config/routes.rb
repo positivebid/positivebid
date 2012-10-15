@@ -69,10 +69,27 @@ Positive::Application.routes.draw do
     resources :posts, :controller => 'published_posts', :only => [:show, :index]
   end
 
-  # admin route
+  resource :public, :only => [] do
+    resources :published_faqs , :only => [:show, :index ] do
+      resources :publshed_questions, :only => [:show, :index]
+    end
+  end
+
+  # admin routes
   resources :posts do
     collection do
       put :preview
+    end
+  end
+
+
+  resource :admin_public, :only => [] do
+    resources :faqs do
+      resources :questions do
+        collection do
+          put 'order'
+        end
+      end
     end
   end
 

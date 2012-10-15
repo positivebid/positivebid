@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-
-  helper_method :current_user_session, :current_user
+  helper_method :current_user_session, :current_user, :public_owner
 
   if !(Rails.env.production? or Rails.env.development?)
     http_basic_authenticate_with :name => "positive", :password => "bid", :realm => 'PostiveBid access.'
@@ -15,6 +14,8 @@ class ApplicationController < ActionController::Base
 
 
   map_enclosing_resource :home, :singleton => true, :class => User, :find => :current_user
+  map_enclosing_resource :public, :singleton=> true, :class => PublicOwner, :find => :public_owner
+  map_enclosing_resource :admin_public, :singleton=> true, :class => PublicOwner, :find => :admin_public_owner
 
 
   before_filter :set_r_var
@@ -63,6 +64,18 @@ class ApplicationController < ActionController::Base
     unless current_user and session[:admin_id]
       redirect_to root_path, :notice => "You must be an admin to access that page" 
     end
+  end
+
+  def admin_public_owner
+    if current_user && current_user.is_admin?
+      PublicOwner.instance
+    else
+      raise ActiveRecord::RecordNotFound
+    end
+  end
+
+  def public_owner
+    PublicOwner.instance
   end
 
   def set_r_var

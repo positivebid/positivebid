@@ -1,0 +1,13 @@
+- @page_title = resource.title
+
+- cache do
+  %h1= resource.title
+  .textbox
+    = raw resource.before_html
+
+    #faqs
+      = render resource.published_questions 
+
+    = raw resource.after_html
+
+

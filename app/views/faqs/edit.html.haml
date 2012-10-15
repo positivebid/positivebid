@@ -1,0 +1,9 @@
+%h1 Editing faq
+= simple_form_for_resource do |f|
+  = f.error_notification
+  = render 'form', :f => f
+  = f.button :wrapped
+
+= link_to 'Show', resource_path
+|
+\#{link_to 'Back', resources_path}

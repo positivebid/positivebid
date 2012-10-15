@@ -1,0 +1,5 @@
+%div[question]
+  %h3 #{"#{question.position.to_s}." if question.faq.show_position} #{question.title}
+  %p
+    :markdown
+      #{question.body}

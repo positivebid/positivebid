@@ -1,0 +1,28 @@
+- @faq = resource
+%p
+  %b Title:
+  = @faq.title
+%p
+  %b Show index:
+  = @faq.show_index
+%p
+  %b Before html:
+  = @faq.before_html
+%p
+  %b After html:
+  = @faq.after_html
+%p
+  %b show position:
+  = @faq.show_position
+%p
+  %b show answers on faq:
+  = @faq.show_answers_on_faq
+%p
+  %b key
+  = @faq.key
+%p
+  %b Questions:
+  = link_to nil, resource_questions_path
+= link_to 'Edit', edit_resource_path(@faq)
+|
+\#{link_to 'Back', resources_path}

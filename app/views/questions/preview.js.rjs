@@ -1,0 +1,1 @@
+page[:question_preview].replace_html :partial => @question

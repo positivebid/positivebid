@@ -1,0 +1,16 @@
+- @question = resource
+%p
+  %b Faq:
+  = h @question.faq_id
+%p
+  %b Title:
+  = h @question.title
+%p
+  %b Body:
+  = h @question.body
+%p
+  %b Published:
+  = h @question.published
+= link_to 'Edit', edit_resource_path(@question)
+|
+\#{link_to 'Back', resources_path}

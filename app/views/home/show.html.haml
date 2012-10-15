@@ -4,10 +4,15 @@
     %h1 Welcome #{current_user.name}
   .span8.offset2
     %p
-      %a.btn{:href => app_path} Auctions &amp; Bidding &rarr;
+      %a.btn.btn-primary{:href => app_path} Auctions &amp; Bidding &rarr;
   .span8.offset2
     %p
-      %a{:href => resource_auctions_path} Auction Setup
+      %a.btn{:href => resource_auctions_path} Auction Setup
     %p
-      %a{:href => logout_path} Logout
+      %a.btn{:href => logout_path} Logout
+    - if current_user.is_admin?
+      %p
+        %a.btn{:href => posts_path} Blog Posts Admin
+        %a.btn{:href => admin_public_faqs_path} Faq Admin
+
 
