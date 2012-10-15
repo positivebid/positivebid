@@ -31,7 +31,7 @@ task :staging do
   set :website, "alpha.positivebid.com"
   set :web_server,  "bid1.positivebid.com"
   set :branch, "master"
-  set :user, "positive"
+  set :user, "alpha"
   set :keep_releases, 2
   set :gitwee, false
   set :deploy_to, "/home/#{user}/#{website}/#{application}"
