@@ -59,7 +59,6 @@ GEM
   remote: https://rubygems.org/
   specs:
     Ascii85 (1.0.2)
-    RedCloth (4.2.9)
     actionmailer (3.2.8)
       actionpack (= 3.2.8)
       mail (~> 2.4.4)
@@ -275,7 +274,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  RedCloth
   active_model_serializers!
   acts_as_list!
   acts_as_singleton

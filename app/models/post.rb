@@ -19,10 +19,6 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def body_html
-    RedCloth.new(body).to_html
-  end
-
   def to_param 
     "#{id}-#{title.try(:parameterize)}" 
   end 

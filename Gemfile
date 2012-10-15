@@ -29,7 +29,6 @@ gem 'acts_as_list', :git => 'git://github.com/swanandp/acts_as_list.git' #TODO k
 gem 'acts_as_singleton'
 gem 'jquery-rjs', :git => 'git://github.com/jlsync/jquery-rjs.git'  # for .rjs support
 gem 'rdiscount'
-gem 'RedCloth'
 gem 'state_machine'
 gem 'money'
 #TOOD gem 'gocardless'
