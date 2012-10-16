@@ -1,27 +1,32 @@
-.container
-  .row.pfirstrow
-    .span4
-      %img.home_logo{:src => image_path("logo/positivebid_rounded_128.png") }
-      %h1.lato.pyellow PositiveBid.
-      %h2.lato A better way of fundraising. 
-      %h3.lato Launching soon.
-    .span8
-      <iframe src="http://player.vimeo.com/video/30516030" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+.outer-root
+  .container
+    .row.pfirstrow
+      .span4
+        %img.home_logo{:src => image_path("logo/positivebid_rounded_128.png") }
+        %h1.lato.pyellow PositiveBid.
+        %h2.lato A better way of fundraising. 
+        %h3.lato Launching soon.
+      .span8
+        <iframe src="http://player.vimeo.com/video/30516030" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
-  .row.pinforow
-    .span4
-      %p  PositiveBid enables charity fundraisers to easily manage and run auctions at their events.  Attendees use their own smartphone, or tablet, to browse items being auctioned, bid on them and then pay for the items or lots that they have won.
-    .span4
-      %p  PositiveBid is free to use by registered charities.  Suitable for use at any type of event including Charity Balls, dedicated auctions, golf or activity days. Our easy to use system increases participation and competive bidding, leading to greater fundraising.
+.outer-white
+  .container
+    .row.pinforow
+      .span4
+        %p  PositiveBid enables charity fundraisers to easily manage and run auctions at their events.  Attendees use their own smartphone, or tablet, to browse items being auctioned, bid on them and then pay for the items or lots that they have won.
+      .span4
+        %p  PositiveBid is free to use by registered charities.  Suitable for use at any type of event including Charity Balls, dedicated auctions, golf or activity days. Our easy to use system increases participation and competive bidding, leading to greater fundraising.
 
-    .span3
-      %p  PositiveBid is lanuching soon. If you're interesting in using PositiveBid at your next event then please get in touch with us.
-      %p 
-        %a.btn.btn-success(href="mailto:info@positivebid.com") Contact Us
+      .span3
+        %p  PositiveBid is lanuching soon. If you're interesting in using PositiveBid at your next event then please get in touch with us.
+        %p 
+          %a.btn.btn-success(href="mailto:info@positivebid.com") Contact Us
 
-  .row.pfooter
-    .span12
-      %p
-        &copy; #{Time.now.year} PositiveBid Limited.
+.outer-grey
+  .container
+    .row.pfooter
+      .span12
+        %p
+          &copy; #{Time.now.year} PositiveBid Limited.
   
 
