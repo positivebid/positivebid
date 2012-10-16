@@ -22,7 +22,7 @@
     - if Rails.env.production? and session[:admin_id].blank?
       = render 'shared/google_analytics'
   %body{:class => "#{@body_class if @body_class}"}
-    .navbar.navbar-inverse.navbar-fixed-top
+    .navbar.navbar-inverse
       .navbar-inner
         .container
           %a.btn.btn-navbar(data-toggle="collapse" data-target=".nav-collapse")
@@ -35,16 +35,28 @@
     
           .nav-collapse
             %ul.nav.pull-right
-              %li.active
+              %li{:class => "#{"active" if params[:controller] == 'root'}"}
                 %a(href="/") Home
-              %li 
+              %li{:class => "#{"active" if params[:controller] == 'blogs'}"}
                 %a(href="/blog") Blog
 
               %li 
                 %span
-                  %a.btn.btn-yellow.btn-bold(href="/app")I'm a bidder
+                  %a.btn.btn-yellow.btn-bold(href="#" disabled title="Check Back soon for our next Auction!") I'm a bidder
 
 
 
+    - if flash[:notice]
+      .container
+        .flash.alert.alert-info.notice= flash[:notice]
+    - if flash[:error]
+      .container
+        .flash.alert.alert-error.error= flash[:error]
+    - if flash[:alert]
+      .container
+        .flash.alert.alert-error.error= flash[:alert]
+    - if flash[:success]
+      .container
+        .flash.alert.alert-success.success= flash[:success]
     = yield
     = render 'shared/page_extras'

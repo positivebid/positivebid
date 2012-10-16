@@ -14,6 +14,7 @@
 //= require plugins/jquery-ui-timepicker-addon
 //= require moment
 //= require jlObserve
+//= require twitter/bootstrap
 //= require internal
 
 
