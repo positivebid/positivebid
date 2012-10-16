@@ -22,5 +22,29 @@
     - if Rails.env.production? and session[:admin_id].blank?
       = render 'shared/google_analytics'
   %body{:class => "#{@body_class if @body_class}"}
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar(data-toggle="collapse" data-target=".nav-collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+    
+          %a.brand(href="/") 
+            %strong.pyellow PositiveBid
+    
+          .nav-collapse
+            %ul.nav.pull-right
+              %li.active
+                %a(href="/") Home
+              %li 
+                %a(href="/blog") Blog
+
+              %li 
+                %span
+                  %a.btn.btn-yellow.btn-bold(href="/app")I'm a bidder
+
+
+
     = yield
     = render 'shared/page_extras'

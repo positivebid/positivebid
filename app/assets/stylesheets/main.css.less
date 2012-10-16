@@ -1,17 +1,27 @@
 @import "twitter/bootstrap";
 @import "twitter/bootstrap/responsive";
 
+@pyellow1: #FFFF33;
+@pyellow2: #FDF950;
 
 body {
-  background: #FFE; }
+  background: #000; }
 
 .row {
   background: #FFF; }
 
+.pfirstrowwhite {
+  padding: 80px 0 0; 
+}
+
 .pfirstrow {
-  padding: 2em 0; 
+  padding: 80px 0 0; 
   color: #FFF;
   background: #000; 
+  background-image: url('/img/108354487-handsup-1400.jpg') ;
+  background-repeat: no-repeat;
+  background-repeat: repeat-x;
+
 
   .home_logo {
     width: 128px;
@@ -20,11 +30,12 @@ body {
 }
 
 .pinforow {
+  background: #FFF;
   padding: 2em 0; 
 }
 
 .pyellow {
-  color: #FFFF33; }
+  color: @pyellow1; }
 
 .pfooter {
   padding: 10px 0 0; 
@@ -36,6 +47,29 @@ body {
 
 .lato {
   font-family: 'Lato', sans-serif; }
+
+
+.btn-yellow {
+  .buttonBackground( @pyellow1 , darken(@pyellow1, 15%), @grayDark , 0 1px 1px rgba(255,255,255,.75) );
+}
+
+.btn-bold {
+  font-weight: bold; 
+}
+
+/*
+** bootstrap overrides
+*/
+
+.navbar-inverse .navbar-inner {
+  background: rgba(0,0,0,0.85); }
+
+.pbustout {
+  margin-right: -20px; 
+  margin-left: -20px; 
+  padding-right: 20px;
+  padding-left: 20px;
+}
 
 
 /*

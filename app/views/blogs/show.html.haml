@@ -1,44 +1,45 @@
-.row
-  .span7.offset1
-    .row
-      .span10
-        %a(href="/")
-          %img.home_logo{:src => image_path("logo/positivebid_rounded_128.png") }
-    .row
-      .span7
-        %h3
-          PositiveBid Blog - Realtime Charity Auction Software
+.container
+  .row.pfirstrowwhite
+    .span7.offset1
+      .row
+        .span10
+          %a(href="/")
+            %img.home_logo{:src => image_path("logo/positivebid_rounded_128.png") }
+      .row
+        .span7
+          %h3
+            PositiveBid Blog - Realtime Charity Auction Software
 
-    - if @posts.present?
-      = render @posts
+      - if @posts.present?
+        = render @posts
 
-  .span3.offset1
-    %p &nbsp; 
-    .well
-      <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
-      :javascript
-        new TWTR.Widget({
-          version: 2,
-          type: 'profile',
-          rpp: 5,
-          interval: 12000,
-          width: 'auto',
-          height: 400,
-          theme: {
-            shell: {
-              background: '#007cc3',
-              color: '#ffffff'
+    .span3.offset1
+      %p &nbsp; 
+      .well
+        <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+        :javascript
+          new TWTR.Widget({
+            version: 2,
+            type: 'profile',
+            rpp: 5,
+            interval: 12000,
+            width: 'auto',
+            height: 400,
+            theme: {
+              shell: {
+                background: '#007cc3',
+                color: '#ffffff'
+              },
+              tweets: {
+                background: '#ffffff',
+                color: '#000000',
+                links: '#007cc3'
+              }
             },
-            tweets: {
-              background: '#ffffff',
-              color: '#000000',
-              links: '#007cc3'
+            features: {
+              scrollbar: false,
+              loop: false,
+              live: true,
+              behavior: 'all'
             }
-          },
-          features: {
-            scrollbar: false,
-            loop: false,
-            live: true,
-            behavior: 'all'
-          }
-        }).render().setUser('positivebid').start();
+          }).render().setUser('positivebid').start();
