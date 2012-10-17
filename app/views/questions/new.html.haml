@@ -1,13 +1,16 @@
-%h1 New question
-= simple_form_for_resource(:html => { :id => 'question_form_id'}) do |f|
-  = f.error_notification
-  = render 'form', :f => f
-  = f.button :wrapped
+.container-fluid
+  .row-fluid
+    .span12
+      %h1 New question
+      = simple_form_for_resource(:html => { :id => 'question_form_id'}) do |f|
+        = f.error_notification
+        = render 'form', :f => f
+        = f.button :wrapped
 
-= link_to 'Back', resources_path
+      = link_to 'Back', resources_path
 
-%p 
-  preview:
-  %i observe_form todo
+      %p 
+        preview:
+        %i observe_form todo
 
-#question_preview
+      #question_preview

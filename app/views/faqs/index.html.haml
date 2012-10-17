@@ -1,24 +1,27 @@
-%h1 Listing faqs
-%table.table.wb
-  %tr
-    %th Title
-    %th Show index
-    %th Before html
-    %th After html
-  - for faq in resources
-    %tr
-      %td= h faq.title
-      %td= h faq.show_index
-      %td= h faq.before_html
-      %td= h faq.after_html
-      %td
-        - if faq.published?
-          = link_to 'Public View', public_published_faq_path(faq)
-        - else
-          %em not published
-      %td= link_to 'Show', resource_path(faq)
-      %td= link_to 'Questions', resource_questions_path(faq)
-      %td= link_to 'Edit', edit_resource_path(faq)
-      %td= link_to 'Destroy', resource_path(faq), :confirm => 'Are you sure?', :method => :delete
-%br/
-= link_to 'New faq', new_resource_path
+.container-fluid
+  .row-fluid
+    .span12
+      %h1 Listing faqs
+      %table.table.wb
+        %tr
+          %th Title
+          %th Show index
+          %th Before html
+          %th After html
+        - for faq in resources
+          %tr
+            %td= h faq.title
+            %td= h faq.show_index
+            %td= h faq.before_html
+            %td= h faq.after_html
+            %td
+              - if faq.published?
+                = link_to 'Public View', public_published_faq_path(faq)
+              - else
+                %em not published
+            %td= link_to 'Show', resource_path(faq)
+            %td= link_to 'Questions', resource_questions_path(faq)
+            %td= link_to 'Edit', edit_resource_path(faq)
+            %td= link_to 'Destroy', resource_path(faq), :confirm => 'Are you sure?', :method => :delete
+      %br/
+      = link_to 'New faq', new_resource_path

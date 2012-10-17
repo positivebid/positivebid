@@ -1,17 +1,20 @@
-%h1 New post
-= simple_form_for_resource(:html => {:id => 'post_form_id'}) do |f|
-  = render 'form', :f => f
-  = f.button :wrapped
-= link_to 'Back', resources_path
-%p preview:
-#post_preview
-:javascript
-  $('#post_body').jl_observe(1000, function() {
-  
-  $.ajax({ dataType: 'script',
-  url: '#{preview_posts_path}',
-  contentType: "application/x-www-form-urlencoded",
-  type: 'post',
-  data: $('#post_form_id').serialize()
-  });
-  });
+.container-fluid
+  .row-fluid
+    .span12
+      %h1 New post
+      = simple_form_for_resource(:html => {:id => 'post_form_id'}) do |f|
+        = render 'form', :f => f
+        = f.button :wrapped
+      = link_to 'Back', resources_path
+      %p preview:
+      #post_preview
+      :javascript
+        $('#post_body').jl_observe(1000, function() {
+        
+        $.ajax({ dataType: 'script',
+        url: '#{preview_posts_path}',
+        contentType: "application/x-www-form-urlencoded",
+        type: 'post',
+        data: $('#post_form_id').serialize()
+        });
+        });

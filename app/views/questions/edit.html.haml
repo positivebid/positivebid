@@ -1,11 +1,14 @@
-%h1 Editing question
-= simple_form_for_resource(:html => { :id => 'question_form_id'}) do |f|
-  = f.error_notification
-  = render 'form', :f => f
-  = f.button :wrapped
+.container-fluid
+  .row-fluid
+    .span12
+      %h1 Editing question
+      = simple_form_for_resource(:html => { :id => 'question_form_id'}) do |f|
+        = f.error_notification
+        = render 'form', :f => f
+        = f.button :wrapped
 
-= link_to 'Show', resource_path
-|
-\#{link_to 'Back', resources_path}
-%p preview: observe_form todo
-#question_preview= render :partial => resource
+      = link_to 'Show', resource_path
+      |
+      \#{link_to 'Back', resources_path}
+      %p preview: observe_form todo
+      #question_preview= render :partial => resource

@@ -1,21 +1,24 @@
-%h1 Posts
-%p
-  %a{:href => '/blog'} Live Blog at /blog
-%p
-  = link_to 'New post', new_resource_path
-%table.table.wb
-  %tr
-    %th Title
-    %th Author
-    %th Published
-    %th Published At
-  - for post in @posts
-    %tr
-      %td= post.title
-      %td= post.author
-      %td= post.published
-      %td= post.published_at
-      %td= link_to 'Show', resource_path(post)
-      %td= link_to 'Edit', edit_resource_path(post)
-      %td= link_to 'Destroy', resource_path(post), :confirm => 'Are you sure?', :method => :delete
+.container-fluid
+  .row-fluid
+    .span12
+      %h1 Posts
+      %p
+        %a{:href => '/blog'} Live Blog at /blog
+      %p
+        = link_to 'New post', new_resource_path
+      %table.table.wb
+        %tr
+          %th Title
+          %th Author
+          %th Published
+          %th Published At
+        - for post in @posts
+          %tr
+            %td= post.title
+            %td= post.author
+            %td= post.published
+            %td= post.published_at
+            %td= link_to 'Show', resource_path(post)
+            %td= link_to 'Edit', edit_resource_path(post)
+            %td= link_to 'Destroy', resource_path(post), :confirm => 'Are you sure?', :method => :delete
 

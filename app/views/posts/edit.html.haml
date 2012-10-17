@@ -1,21 +1,24 @@
-%h1 Editing post
-= simple_form_for_resource(:html => {:id => 'post_form_id'}) do |f|
-  = render :partial => 'form', :locals => { :f => f}
-  = f.button :wrapped
+.container-fluid
+  .row-fluid
+    .span12
+      %h1 Editing post
+      = simple_form_for_resource(:html => {:id => 'post_form_id'}) do |f|
+        = render :partial => 'form', :locals => { :f => f}
+        = f.button :wrapped
 
-= link_to 'Show', resource_path
-|
-\#{link_to 'Back', resources_path}
-%p preview:
-#post_preview= render :partial => resource
+      = link_to 'Show', resource_path
+      |
+      \#{link_to 'Back', resources_path}
+      %p preview:
+      #post_preview= render :partial => resource
 
-:javascript
-  $('#post_body').jl_observe(1000, function() {
-  
-  $.ajax({ dataType: 'script',
-  url: '#{preview_posts_path}',
-  contentType: "application/x-www-form-urlencoded",
-  type: 'post',
-  data: $('#post_form_id').serialize()
-  });
-  });
+      :javascript
+        $('#post_body').jl_observe(1000, function() {
+        
+        $.ajax({ dataType: 'script',
+        url: '#{preview_posts_path}',
+        contentType: "application/x-www-form-urlencoded",
+        type: 'post',
+        data: $('#post_form_id').serialize()
+        });
+        });

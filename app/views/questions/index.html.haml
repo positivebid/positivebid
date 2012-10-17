@@ -1,39 +1,42 @@
-%h1 Listing questions
-%p
-  = link_to "back to FAQ: #{h enclosing_resource.title}", enclosing_resource_path
-
-#questions
-  - for question in resources
-    %div.border[question]
-      %p.handle
-        %b position:
-        = question.position
-        %b published: 
-        = question.published
-        = link_to 'Show', resource_path(question)
-        = link_to 'Edit', edit_resource_path(question)
-        = link_to 'Destroy', resource_path(question), :confirm => 'Are you sure?', :method => :delete
+.container-fluid
+  .row-fluid
+    .span12
+      %h1 Listing questions
       %p
-        = question.title
-        ,
-        = truncate question.body
+        = link_to "back to FAQ: #{h enclosing_resource.title}", enclosing_resource_path
+
+      #questions
+        - for question in resources
+          %div.border[question]
+            %p.handle
+              %b position:
+              = question.position
+              %b published: 
+              = question.published
+              = link_to 'Show', resource_path(question)
+              = link_to 'Edit', edit_resource_path(question)
+              = link_to 'Destroy', resource_path(question), :confirm => 'Are you sure?', :method => :delete
+            %p
+              = question.title
+              ,
+              = truncate question.body
 
 
-%br/
+      %br/
 
-= link_to 'New question', new_resource_path
+      = link_to 'New question', new_resource_path
 
-:javascript
-  $('#questions').sortable({
-    axis: 'y', 
-    handle:'.handle', 
-    update:function(){
-      $.ajax({
-        complete:function(request){$('#false').effect('highlight');},
-        data: $(this).sortable('serialize') + '&_method=put',
-          dataType:'script', 
-          type: 'PUT', 
-          url: '#{order_resources_path}'})}});
+      :javascript
+        $('#questions').sortable({
+          axis: 'y', 
+          handle:'.handle', 
+          update:function(){
+            $.ajax({
+              complete:function(request){$('#false').effect('highlight');},
+              data: $(this).sortable('serialize') + '&_method=put',
+                dataType:'script', 
+                type: 'PUT', 
+                url: '#{order_resources_path}'})}});
 
 
 

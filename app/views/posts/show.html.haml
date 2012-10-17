@@ -1,4 +1,7 @@
-= render @post
-= link_to 'Edit', edit_resource_path(@post)
-|
-\#{link_to 'Back', resources_path}
+.container
+  .row
+    .span8
+      = render @post
+      = link_to 'Edit', edit_resource_path(@post)
+      |
+      \#{link_to 'Back', resources_path}
