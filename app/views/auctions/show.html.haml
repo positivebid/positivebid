@@ -9,12 +9,19 @@
         %a(href="/home/auctions") Auctions
         %span.divider /
       %li.active
-        %a{:href => resource_path}= truncate resource.name
+        = truncate resource.name
+        %span.divider /
+      %li
+        %a{:href => resource_lots_path} Lots
 
     %h4
       Auction:
     %h1
       = resource.name.titleize
+    %p 
+      %a.btn.btn-small{:href => edit_resource_path} Edit
+      %a.btn.btn-small.btn-danger{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
+
 
 
     %table.table.table-striped.table-bordered
@@ -28,10 +35,4 @@
           - if resource.picture.id
             %img.p100{:src => p100_picture_path(resource.picture, :format => :jpg)}
 
-    - if path_exists?(:resource_lots_path)
-      %p
-        %a{:href => resource_lots_path} View Auction Lots
 
-    = link_to 'Edit this ' + resource_name, edit_resource_path
-    |
-    \#{link_to 'Back to Index', resources_path}

@@ -14,7 +14,4 @@
         - if event.to_s.match(/^organiser/)
           %a.btn.btn-small{:href => resource_path(resource, 'lot[state_event]' => event ), 'data-method' => 'PUT'} #{event}
     %td
-      = link_to 'Show', resource_path(resource)
-      - if path_exists?(:edit_resource_path, resource)
-        = link_to 'Edit', edit_resource_path(resource)
-        = link_to 'Destroy', resource_path(resource) , 'data-confirm' => 'Are you sure?', 'data-method' => :delete
+      %a.btn{:href => resource_path(resource)} View

@@ -15,9 +15,12 @@
         Lots
 
     %h4
-      Listing:
+      Auction: #{@auction.name}
     %h1
       Lots
+    %p
+      - if path_exists?(:new_resource_path)
+        %a.btn.btn-yellow{:href => new_resource_path} Add New #{resource_name.humanize}
 
     - if resources.respond_to? 'num_pages'
       = paginate resources
@@ -29,7 +32,4 @@
     - if resources.respond_to? 'num_pages'
       = paginate resources
 
-    - if path_exists?(:new_resource_path)
-      %br.clearleft/
-      %a.btn.btn-primary{:href => new_resource_path} New #{resource_name.humanize}
 

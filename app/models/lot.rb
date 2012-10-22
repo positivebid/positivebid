@@ -1,7 +1,7 @@
 class Lot < ActiveRecord::Base
   USER_FIELDS = [
-    :name, 
     :number, 
+    :name, 
     :buy_now_price, 
     :min_increment, 
     :collected, 

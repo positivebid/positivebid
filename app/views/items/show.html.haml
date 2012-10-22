@@ -14,7 +14,7 @@
         %a{:href => home_auction_lots_path(@auction)} Lots
         %span.divider /
       %li.active
-        %a{:href => home_auction_lot_path(@auction, @lot)} #{@lot.number}: #{truncate @lot.name}
+        %a{:href => home_auction_lot_path(@auction, @lot)} #{@lot.number} - #{truncate @lot.name}
         %span.divider /
       %li
         %a{:href => resources_path} Items
@@ -26,6 +26,9 @@
       Item:
     %h1
       = resource.name.titleize
+    %p 
+      %a.btn.btn-small{:href => edit_resource_path} Edit
+      %a.btn.btn-small.btn-danger{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
 
     %table.table.table-striped.table-bordered
       - for column in controller.resource_service.content_columns
@@ -38,6 +41,3 @@
           - if resource.picture.id
             %img.p100{:src => p100_picture_path(resource.picture, :format => :jpg)}
 
-    = link_to 'Edit this ' + resource_name, edit_resource_path
-    |
-    \#{link_to 'Back to Index', resources_path}

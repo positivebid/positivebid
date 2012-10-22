@@ -14,15 +14,17 @@
         %a{:href => resources_path} Lots
         %span.divider /
       %li.active
-        %a{:href => resource_path} #{resource.number}: #{truncate resource.name}
+        #{resource.number}: #{truncate resource.name}
+        %span.divider /
+      %li
+        %a{:href => resource_items_path} Items
 
-    %a.btn.btn-yellow{:href => resource_items_path} Items
-    %a.btn{:href => edit_resource_path} Edit
 
-    %h4
-      Lot:
-    %h1
-      = resource.name.titleize
+    %h4 Lot:
+    %h1 #{resource.number} - #{resource.name.titleize}
+    %p  
+      %a.btn.btn-small{:href => edit_resource_path} Edit
+      %a.btn.btn-small.btn-danger{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
 
     %table.table.table-striped.table-bordered
       - for column in  [ :name, :number, :buy_now_price, :min_increment, :collected, :sale_start_at, :sale_end_at , :state]

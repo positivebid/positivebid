@@ -15,15 +15,18 @@
         %a{:href => home_auction_lots_path(@auction)} Lots
         %span.divider /
       %li.active
-        %a{:href => home_auction_lot_path(@auction, @lot)} #{@lot.number}: #{truncate @lot.name}
+        %a{:href => home_auction_lot_path(@auction, @lot)} #{@lot.number} - #{truncate @lot.name}
         %span.divider /
       %li.active
         Items
 
     %h4
-      Listing:
+      Lot: #{@lot.number} - #{@lot.name}
     %h1
       Items
+    %p
+      - if path_exists?(:new_resource_path)
+        %a.btn.btn-yellow{:href => new_resource_path} Add New #{resource_name.humanize}
 
     - if resources.respond_to? 'num_pages'
       = paginate resources
@@ -35,7 +38,4 @@
     - if resources.respond_to? 'num_pages'
       = paginate resources
 
-    - if path_exists?(:new_resource_path)
-      %br.clearleft/
-      %a.btn.btn-primary{:href => new_resource_path} New #{resource_name.humanize}
 
