@@ -5,6 +5,7 @@ class LotsController < ApplicationController
   append_before_filter :set_time_zone
 
 
+
   private 
 
   def set_time_zone

@@ -1,11 +1,18 @@
 .row
   .span10.offset1
 
+
+    %ul.breadcrumb
+      %li
+        %a(href="/home") Home
+        %span.divider /
+      %li.active
+        %a(href="/home/auctions") Auctions
+
+    %h4
+      Listing:
     %h1
-      Listing #{resource_name.humanize.pluralize}
-      - if enclosing_resource && path_exists?(:enclosing_resource_path)
-        for
-        %a{:href => enclosing_resource_path} #{enclosing_resource_name.humanize}
+      Auctions
 
     - if resources.respond_to? 'num_pages'
       = paginate resources

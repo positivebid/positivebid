@@ -1,9 +1,28 @@
 .row
   .span10.offset1
+    %ul.breadcrumb
+      %li
+        %a(href="/home") Home
+        %span.divider /
+      %li
+        %a(href="/home/auctions") Auctions
+        %span.divider /
+      %li
+        %a{:href => home_auction_path(@auction)}= truncate @auction.name
+        %span.divider /
+      %li
+        %a{:href => resources_path} Lots
+        %span.divider /
+      %li.active
+        %a{:href => resource_path} #{resource.number}: #{truncate resource.name}
+
+    %a.btn.btn-yellow{:href => resource_items_path} Items
+    %a.btn{:href => edit_resource_path} Edit
+
+    %h4
+      Lot:
     %h1
-      = resource_name.titleize
-      - if enclosing_resource && path_exists?(:enclosing_resource_path)
-        for #{link_to enclosing_resource_name, enclosing_resource_path}
+      = resource.name.titleize
 
     %table.table.table-striped.table-bordered
       - for column in  [ :name, :number, :buy_now_price, :min_increment, :collected, :sale_start_at, :sale_end_at , :state]
@@ -18,10 +37,4 @@
 
 
 
-    - if path_exists?(:resource_items_path)
-      %p
-        %a{:href => resource_items_path} View Lot Items
 
-    = link_to 'Edit this ' + resource_name, edit_resource_path
-    |
-    \#{link_to 'Back to Index', resources_path}
