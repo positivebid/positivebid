@@ -1,3 +1,5 @@
+- @page_title = "PositiveBid Blog"
+
 .container
   .row.pfirstrowwhite
     .span7.offset1
@@ -7,8 +9,10 @@
             %img.home_logo{:src => image_path("logo/positivebid_rounded_128.png") }
       .row
         .span7
-          %h3
-            PositiveBid Blog - Realtime Charity Auction Software
+          %h2
+            %span.lato PositiveBid 
+            Blog 
+          %h4 Realtime Charity Auction Software
 
       - if @posts.present?
         = render @posts
