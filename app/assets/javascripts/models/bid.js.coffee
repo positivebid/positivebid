@@ -12,10 +12,10 @@ PB.Bid = Backbone.Model.extend
     @user_id = args.user_id
     @created_at = args.created_at
 
-    _.bindAll(@, 'serverChange', 'serverDelete', 'modelCleanup', 'set_min_amount')
+    _.bindAll(@, 'serverChange', 'serverDelete', 'modelCleanup', 'set_min_amount', 'next_minimum', 'increment', 'decrement')
 
     if (not @id?) and (not @get('amount')?)
-      @set 'amount',  parseInt(@lot().current_bid_amount(),10) + parseInt(@lot().increment,10)
+      @set_min_amount()
       @lot().on "change:current_bid_id", @set_min_amount
 
     # if we are creating a new model to push to the server we don't want
@@ -30,12 +30,21 @@ PB.Bid = Backbone.Model.extend
   lot: -> PB.lots.get(@get('lot_id'))
   user: -> PB.users.get(@get('user_id'))
 
-  bid_now: -> "Bid £#{@get('amount')} Now"
+  bid_now: -> "Bid £#{@get('amount')} now"
+
+  increment: ->
+    @set 'amount', @get('amount') + parseInt(@lot().increment,10)
+
+  decrement: ->
+    a = @get('amount') - parseInt(@lot().increment,10)
+    d = if a < @next_minimum() then @next_minimum() else a
+    @set 'amount', d
 
   set_min_amount: ->
-    console.log('setting amount...')
-    @set 'amount',  parseInt(@lot().current_bid_amount(),10) + parseInt(@lot().increment,10)
+    @set 'amount',  @next_minimum()
 
+  next_minimum: ->
+    parseInt(@lot().current_bid_amount(),10) + parseInt(@lot().increment,10)
 
   serverChange: (data) ->
     # Useful to prevent loops when dealing with client-side updates (ie: forms).
