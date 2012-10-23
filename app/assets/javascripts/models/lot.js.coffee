@@ -45,7 +45,7 @@ PB.Lot = Backbone.Model.extend
 
   current_bid_user_name: -> @current_bid()?.user()?.name()
   current_bid_user_image_url: -> @current_bid()?.user()?.image_url
-  current_bid_amount: -> @current_bid()?.amount or 0
+  current_bid_amount: -> @current_bid()?.get('amount') or 0
   current_bid_created_at: -> @current_bid()?.created_at
   next_bid_amount: -> parseInt(@current_bid_amount(),10) + parseInt(@increment,10)
 
@@ -67,6 +67,8 @@ PB.Lot = Backbone.Model.extend
   errors_name: -> ''  #todo
   errors_description: -> ''  #todo
 
+  next_bid: () ->
+    @_next_bid_cache ?= new PB.Bid({lot_id: @id})
 
   serverChange: (data) ->
     # Useful to prevent loops when dealing with client-side updates (ie: forms).

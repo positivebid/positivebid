@@ -17,6 +17,11 @@ window.rivets.routines.submitdisabled = (el, value) ->
   else
     $el.closest('div.ui-btn').removeClass('ui-disabled')
 
+window.rivets.routines.jqbtntext = (el, value) ->
+  $el = $(el)
+  if value
+    $el.closest('div.ui-btn').find('span.ui-btn-text').text(value)
+
 # dummy routine that runs jquerymobile listview('refresh') on the next tick
 # after the dom has been updated with new raw markup
 window.rivets.routines.listview_refresh = (el, value) ->

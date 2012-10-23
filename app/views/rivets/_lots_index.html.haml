@@ -12,7 +12,10 @@
         %li(data-rv-each-lot="lots:models < lots.models")
           %a(data-rv-href="lot:viewUrl")
             %img.p80(data-rv-src="lot:imageUrl") 
-            %h3(data-rv-text="lot.name")
+            %h3
+              %span(data-rv-text="lot.number")
+              %span -
+              %span(data-rv-text="lot.name")
             %p
               %span(data-rv-text="lot.description")
 

@@ -7,8 +7,9 @@
     %div(data-role="content")
       %h1
         %span Lot
-        %span(data-rv-text="lot:number")
-        %span(data-rv-text="lot:name")
+        %span(data-rv-text="lot.number")
+        %span -
+        %span(data-rv-text="lot.name")
       %p(data-rv-show="lot:is_draft < lot.state")
         %strong(data-rv-text="lot.state")
       %p(data-rv-show="lot:is_draft_or_published < lot.state")
@@ -59,9 +60,19 @@
 
     %div(data-role="content" data-theme="b")
       %form(action="#/bids" method="POST")
+        .ui-grid-b
+          .ui-block-a
+            %a(data-role="button" data-theme="d") 
+              %span> -
+              %span(data-rv-text="lot:increment | pound")
+          .ui-block-b
+            %input#bid_amount(type="text" name="bid[amount]" data-rv-value="bid.amount" data-rv-class-ui-disabled="lot:isBiddingDisabled < lot.state")
+          .ui-block-c
+            %a(data-role="button" data-theme="d") 
+              %span> +
+              %span(data-rv-text="lot:increment | pound")
         %input(type="hidden" name="bid[lot_id]" data-rv-value="lot:id")
-        %input#bid_amount(type="text" name="bid[amount]" data-rv-value="lot:next_bid_amount < lot.current_bid_id" data-rv-class-ui-disabled="lot:isBiddingDisabled < lot.state")
-        %input#bid_now(type="submit" value="Bid Now" data-rv-submitdisabled="lot:isBiddingDisabled < lot.state")
+        %input#bid_now(data-theme="e" type="submit" data-rv-value="bid:bid_now < bid.amount" data-rv-jqbtntext="bid:bid_now < bid.amount" data-rv-submitdisabled="lot:isBiddingDisabled < lot.state")
 
 
     %div(data-role="content")

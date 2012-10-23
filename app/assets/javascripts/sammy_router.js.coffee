@@ -63,9 +63,6 @@ PB.app = $.sammy(->
     context.redirect("#/auctions")
     return false
   
-  @get "#/auctions/new", (context) ->
-    form_auction = new PB.Auction()
-    render( new Sview('auctions_new', {auction: form_auction }) )
 
   @get "#/auctions/:id", (context) ->
     #OLD window.socket.emit 'enter_auction', { id: context.params.id }
@@ -85,13 +82,6 @@ PB.app = $.sammy(->
     context.redirect("#/auctions/#{new_lot.auction_id}/lots")
     return false
 
-  @get "#/auctions/:auction_id/lots/new", (context) ->
-    auction = PB.auctions.get(context.params.auction_id)
-    unless auction?
-      console?.log 'auction not found for id:', context.params.auction_id
-      context.redirect("#/")
-      return false
-    render( new Sview('lots_new', {auction: auction, lot: new PB.Lot(auction_id: auction.id) }) )
 
   @get "#/lots/:id", (context) ->
     lot = PB.lots.get(context.params.id)
@@ -99,7 +89,7 @@ PB.app = $.sammy(->
       console?.log 'lot not found for id:', context.params.id
       context.redirect("#/")
       return false
-    render( new Sview('lots_show', {lot: lot, auction: lot.auction(), items: lot.items }) )
+    render( new Sview('lots_show', {lot: lot, auction: lot.auction(), bid: lot.next_bid(), items: lot.items }) )
 
   @post "#/items",  (context) ->
     new_item = new PB.Item(context.params.item)
@@ -107,13 +97,6 @@ PB.app = $.sammy(->
     context.redirect("#/lots/#{new_item.lot_id}")
     return false
 
-  @get "#/lots/:lot_id/items/new", (context) ->
-    lot = PB.lots.get(context.params.lot_id)
-    unless lot?
-      console?.log 'lot not found for id:', context.params.lot_id
-      context.redirect("#/")
-      return false
-    render( new Sview('items_new', {lot: lot, item: new PB.Item(lot_id: lot.id) }) )
  
   @get "#/items/:id", (context) ->
     item = PB.items.get(context.params.id)
@@ -124,8 +107,11 @@ PB.app = $.sammy(->
     render( new Sview('items_show', {item: item, lot: item.lot() }) )
 
   @post "#/bids",  (context) ->
+    console.log('context.params.bid', context.params.bid)
+    console.log('context.params.bid.amount', context.params.bid.amount)
     new_bid = PB.bids.create(context.params.bid)
-    context.redirect("#/lots/#{new_bid.lot_id}")
+    console.log('new_bid', new_bid.amount, new_bid)
+    context.redirect("#/lots/#{context.params.bid.lot_id}")
     return false
 
   @get "#/reload", (context) ->
