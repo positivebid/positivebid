@@ -12,7 +12,6 @@ PB.Lot = Backbone.Model.extend
     @current_bid_id = args.current_bid_id
     @name = args.name
     @description = args.description
-    @increment = args.increment or 1
     @paid = args.paid
     @sold = args.sold
     @sold_for = args.sold_for
@@ -47,7 +46,7 @@ PB.Lot = Backbone.Model.extend
   current_bid_user_image_url: -> @current_bid()?.user()?.image_url
   current_bid_amount: -> @current_bid()?.get('amount') or 0
   current_bid_created_at: -> @current_bid()?.created_at
-  next_bid_amount: -> parseInt(@current_bid_amount(),10) + parseInt(@increment,10)
+  next_bid_amount: -> parseInt(@current_bid_amount(),10) + parseInt(@get('min_increment'),10)
 
   createOrUpdate: -> if not @id? then 'Create' else 'Update'
 

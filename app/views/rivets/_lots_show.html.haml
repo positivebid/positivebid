@@ -64,14 +64,14 @@
           .ui-block-a
             %a(data-role="button" data-theme="d" data-rv-on-click="bid:decrement") 
               %span -
-              %span(data-rv-text="lot:increment | pound")
+              %span(data-rv-text="lot.min_increment | pound")
           .ui-block-b
             .next_bid(data-rv-text="bid.amount | pound")
             %input#bid_amount(type="hidden" name="bid[amount]" data-rv-value="bid.amount" )
           .ui-block-c
             %a(data-role="button" data-theme="d" data-rv-on-click="bid:increment") 
               %span +
-              %span(data-rv-text="lot:increment | pound")
+              %span(data-rv-text="lot.min_increment | pound")
         %input(type="hidden" name="bid[lot_id]" data-rv-value="lot:id")
         %input#bid_now(data-theme="e" type="submit" data-rv-value="bid:bid_now < bid.amount" data-rv-jqbtntext="bid:bid_now < bid.amount" data-rv-submitdisabled="lot:isBiddingDisabled < lot.state")
 

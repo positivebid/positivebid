@@ -33,10 +33,10 @@ PB.Bid = Backbone.Model.extend
   bid_now: -> "Bid £#{@get('amount')} now"
 
   increment: ->
-    @set 'amount', @get('amount') + parseInt(@lot().increment,10)
+    @set 'amount', @get('amount') + parseInt(@lot().get('min_increment'),10)
 
   decrement: ->
-    a = @get('amount') - parseInt(@lot().increment,10)
+    a = @get('amount') - parseInt(@lot().get('min_increment'),10)
     d = if a < @next_minimum() then @next_minimum() else a
     @set 'amount', d
 
@@ -44,7 +44,7 @@ PB.Bid = Backbone.Model.extend
     @set 'amount',  @next_minimum()
 
   next_minimum: ->
-    parseInt(@lot().current_bid_amount(),10) + parseInt(@lot().increment,10)
+    parseInt(@lot().current_bid_amount(),10) + parseInt(@lot().get('min_increment'),10)
 
   serverChange: (data) ->
     # Useful to prevent loops when dealing with client-side updates (ie: forms).
