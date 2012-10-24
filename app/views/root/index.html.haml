@@ -2,10 +2,13 @@
   .container
     .row.pfirstrow
       .span4
-        %img.home_logo{:src => image_path("logo/positivebid_rounded_128.png") }
+        %img.home_logo{:src => image_path("logo/positivebid_128.png") }
         %h1.lato.pyellow PositiveBid.
-        %h2.lato A better way of fundraising. 
-        %h3.lato Launching soon.
+        %h3.lato A better way of fundraising. 
+        %p
+          %a.btn.btn-yellow(href="mailto:info@positivebid.com") 
+            Contact Us
+            %i.icon-chevron-right
       .span8
         <iframe src="http://player.vimeo.com/video/30516030" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
@@ -22,10 +25,6 @@
       .span4
         %h4 Fun for Bidders
         %p  Bidders can access the auction through any device connected to the web. You can participate whether at the event or at home. Browse the catalogue, bid on items, send social media updates and pay for items with PositiveBid.
-    .row.pinforow
-      .span4.offset4
-        %p 
-          %a.btn.btn-success(href="mailto:info@positivebid.com") Contact Us
 
 .outer-grey
   .container
