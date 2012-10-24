@@ -5,7 +5,7 @@
   .container.about-img
     .row.pfirstrow
       .span4
-        %img.home_logo{:src => image_path("logo/positivebid_128.png") }
+        %img.home_logo(alt="positivebid logo"){:src => image_path("logo/positivebid_128.png") }
         %h1.lato
           %span.trns_blkbox About us
       .span8
@@ -32,15 +32,15 @@
     .row.pinforow
       .span4
         %a{:href => "http://charityhack.org/"}
-          %img{:src =>"img/logo/charityhack_logo.png"}/
+          %img{:alt => "charityhack logo", :src =>"img/logo/charityhack_logo.png"}/
           %img{:alt => "paypal logo", :src => "img/logo/paypal_logo_115.png"} 
 
       .span4
         %a{:href => "http://www.nesta.org.uk/"}
-          %img{:src => "img/logo/nesta_logo.jpg"}/ 
+          %img{:alt => "nesta logo", :src => "img/logo/nesta_logo.jpg"}/ 
 
       .span4
-        %img{:alt => "positivebid logo", :src => "img/logo/positivebid_128.png", :width=>"100px", :height=>"100px"}
+        %img.home_logo{:width => "100px", :height => "100px", :alt => "positivebid log", :src => image_path("logo/positivebid_128.png") }
 
            
     
