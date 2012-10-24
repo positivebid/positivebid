@@ -48,14 +48,14 @@
 
 
     %div(data-role="content" data-theme="e")
-      %div(data-rv-hide="lot.current_bid_id")
+      %div.current_bid(data-rv-hide="lot.current_bid_id")
         %p No Bids yet for this lot.
-      %div(data-rv-show="lot.current_bid_id")
+      %div.current_bid(data-rv-show="lot.current_bid_id")
         %img.i80(data-rv-src="lot:current_bid_user_image_url < lot.current_bid_id")
-        %span Highest Bid
         %strong(data-rv-text="lot:current_bid_amount < lot.current_bid_id | pound")
-        %span by
+        %span Highest Bid by
         %span(data-rv-text="lot:current_bid_user_name < lot.current_bid_id")
+        %br
         %time.fromNow(data-rv-datetime="lot:current_bid_created_at < lot.current_bid_id" data-rv-text="lot:current_bid_created_at < lot.current_bid_id | fromNow")
 
     %div(data-role="content" data-theme="b")
