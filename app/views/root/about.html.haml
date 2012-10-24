@@ -1,5 +1,53 @@
 
 - @page_title = "PositiveBid: About Us"
 
-%h1 About
-%p (content coming soon)
+.outer-white
+  .container.about-img
+    .row.pfirstrow
+      .span4
+        %img.home_logo{:src => image_path("logo/positivebid_128.png") }
+        %h1.lato
+          %span.trns_blkbox About us
+      .span8
+        
+
+.outer-white
+  .container
+    .row.pinforow
+      .span4
+        %h4 Charity Hack Start
+        %p  PositiveBid started as an entry in PayPal’s CharityHack coding event held in September 2011 at their offices in Richmond, West London. Our real-time auction application won first prize in the competition!
+        
+
+      .span4
+        %h4 Next Nesta
+        %p  Nesta and the Cabinet Office awarded grant funding in July 2012 for PositiveBid to develop a free of charge application enabling charities in England and Wales to run silent auctions on mobile devices.
+        
+
+      .span4
+        %h4 Now PositiveBid
+        %p  We are now entering the trial phase of our project and are looking to partner with charitable fundraisers that would like to raise additional funds at an event before Christmas by using our application.nd social media updates and pay for items with PositiveBid.
+        
+
+    .row.pinforow
+      .span4
+        %a{:href => "http://charityhack.org/"}
+          %img{:src =>"img/logo/charityhack_logo.png"}/
+          %img{:alt => "paypal logo", :src => "img/logo/paypal_logo_115.png"} 
+
+      .span4
+        %a{:href => "http://www.nesta.org.uk/"}
+          %img{:src => "img/logo/nesta_logo.jpg"}/ 
+
+      .span4
+        %img{:alt => "positivebid logo", :src => "img/logo/positivebid_128.png", :width=>"100px", :height=>"100px"}
+
+           
+    
+
+.outer-grey
+  .container
+    .row.pfooter
+      .span12
+        %p
+          &copy; #{Time.now.year} PositiveBid Limited
