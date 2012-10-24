@@ -4,11 +4,26 @@ PB = window.PB ||= {}
 
 window.global_room = NoDevent.room('global_room')
 global_room.join (err) ->
-  console?.log "error joining global_room", err
+  if err?
+    console?.log "error joining global_room", err
+  else
+    console?.log "joined global_room"
   
-window.global_room
 
 socket_defaults(global_room)
+
+
+global_room.on "join", (err) ->
+  if err?
+    console?.log "just got error joining global_room", err
+  else
+    console?.log "just joined global_room"
+
+global_room.on "leave", (err) ->
+  if err?
+    console?.log "just got error leaving global_room", err
+  else
+    console?.log "just left global_room"
 
 global_room.on "auction_list", (data) ->
   console?.log("got auction_list", data)
@@ -56,13 +71,15 @@ global_room.on "lot_list", (data) ->
   PB.lots.reset(data.lots)
 
 
-global_room.on "connect", ->
-  socket.emit('list_auctions')
+NoDevent.on "connect", ->
+  message_popup("Socket Connected!")
+  console.log "socket connected.."
+  #$("#status").removeClass("offline").addClass("online").find("p").text "You are online and can bid."
 
-  $("#status").removeClass("offline").addClass("online").find("p").text "You are online and can bid."
-
-global_room.on "disconnect", ->
-  $("#connected").removeClass("on").find("strong").text "Offline"
-  $("#status").removeClass("online").addClass("offline").find("p").text "You are offline. please wait..."
+NoDevent.on "disconnect", ->
+  message_popup("Socket Disconnected! :-(")
+  console.log "socket disconnected.."
+  #$("#connected").removeClass("on").find("strong").text "Offline"
+  #$("#status").removeClass("online").addClass("offline").find("p").text "You are offline. please wait..."
 
 
