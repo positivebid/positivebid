@@ -51,6 +51,9 @@ PB.app = $.sammy(->
   @get "#/", (context) ->
     context.redirect("#/auctions")
 
+  @get "#/options", (context) ->
+    render( new Sview('options', {}) )
+
   @get "#/login",  (context) ->
     render( new Sview('login', {}) )
   

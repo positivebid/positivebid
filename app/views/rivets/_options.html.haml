@@ -1,0 +1,20 @@
+#options
+  %div(data-role="page")
+    %div(data-role="header")
+      %a(href="#/auctions" data-icon="back" data-direction="reverse") Auctions
+      %h1 PositiveBid
+    %div(data-role="content")
+
+
+      %div(data-role="collapsible-set" data-theme="e")
+        %div(data-role="collapsible")
+          %h3 Explanation of application
+          %div(data-role="collapsible-set")
+            - Faq.where(:key => 'explanation').first.published_questions.each do |q|
+              %div(data-role="collapsible")
+                %h3 #{q.title}
+                %div.qbody #{q.body}
+
+
+
+
