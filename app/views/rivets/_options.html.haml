@@ -10,10 +10,11 @@
         %div(data-role="collapsible")
           %h3 Explanation of application
           %div(data-role="collapsible-set")
-            - Faq.where(:key => 'explanation').first.published_questions.each do |q|
-              %div(data-role="collapsible")
-                %h3 #{q.title}
-                %div.qbody #{q.body}
+            - if efaq = Faq.where(:key => 'explanation').first
+              - efaq.published_questions.each do |q|
+                %div(data-role="collapsible")
+                  %h3 #{q.title}
+                  %div.qbody #{q.body}
 
 
 
