@@ -45,15 +45,20 @@ global_room.on "user_entered", (data) ->
 
 
 window.message_popup = (text) ->
-  sv = new Sview('popups_message', {message: text})
+  window.message_popup_close() if window.popup_sv?
+  window.popup_sv = sv = new Sview('popups_message', {message: text})
   $.mobile.activePage.append(sv.html)
   sv.html.popup({history: false})
   sv.html.popup('open')
-  setTimeout ->
-    sv.html.popup('close')
-    sv.html.remove()
-    sv.destroy()
-  , 4000
+  window.popup_timeout = setTimeout message_popup_close, 4000
+
+window.message_popup_close = () ->
+  if window.popup_sv?
+    clearTimeout(window.popup_timeout)
+    window.popup_sv.html?.popup('close')
+    window.popup_sv.destroy()
+    window.popup_sv = null
+
 
 global_room.on "message", message_popup
 

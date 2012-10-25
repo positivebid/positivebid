@@ -11,13 +11,13 @@
 #= require vendor/sammy/sammy
 #= require vendor/sammy/plugins/sammy.nested_params
 #= require pb
+#= require sview
 #= require socket_defaults
 #= require socket_router
 #= require util
 #= require_tree ./models
 #= require forms
 #= require sammy_router
-#= require sview
 #= require setup
 
 # #NOT CURRENT USED = require plugins/jquery.cookie

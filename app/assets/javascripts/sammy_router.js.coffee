@@ -92,7 +92,7 @@ PB.app = $.sammy(->
       console?.log 'lot not found for id:', context.params.id
       context.redirect("#/")
       return false
-    render( new Sview('lots_show', {lot: lot, auction: lot.auction(), bid: lot.next_bid(), items: lot.items }) )
+    render( new Sview('lots_show', {lot: lot, auction: lot.auction(), bid: lot.next_bid(), items: lot.items, status: PB.status }) )
 
   @post "#/items",  (context) ->
     new_item = new PB.Item(context.params.item)
