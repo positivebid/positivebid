@@ -1,5 +1,8 @@
 
 
+#= require nodevent/eventemitter
+#= require nodevent/nodevent
+#= require nodevent/nodevent_instance
 #= require moment
 #= require plugins/rivets.js
 #= require jlt

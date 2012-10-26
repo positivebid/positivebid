@@ -1,0 +1,6 @@
+window.NoDevent = new NoDeventController
+
+connect_url = "<%= NoDevent::Emitter.config['host'] %>" + "/" + "<%= NoDevent::Emitter.config['namespace'] %>"
+socket = io.connect( connect_url )
+NoDevent.setSocket( socket )
+
