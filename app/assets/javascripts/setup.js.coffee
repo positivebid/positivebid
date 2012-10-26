@@ -26,7 +26,9 @@ $document = $(document)
 $document.ajaxStart -> $.mobile.loading('show')
 $document.ajaxStop -> $.mobile.loading('hide')
 
+
 $ ->
+  PB.status.check_and_bind()
   PB.$body = $('body')
   $('script').remove()
   $.mobile.initializePage()

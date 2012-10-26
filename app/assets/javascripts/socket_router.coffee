@@ -45,15 +45,20 @@ global_room.on "user_entered", (data) ->
 
 
 window.message_popup = (text) ->
-  sv = new Sview('popups_message', {message: text})
+  window.message_popup_close() if window.popup_sv?
+  window.popup_sv = sv = new Sview('popups_message', {message: text})
   $.mobile.activePage.append(sv.html)
   sv.html.popup({history: false})
   sv.html.popup('open')
-  setTimeout ->
-    sv.html.popup('close')
-    sv.html.remove()
-    sv.destroy()
-  , 4000
+  window.popup_timeout = setTimeout message_popup_close, 4000
+
+window.message_popup_close = () ->
+  if window.popup_sv?
+    clearTimeout(window.popup_timeout)
+    window.popup_sv.html?.popup().popup('close')
+    window.popup_sv.destroy()
+    window.popup_sv = null
+
 
 global_room.on "message", message_popup
 
@@ -72,13 +77,13 @@ global_room.on "lot_list", (data) ->
 
 
 NoDevent.on "connect", ->
-  message_popup("Socket Connected!")
   console.log "socket connected.."
+  message_popup("Socket Connected!")
   #$("#status").removeClass("offline").addClass("online").find("p").text "You are online and can bid."
 
 NoDevent.on "disconnect", ->
-  message_popup("Socket Disconnected! :-(")
   console.log "socket disconnected.."
+  message_popup("Socket Disconnected! :-(")
   #$("#connected").removeClass("on").find("strong").text "Offline"
   #$("#status").removeClass("online").addClass("offline").find("p").text "You are offline. please wait..."
 
