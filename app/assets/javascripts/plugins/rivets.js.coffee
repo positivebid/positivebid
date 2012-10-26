@@ -1,5 +1,5 @@
 #     rivets.js
-#     version : 0.3.10
+#     version : 0.3.13
 #     author : Michael Richards
 #     license : MIT
 
@@ -78,6 +78,9 @@ class Rivets.Binding
       Rivets.config.adapter.subscribe @model, @keypath, @sync
       @sync() if Rivets.config.preloadData
 
+      if @isBidirectional()
+        bindEvent @el, 'change', @publish
+
     if @options.dependencies?.length
       for dependency in @options.dependencies
         if /^\./.test dependency
@@ -90,20 +93,18 @@ class Rivets.Binding
 
         Rivets.config.adapter.subscribe model, keypath, @sync
 
-    if @isBidirectional()
-      bindEvent @el, 'change', @publish
 
   # Unsubscribes from the model and the element.
   unbind: =>
     unless @options.bypass
       Rivets.config.adapter.unsubscribe @model, @keypath, @sync
 
-      if @options.dependencies?.length
-        for keypath in @options.dependencies
-          Rivets.config.adapter.unsubscribe @model, keypath, @sync
-
       if @isBidirectional()
-        @el.removeEventListener 'change', @publish
+        unbindEvent @el, 'change', @publish
+
+    if @options.dependencies?.length
+      for keypath in @options.dependencies
+        Rivets.config.adapter.unsubscribe @model, keypath, @sync
 
 # A collection of bindings built from a set of parent elements.
 class Rivets.View
@@ -149,8 +150,12 @@ class Rivets.View
             path = context.shift()
             splitPath = path.split /\.|:/
             options.formatters = pipes
-            model = @models[splitPath.shift()]
             options.bypass = path.indexOf(':') != -1
+            if splitPath[0]
+              model = @models[splitPath.shift()]
+            else
+              model = @models
+              splitPath.shift()
             keypath = splitPath.join '.'
 
             if model
