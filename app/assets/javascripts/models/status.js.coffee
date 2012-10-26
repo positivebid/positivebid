@@ -19,6 +19,9 @@ PB.Status = Backbone.Model.extend
     NoDevent.on "connect", =>
       @set('connected', true)
       @set('status', 'connected')
+    NoDevent.on "reconnect", =>
+      @set('connected', true)
+      @set('status', 'connected')
     NoDevent.on "disconnect", =>
       @set('connected', false)
       @set('status', 'disconnected')
