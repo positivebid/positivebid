@@ -35,8 +35,10 @@
     
           .nav-collapse
             %ul.nav.pull-right
-              %li{:class => "#{"active" if params[:controller] == 'root'}"}
+              %li{:class => "#{"active" if params[:controller] == 'root' and params[:action] == "index"}"}
                 %a(href="/") Home
+              %li{:class => "#{"active" if params[:controller] == 'root' and params[:action] == "about"}"}
+                %a(href="/about") About
               %li{:class => "#{"active" if params[:controller] == 'blogs'}"}
                 %a(href="/blog") Blog
 
