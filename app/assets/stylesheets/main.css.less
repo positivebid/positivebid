@@ -14,15 +14,21 @@ body {
   padding: 0; 
 }
 
-.outer-root {
+.home {
   color: #FFF;
-  background: #000; 
-  background-image: url('/img/108354487-handsup-1400b.png') ;
+  background-image: url('/img/108354487-handsup-1200b.png') ;
   background-repeat: no-repeat;
-  background-repeat: repeat-x; 
+  background-position: top center;
+  margin-top:-20px; 
   .row {
-    background: inherit; }
-
+    background-attachment: inherit;
+    background-clip: inherit;
+    background-color: transparent;
+    background-origin: inherit;
+    background-position: inherit;
+    background-repeat: inherit;
+    background-size: inherit;
+    }
 }
 
 .outer-white {
@@ -38,17 +44,33 @@ body {
   color: #FFF; }
 
 .trns_blkbox {
- background: rgba(0, 0, 0, 0.6);
+ background: rgba(0, 0, 0, 0.7);
+ }
+
+ .pfirstrow h1.lato span.trns_blkbox {
  padding: 10px;
-}  
+ } 
+
+ .home h1 {
+ line-height: 1.2em;
+ margin-top: 25px;
+ }
+
+.tagline {
+ margin-top: -15px;
+ margin-bottom:15px;
+ display:block;
+ width:180px;
+ line-height:1.2em;
+}   
 
 .pfirstrow {
   padding: 0; 
 
   .home_logo {
-    width: 128px;
-    height: 128px;
-    margin: 0 0 10px;  }
+    width: 110px;
+    height: 110px;
+    margin: 5px 0 10px 0;}
 }
 
 .pinforow {
@@ -56,34 +78,88 @@ body {
   padding: 2em 0; 
 }
 
-.about-img {
+.aboutus {
   color: #FFF;
   background: #fff; 
-  background-image: url('/img/banner_charities.jpg');
+  background-image: url('/img/banner_charities_1200.png');
   background-position: top center;
   background-repeat: no-repeat;
+  margin-top:-20px;
+  height: 380px;
+  /*height:373px;*/
   .row {
-    background: inherit; }
+    background-attachment: inherit;
+    background-clip: inherit;
+    background-color: transparent;
+    background-origin: inherit;
+    background-position: inherit;
+    background-repeat: inherit;
+    background-size: inherit;
     }
+}
 
-.span4.img {
-  margin: auto;}
+.home-vid {
+  border: 5px solid #fff;
+  margin-top: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.home .btn-xxlarge {
+  margin-bottom:20px;
+}
+
+.promo_txt {
+  width:85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.positivelogo .home_logo, .span4 .nesta_logo, .span4 .chandpp_logo {
+  /*margin-left:auto;
+  margin-right:auto;
+  display:block;*/
+} 
+
+.positivelogo .home_logo {
+  margin-top: 15px;
+  width: 95px;
+  height: 95px;
+  }
+
+.span4 .nesta_logo {
+  margin-top: 35px;
+}
+
+.span4 .chandpp_logo{
+  width:70%;
+  margin-top: 25px;
+  display: block;
+  }
 
 .pyellow {
   color: @pyellow1; }
 
 .pfooter {
-  padding: 10px 0 0; 
-  text-align: center;
+  padding: 10px 0 0 0; 
+  text-align: left;
   color: #000;
   background: #AAA; 
 }
+
+.outer-grey.spacing {
+  margin-top:40px;
+}
+
 
 
 .lato {
   font-family: 'Lato', sans-serif; }
 
+/*
+** bootstrap overrides
+*/
 
 .btn-yellow {
   .buttonBackground( @pyellow1 , darken(@pyellow1, 15%), @grayDark , 0 1px 1px rgba(255,255,255,.75) );
@@ -91,6 +167,19 @@ body {
 
 .btn-bold {
   font-weight: bold; 
+}
+
+.btn-xxlarge {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 20px;
+    line-height: normal;
+    padding-bottom: 12px;
+    padding-left: 40px;
+    padding-right:40px;
+    padding-top: 12px;
 }
 
 /*

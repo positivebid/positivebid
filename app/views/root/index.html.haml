@@ -1,32 +1,43 @@
-.outer-root
+.outerwhite.home
   .container
     .row.pfirstrow
-      .span4
+      .span6
         %img.home_logo{:src => image_path("logo/positivebid_128.png") }
-        %h1.lato.pyellow PositiveBid.
-        %h3.lato A better way of fundraising. 
-        %p
-          %a.btn.btn-yellow(href="mailto:info@positivebid.com") 
-            Contact Us
-            %i.icon-chevron-right
-      .span8
-        <iframe src="http://player.vimeo.com/video/30516030" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        %h3.lato.pyellow
+          %span.trns_blkbox.tagline 
+            Interactive 
+            Silent Auctions
+
+        .promo_txt  
+          %h1.lato.trns_blkbox  A fun, mobile & social way of raising funds for your charity
+          %p
+            %span.lead.trns_blkbox
+              It's FREE for charitable events*
+              
+          %p      
+            %a.btn.btn-xxlarge.btn-yellow.btn-bold(href="mailto:info@positivebid.com") 
+              Get in touch &raquo;
+              /%i.icon-chevron-right
+
+      .span6
+        %span
+          <iframe class="home-vid" src="http://player.vimeo.com/video/30516030" width="480" height="270" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
 .outer-white
   .container
     .row.pinforow
       .span4
-        %h4 What is PositiveBid
-        %p  PositiveBid brings interactive online auction technology to mobile devices. It drives promotion, participation and increases funds raised at silent auctions. It is FREE to event organisers fundraising for a registered charity.
+        %h3 PositiveBid is Free
+        %p  PositiveBid brings interactive online auction technology to mobile devices. It drives promotion, participation and increases funds raised at silent auctions. *It is FREE to event organisers fundraising for a registered charity or non-profit organisation.
       .span4
-        %h4 Easy for Organisers
+        %h3 Easy for Organisers
         %p  PositiveBid simplifies the process of organising events. It is suitable for any event, from charity balls to golf days. Organisers can create a catalogue, event home page, take payment online and track payments easily with PositiveBid.
 
       .span4
-        %h4 Fun for Bidders
-        %p  Bidders can access the auction through any device connected to the web. You can participate whether at the event or at home. Browse the catalogue, bid on items, send social media updates and pay for items with PositiveBid.
+        %h3 Fun for Bidders
+        %p  Bidders can access the auction through any device connected to the web. Anyone can participate whether at the event or at home. Browse the catalogue, bid on items, send social media updates and pay for items with PositiveBid.
 
-.outer-grey
+.outer-grey.spacing
   .container
     .row.pfooter
       .span12

@@ -1,51 +1,44 @@
 
 - @page_title = "PositiveBid: About Us"
 
-.outer-white
-  .container.about-img
+.outer-white.aboutus
+  .container
     .row.pfirstrow
-      .span4
+      .span6
         %img.home_logo(alt="positivebid logo"){:src => image_path("logo/positivebid_128.png") }
         %h1.lato
           %span.trns_blkbox About us
-      .span8
+      .span6
         
 
 .outer-white
   .container
     .row.pinforow
       .span4
-        %h4 Charity Hack Start
+        %h3 Started at Charity Hack
         %p  PositiveBid started as an entry in PayPal’s CharityHack coding event held in September 2011 at their offices in Richmond, West London. Our real-time auction application won first prize in the competition!
+        %span.chandpp_logo
+          %a{:href => "http://charityhack.org/"}
+            %img.charityhack_logo{:alt => "charityhack logo", :src =>"img/logo/charityhack_logo_130.png"}/
+          %img.paypal_logo{:alt => "paypal logo", :src => "img/logo/paypal_logo_115.png"}/ 
         
 
       .span4
-        %h4 Next Nesta
+        %h3 Funded by Nesta
         %p  Nesta and the Cabinet Office awarded grant funding in July 2012 for PositiveBid to develop a free of charge application enabling charities in England and Wales to run silent auctions on mobile devices.
-        
-
-      .span4
-        %h4 Now PositiveBid
-        %p  We are now entering the trial phase of our project and are looking to partner with charitable fundraisers that would like to raise additional funds at an event before Christmas by using our application.nd social media updates and pay for items with PositiveBid.
-        
-
-    .row.pinforow
-      .span4
-        %a{:href => "http://charityhack.org/"}
-          %img{:alt => "charityhack logo", :src =>"img/logo/charityhack_logo.png"}/
-          %img{:alt => "paypal logo", :src => "img/logo/paypal_logo_115.png"} 
-
-      .span4
         %a{:href => "http://www.nesta.org.uk/"}
-          %img{:alt => "nesta logo", :src => "img/logo/nesta_logo.jpg"}/ 
+          %img.nesta_logo{:alt => "nesta logo", :src => "img/logo/nesta_logo_120.png"}/ 
+        
 
-      .span4
-        %img.home_logo{:width => "100px", :height => "100px", :alt => "positivebid log", :src => image_path("logo/positivebid_128.png") }
-
+      .span4.positivelogo
+        %h3 PositiveBid is launching
+        %p  We are now entering the trial phase of our project and are looking to partner with charitable fundraisers that would like to raise additional funds at an event before Christmas by using our application. 
+        %img.home_logo{:alt => "positivebid log", :src => image_path("logo/positivebid_128.png") }/
+    
            
     
 
-.outer-grey
+.outer-grey.spacing
   .container
     .row.pfooter
       .span12
