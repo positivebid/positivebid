@@ -59,6 +59,7 @@ class this.NoDeventController extends EventEmitter
 
   setSocket: (socket) ->
     @socket = socket
+
     @socket.on 'connect', =>
       @emit('connect')
     @socket.on 'connecting', (transport_type) =>

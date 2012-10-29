@@ -58,7 +58,7 @@ PB.app = $.sammy(->
     render( new Sview('login', {}) )
   
   @get "#/auctions",  (context) ->
-    render( new Sview('auctions_index', {auctions: PB.auctions, current_user: window.current_user }) )
+    render( new Sview('auctions_index', {auctions: PB.auctions, current_user: window.current_user, status: PB.status  }) )
 
   @post "#/auctions",  (context) ->
     new_auction = new PB.Auction(context.params.auction)
@@ -69,7 +69,7 @@ PB.app = $.sammy(->
 
   @get "#/auctions/:id", (context) ->
     #OLD window.socket.emit 'enter_auction', { id: context.params.id }
-    render( new Sview('auctions_show', {auction: PB.auctions.get(context.params.id)}) )
+    render( new Sview('auctions_show', {auction: PB.auctions.get(context.params.id), status: PB.status }) )
     
   @get "#/auctions/:auction_id/lots", (context) ->
     auction = PB.auctions.get(context.params.auction_id)
@@ -107,13 +107,13 @@ PB.app = $.sammy(->
       console?.log 'item not found for id:', context.params.id
       context.redirect("#/")
       return false
-    render( new Sview('items_show', {item: item, lot: item.lot() }) )
+    render( new Sview('items_show', {item: item, lot: item.lot(), status: PB.status  }) )
 
   @post "#/bids",  (context) ->
     console.log('context.params.bid', context.params.bid)
     console.log('context.params.bid.amount', context.params.bid.amount)
     new_bid = PB.bids.create(context.params.bid)
-    console.log('new_bid', new_bid.amount, new_bid)
+    console.log('new_bid', new_bid.get('amount'), new_bid)
     context.redirect("#/lots/#{context.params.bid.lot_id}")
     return false
 
