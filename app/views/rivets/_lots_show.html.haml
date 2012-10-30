@@ -3,8 +3,7 @@
     %div.ui-bar-b(data-role="header" data-theme="b")
       %a(data-rv-href="auction:lotsUrl" data-icon="back" data-direction="reverse") Lots
       %h1 Lot
-      %a.status(data-icon="check" data-rv-show="status.connected") Online
-      %a.status(data-icon="alert" data-rv-hide="status.connected") Offline
+      %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
 
     %div(data-role="content")
       %h1

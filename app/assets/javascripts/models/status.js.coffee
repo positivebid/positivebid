@@ -4,7 +4,8 @@ PB = window.PB ||= {}
 PB.Status = Backbone.Model.extend
 
   initialize: (args) ->
-    #nothing yet
+    @set('connected', false)
+    @set('status', 'disconnected')
 
   check_and_bind: ->
     @socket_bindings()
@@ -26,6 +27,16 @@ PB.Status = Backbone.Model.extend
       @set('connected', false)
       @set('status', 'disconnected')
 
+   icon: ->
+     switch @get('connected')
+       when true then "check"
+       else "alert"
+       
+   text: ->
+     switch @get('status')
+       when "connected" then "Online"
+       when "disconnected" then "Offline"
+       else "unknown"
 
 PB.status = new PB.Status  # global status
 

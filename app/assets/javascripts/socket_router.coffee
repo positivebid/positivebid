@@ -77,12 +77,12 @@ global_room.on "lot_list", (data) ->
 
 
 NoDevent.on "connect", ->
-  console.log "socket connected.."
+  console?.log "socket connected.."
   message_popup("Socket Connected!")
   #$("#status").removeClass("offline").addClass("online").find("p").text "You are online and can bid."
 
 NoDevent.on "disconnect", ->
-  console.log "socket disconnected.."
+  console?.log "socket disconnected.."
   message_popup("Socket Disconnected! :-(")
   #$("#connected").removeClass("on").find("strong").text "Offline"
   #$("#status").removeClass("online").addClass("offline").find("p").text "You are offline. please wait..."
