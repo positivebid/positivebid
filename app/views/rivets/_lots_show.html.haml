@@ -74,7 +74,8 @@
               %span +
               %span(data-rv-text="lot.min_increment | pound")
         %input(type="hidden" name="bid[lot_id]" data-rv-value="lot:id")
-        %input#bid_now(data-theme="e" type="submit" data-rv-value="bid:bid_now < bid.amount" data-rv-jqbtntext="bid:bid_now < bid.amount" data-rv-submitdisabled="lot:isBiddingDisabled < lot.state")
+        %input#bid_now(jif="current_user" data-theme="e" type="submit" data-rv-value="bid:bid_now < bid.amount" data-rv-jqbtntext="bid:bid_now < bid.amount" data-rv-submitdisabled="lot:isBiddingDisabled < lot.state")
+        %a(jnif="current_user" data-theme="e" href="#/login" data-role="button") Login to Bid
 
 
     %div(data-role="content")
