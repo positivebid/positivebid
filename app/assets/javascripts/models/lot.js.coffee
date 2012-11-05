@@ -35,7 +35,8 @@ PB.Lot = Backbone.Model.extend
 
   # view helpers
   viewUrl: -> "#/lots/#{@id}"
-  newItemUrl: -> "#/lots/#{@id}/items/new"
+  biddingUrl: -> "#/lots/#{@id}"
+  descriptionUrl: -> "#/lots/#{@id}/description"
   imageUrl: ->
     if fl = @items.first()
       fl.imageUrl()

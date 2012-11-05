@@ -1,15 +1,16 @@
-#lots_show
+#lot_description
   %div(data-role="page")
     %div.ui-bar-b(data-role="header" data-theme="b")
       %a(data-rv-href="auction:lotsUrl" data-icon="back" data-direction="reverse") Catalogue
-      %h1 
+      %h1
         Lot
         %span(data-rv-text="lot.number")
-        Bidding
+        Description
+
       %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
 
     %div(data-role="content")
-      %a(jnif="current_user" data-rv-href="lot:descriptionUrl" data-role="button" data-icon="arrow-l" data-iconpos="left") Lot Description
+      %a(jnif="current_user" data-theme="e" data-rv-href="lot:biddingUrl" data-role="button" data-icon="gavel-halfway" data-iconpos="right") Lot Bidding
       %h1
         %span Lot
         %span(data-rv-text="lot.number")
@@ -63,23 +64,20 @@
         %br
         %time.fromNow(data-rv-datetime="lot:current_bid_created_at < lot.current_bid_id" data-rv-text="lot:current_bid_created_at < lot.current_bid_id | fromNow")
 
-    %div(data-role="content" data-theme="b")
-      %form(action="#/bids" method="POST")
-        .ui-grid-b
-          .ui-block-a
-            %a(data-role="button" data-theme="d" data-rv-on-click="bid:decrement") 
-              %span -
-              %span(data-rv-text="lot.min_increment | pound")
-          .ui-block-b
-            .next_bid(data-rv-text="bid.amount | pound")
-            %input#bid_amount(type="hidden" name="bid[amount]" data-rv-value="bid.amount" )
-          .ui-block-c
-            %a(data-role="button" data-theme="d" data-rv-on-click="bid:increment") 
-              %span +
-              %span(data-rv-text="lot.min_increment | pound")
-        %input(type="hidden" name="bid[lot_id]" data-rv-value="lot:id")
-        %input#bid_now(jif="current_user" data-theme="e" type="submit" data-rv-value="bid:bid_now < bid.amount" data-rv-jqbtntext="bid:bid_now < bid.amount" data-rv-submitdisabled="lot:isBiddingDisabled < lot.state")
-        %a(jnif="current_user" data-theme="e" href="#/login" data-role="button") Login to Bid
+
+
+    %div(data-role="content")
+      %h2 Items
+      %div(data-rv-hide="items:length < items.models")
+        %p No items for this lot found.
+
+      %ul(data-role="listview" data-inset="true" data-rv-show="items:length < items.models" data-rv-listview_refresh="items:length < items.models")
+        %li(data-rv-each-item="items:models < items.models")
+          %a(data-rv-href="item:viewUrl")
+            %img.p80(data-rv-src="item:imageUrl < item.picture_id")
+            %h3(data-rv-text="item.name")
+            %p
+              %span(data-rv-text="item.description")
 
 
     %div.ui-bar-b(data-role="footer")
