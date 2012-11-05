@@ -5,6 +5,7 @@ class Lot < ActiveRecord::Base
     :buy_now_price, 
     :min_increment, 
     :collected, 
+    :timing,
     :sale_start_at,
     :sale_end_at,
     :state_event
@@ -18,6 +19,9 @@ class Lot < ActiveRecord::Base
 
   STATES = %w( draft published withdrawn forsale bought closing sold paid )
   validates_inclusion_of :state, in: STATES
+
+  TIMINGS = %w( scheduled manual )
+  validates_inclusion_of :timing, :in => TIMINGS
 
   after_initialize :set_defaults
 

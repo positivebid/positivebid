@@ -7,6 +7,7 @@ class Auction < ActiveRecord::Base
     :hashtag, 
     :event_start_at, 
     :event_end_at, 
+    :default_lot_timing,
     :default_sale_start_at, 
     :default_sale_end_at, 
     :allow_anonymous_bids, 
@@ -24,6 +25,7 @@ class Auction < ActiveRecord::Base
   ADMIN_ONLY_FIELDS = [ :charity_approved ]
   ADMIN_FIELDS = USER_FIELDS + ADMIN_ONLY_FIELDS
 
+
   attr_accessible *USER_FIELDS
   attr_accessible *ADMIN_FIELDS, :as => :admin
 
@@ -32,7 +34,8 @@ class Auction < ActiveRecord::Base
   accepts_nested_attributes_for :picture
 
   validates_presence_of :name
-  validates_length_of :name, :in => 2..255
+  validates_length_of :name, :in => 2..100
+  validates_inclusion_of :default_lot_timing, :in => Lot::TIMINGS
 
   belongs_to :user  # the requestor 
 

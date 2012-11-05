@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121015140744) do
+ActiveRecord::Schema.define(:version => 20121105204609) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name",                                               :null => false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20121015140744) do
     t.datetime "updated_at",                                         :null => false
     t.text     "log"
     t.string   "time_zone",                 :default => "London"
+    t.string   "default_lot_timing",        :default => "scheduled", :null => false
   end
 
   add_index "auctions", ["event_start_at"], :name => "index_auctions_on_event_start_at"
@@ -92,26 +93,29 @@ ActiveRecord::Schema.define(:version => 20121015140744) do
   add_index "items", ["lot_id"], :name => "index_items_on_lot_id"
 
   create_table "lots", :force => true do |t|
-    t.integer  "auction_id",                          :null => false
-    t.string   "name",                                :null => false
-    t.integer  "number",                              :null => false
-    t.integer  "position",                            :null => false
-    t.integer  "min_increment",  :default => 1,       :null => false
+    t.integer  "auction_id",                               :null => false
+    t.string   "name",                                     :null => false
+    t.integer  "number",                                   :null => false
+    t.integer  "position",                                 :null => false
+    t.integer  "min_increment",   :default => 1,           :null => false
     t.integer  "current_bid_id"
-    t.boolean  "paid",           :default => false
+    t.boolean  "paid",            :default => false
     t.integer  "sold_for"
-    t.boolean  "sold",           :default => false
+    t.boolean  "sold",            :default => false
     t.string   "payment_method"
-    t.boolean  "collected",      :default => false
+    t.boolean  "collected",       :default => false
     t.datetime "sale_start_at"
     t.datetime "sale_end_at"
     t.integer  "buy_now_price"
-    t.string   "state",          :default => "draft"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.string   "state",           :default => "draft"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.text     "log"
     t.datetime "sold_at"
     t.datetime "paid_at"
+    t.string   "timing",          :default => "scheduled", :null => false
+    t.datetime "actual_start_at"
+    t.datetime "actual_end_at"
   end
 
   add_index "lots", ["auction_id", "number"], :name => "index_lots_on_auction_id_and_number"
@@ -119,7 +123,9 @@ ActiveRecord::Schema.define(:version => 20121015140744) do
   add_index "lots", ["auction_id", "sale_start_at"], :name => "index_lots_on_auction_id_and_sale_start_at"
   add_index "lots", ["auction_id", "state"], :name => "index_lots_on_auction_id_and_state"
   add_index "lots", ["auction_id"], :name => "index_lots_on_auction_id"
+  add_index "lots", ["state", "timing"], :name => "index_lots_on_state_and_timing"
   add_index "lots", ["state"], :name => "index_lots_on_state"
+  add_index "lots", ["timing"], :name => "index_lots_on_timing"
 
   create_table "pictures", :force => true do |t|
     t.integer  "owner_id"
