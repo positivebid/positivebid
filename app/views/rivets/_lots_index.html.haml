@@ -6,20 +6,25 @@
       %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
 
     %div(data-role="content")
+      %h2(data-rv-text="auction.name")
+
       %div(data-rv-hide="lots:length < lots.models")
         %p Hmmm, no lots found.
 
-      %ul(data-role="listview" data-split-icon="gavel-halfway" data-inset="true" data-rv-show="lots:length < lots.models" data-rv-listview_refresh="lots:length < lots.models")
+      %ul(data-role="listview" data-split-icon="gavel-halfway" data-inset="false" data-rv-show="lots:length < lots.models" data-rv-listview_refresh="lots:length < lots.models")
         %li(data-rv-each-lot="lots:models < lots.models")
           %a(data-rv-href="lot:descriptionUrl")
             %img.p80(data-rv-src="lot:imageUrl") 
             %h3
-              %span(data-rv-text="lot.number")
-              %span -
+              Lot&thinsp;
+              %span(data-rv-text="lot.number")>
+              \:
               %span(data-rv-text="lot.name")
             %p
               %span(data-rv-text="lot.description")
           %a(data-rv-href="lot:biddingUrl" data-theme="e" data-iconpos="notext" title="Bid Now") Bid Now
+
+    %div(data-role="content")
 
     %div.ui-bar-b(data-role="footer")
       %h4 PositiveBid
