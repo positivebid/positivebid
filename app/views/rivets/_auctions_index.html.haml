@@ -21,7 +21,9 @@
     %div(data-role="content")
 
       %div(data-rv-hide="auctions:length < auctions.models")
-        %p Hmmm, no auctions found.
+        %p 
+          Hmmm, no auctions found,
+          %a(href="#/reload" data-icon="refresh" data-role="button") Try Reload
 
       %ul(data-role="listview" data-inset="true" data-rv-show="auctions:length < auctions.models" data-rv-listview_refresh="auctions:length < auctions.models")
         %li(data-rv-each-auction="auctions:models < auctions.models")
