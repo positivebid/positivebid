@@ -82,8 +82,21 @@ class Lot < ActiveRecord::Base
       transition :published => :forsale
     end
 
+    event :organiser_open do
+      transition :published => :forsale
+    end
+
     event :auto_close_start do
       transition :forsale => :closing
+    end
+
+    event :organiser_close_start do
+      transition :forsale => :closing
+    end
+
+    event :organiser_close_immediate do
+      transition :closing => :sold
+      transition :forsale => :sold
     end
 
     event :auto_close_done do

@@ -18,19 +18,25 @@
       %p(data-rv-show="lot:is_draft < lot.state")
         %strong(data-rv-text="lot.state")
       %p(data-rv-show="lot:is_draft_or_published < lot.state")
-        Bidding from 
-        %span(data-rv-text="lot.sale_start_at | nice_datetime")
-        (
-        %time.fromNow(data-rv-datetime="lot.sale_start_at" data-rv-text="lot.sale_start_at | fromNow")>
-        )
-        to
-        %span(data-rv-text="lot.sale_end_at | nice_datetime")
+        %span(data-rv-show="lot:is_scheduled < lot.timing")
+          Bidding from 
+          %span(data-rv-text="lot.sale_start_at | nice_datetime")
+          (
+          %time.fromNow(data-rv-datetime="lot.sale_start_at" data-rv-text="lot.sale_start_at | fromNow")>
+          )
+          to
+          %span(data-rv-text="lot.sale_end_at | nice_datetime")
+        %span(data-rv-show="lot:is_manual < lot.timing")
+          Bidding opens soon 
       %p(data-rv-show="lot:is_forsale < lot.state")
-        Closing at
-        %span(data-rv-text="lot.sale_end_at | nice_datetime")
-        (
-        %time.fromNow(data-rv-datetime="lot.sale_end_at" data-rv-text="lot.sale_end_at | fromNow")>
-        )
+        %span(data-rv-show="lot:is_scheduled < lot.timing")
+          Closing at
+          %span(data-rv-text="lot.sale_end_at | nice_datetime")
+          (
+          %time.fromNow(data-rv-datetime="lot.sale_end_at" data-rv-text="lot.sale_end_at | fromNow")>
+          )
+        %span(data-rv-show="lot:is_manual < lot.timing")
+          Bidding closes soon 
       %p(data-rv-show="lot:is_closing < lot.state")
         %strong Closing Now!
       %p(data-rv-show="lot:is_sold < lot.state")
