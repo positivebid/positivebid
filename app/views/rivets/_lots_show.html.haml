@@ -1,7 +1,7 @@
 #lots_show
   %div(data-role="page")
     %div.ui-bar-b(data-role="header" data-theme="b")
-      %a(data-rv-href="auction:lotsUrl" data-direction="reverse") Catalog
+      %a(data-rv-href="auction:lotsUrl" data-icon="arrow-l" data-direction="reverse") Catalog
       %h1 
         Lot
         %span(data-rv-text="lot.number")
@@ -9,11 +9,11 @@
       %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
 
     %div(data-role="content")
-      %a(data-rv-href="lot:descriptionUrl" data-role="button" data-icon="arrow-l" data-iconpos="left") Lot Description
+      %a.right(data-inline="true" data-rv-href="lot:descriptionUrl" data-role="button" data-icon="arrow-l" data-iconpos="left") Lot Description
       %h2
-        %span Lot
-        %span(data-rv-text="lot.number")
-        %span -
+        %span Lot&thinsp;
+        %span(data-rv-text="lot.number")>
+        \:
         %span(data-rv-text="lot.name")
       %p(data-rv-show="lot:is_draft < lot.state")
         %strong(data-rv-text="lot.state")
