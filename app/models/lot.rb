@@ -66,11 +66,16 @@ class Lot < ActiveRecord::Base
     end
   end
 
+
+
   def set_defaults
     self.sale_start_at ||= auction.try(:default_sale_start_at)
     self.sale_end_at ||= auction.try(:default_sale_end_at)
   end
 
+  def bidable?
+    forsale? or closing?
+  end
 
   state_machine :initial => :draft do
 

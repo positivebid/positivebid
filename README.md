@@ -39,6 +39,6 @@ also maybe "brew install graphviz"
 ./script/rails s
 npm start -g nodevent
 
-# go to homepage
-open http://localhost:3000/
+# go to homepage  ( local.host set to 127.0.0.1 in /etc/hosts )
+open http://local.host:3000/
 
