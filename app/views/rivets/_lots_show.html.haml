@@ -36,9 +36,10 @@
           %time.fromNow(data-rv-datetime="lot.sale_end_at" data-rv-text="lot.sale_end_at | fromNow")>
           )
         %span(data-rv-show="lot:is_manual < lot.timing")
-          Bidding open. Closing soon&hellip;
+          Bidding open. Closing soon...
       %p(data-rv-show="lot:is_closing < lot.state")
-        %strong Closing Now! Final bids&hellip;
+        %strong 
+          Closing Now! Final bids...
       %p(data-rv-show="lot:is_sold < lot.state")
         %strong Sold
       %p(data-rv-show="lot:is_bought < lot.state")
