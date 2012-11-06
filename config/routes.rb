@@ -32,6 +32,7 @@ Positive::Application.routes.draw do
 
   root :to => 'root#index'
   match '/about' => 'root#about', :as => :about
+  match '/demo' => 'root#demo', :as => :demo
 
 
   #omni auth
