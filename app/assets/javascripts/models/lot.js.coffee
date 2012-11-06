@@ -65,6 +65,9 @@ PB.Lot = Backbone.Model.extend
   is_manual: -> @get('timing') is "manual"
 
   isBiddingDisabled: -> not ( @is_forsale() or @is_closing() )
+  isBiddingOpen: -> @is_forsale() or @is_closing()
+  isBiddingPreSale: -> @is_draft() or @is_published()
+  isBiddingPostSale: -> @is_bought() or @is_sold() or @is_paid()
 
   errors_base: -> ''  #todo
   errors_name: -> ''  #todo

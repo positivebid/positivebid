@@ -38,7 +38,7 @@
         %span(data-rv-show="lot:is_manual < lot.timing")
           Bidding closes soon 
       %p(data-rv-show="lot:is_closing < lot.state")
-        %strong Closing Now!
+        %strong Closing Now! Final bids&hellip;
       %p(data-rv-show="lot:is_sold < lot.state")
         %strong Sold
       %p(data-rv-show="lot:is_bought < lot.state")
@@ -84,7 +84,9 @@
               %span +
               %span(data-rv-text="lot.min_increment | pound")
         %input(type="hidden" name="bid[lot_id]" data-rv-value="lot:id")
-        %input#bid_now(jif="current_user" data-theme="e" type="submit" data-rv-value="bid:bid_now < bid.amount" data-icon="gavel-halfway" data-iconpos="right" data-rv-jqbtntext="bid:bid_now < bid.amount" data-rv-submitdisabled="lot:isBiddingDisabled < lot.state")
+        %a#bid_now(jif="current_user" data-role="button" data-theme="e"  data-rv-jq_a_btn_text="bid:bid_now < bid.amount" data-icon="gavel-halfway" data-iconpos="right" data-rv-show="lot:isBiddingOpen < lot.state") Bid Now
+        %a.ui-disabled(jif="current_user" data-role="button" data-theme="e" type="submit" data-icon="gavel-halfway" data-iconpos="right" data-rv-show="lot:isBiddingPreSale < lot.state") Bids not yet open
+        %a.ui-disabled(jif="current_user" data-role="button" data-theme="e" type="submit" data-icon="gavel-halfway" data-iconpos="right" data-rv-show="lot:isBiddingPostSale < lot.state") Bidding now closed
         %a(jnif="current_user" data-theme="e" href="#/login" data-role="button" data-icon="gavel-halfway" data-iconpos="right") Login to Bid
 
     %div(data-role="content")

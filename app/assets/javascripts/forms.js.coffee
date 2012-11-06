@@ -32,3 +32,7 @@ setInterval( ->
       $this.text  moment(dt).fromNow()
 , 10000 )
 
+$document.on 'click vclick tap',  'a#bid_now', (event) ->
+  event.preventDefault()
+  $(this).closest('form').submit()
+

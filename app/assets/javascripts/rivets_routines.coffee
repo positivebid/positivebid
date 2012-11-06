@@ -31,7 +31,9 @@ window.rivets.routines.jq_a_btn_icon = (el, value) ->
 
 window.rivets.routines.jq_a_btn_text = (el, value) ->
   $el = $(el)
-  $el.find('span.ui-btn-text').text value
+  setTimeout ->
+    $el.find('span.ui-btn-text').text value
+  , 0
 
 # dummy routine that runs jquerymobile listview('refresh') on the next tick
 # after the dom has been updated with new raw markup
