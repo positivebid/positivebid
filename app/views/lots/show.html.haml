@@ -1,43 +1,45 @@
-.row
-  .span10.offset1
-    %ul.breadcrumb
-      %li
-        %a(href="/home") Home
-        %span.divider /
-      %li
-        %a(href="/home/auctions") Auctions
-        %span.divider /
-      %li
-        %a{:href => home_auction_path(@auction)}= truncate @auction.name
-        %span.divider /
-      %li
-        %a{:href => resources_path} Lots
-        %span.divider /
-      %li.active
-        #{resource.number}: #{truncate resource.name}
-        %span.divider /
-      %li
-        %a{:href => resource_items_path} Items
+.container
+  %ul.breadcrumb
+    %li
+      %a(href="/home") Home
+      %span.divider /
+    %li
+      %a(href="/home/auctions") Auctions
+      %span.divider /
+    %li
+      %a{:href => home_auction_path(@auction)}= truncate @auction.name
+      %span.divider /
+    %li
+      %a{:href => resources_path} Lots
+      %span.divider /
+    %li.active
+      #{resource.number}: #{truncate resource.name}
+      %span.divider /
+    %li
+      %a{:href => resource_items_path} Items
 
 
-    %h4 Lot:
-    %h1 #{resource.number} - #{resource.name.titleize}
-    %p  
-      %a.btn.btn-small{:href => edit_resource_path} Edit
-      - resource.state_events.each do |event|
-        - if event.to_s.match(/^organiser/)
-          %a.btn.btn-small{:href => resource_path(resource, 'lot[state_event]' => event ), 'data-method' => 'PUT'} #{event}
-      %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure you want to delete the Lot? really sure?', 'data-method' => :delete } Delete
+  %h4 Lot:
+  %h1 #{resource.number} - #{resource.name.titleize}
+  %p  
+    %a.btn.btn-small{:href => edit_resource_path} Edit
+    - resource.state_events.each do |event|
+      - if event.to_s.match(/^organiser/)
+        %a.btn.btn-small{:href => resource_path(resource, 'lot[state_event]' => event ), 'data-method' => 'PUT'} #{event.to_s.humanize}
+    %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure you want to delete the Lot? really sure?', 'data-method' => :delete } Delete
 
-    %table.table.table-striped.table-bordered
-      - for column in  [ :name, :number, :buy_now_price, :min_increment, :collected, :timing, :sale_start_at, :sale_end_at, :actual_start_at, :actual_end_at, :state]
-        %tr
-          %th= column.to_s.humanize
-          %td
-            - if column.to_s.match(/_at$/)
-              = resource.send(column).try(:to_s, :long)
-            - else
-              = resource.send(column)
+  %table.table.table-striped.table-bordered
+    - for column in  [ :name, :number, :buy_now_price, :min_increment, :collected, :timing, :sale_start_at, :sale_end_at, :actual_start_at, :actual_end_at, :state]
+      %tr
+        %th= column.to_s.humanize
+        %td
+          - if column.to_s.match(/_at$/)
+            = resource.send(column).try(:to_s, :long)
+          - else
+            = resource.send(column)
+    %tr
+      %th Log
+      %td.log #{resource.log}
 
 
 

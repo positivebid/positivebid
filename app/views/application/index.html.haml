@@ -1,23 +1,21 @@
-.row
-  .span10.offset1
+.container
+  %h1
+    Listing #{resource_name.humanize.pluralize}
+    - if enclosing_resource && path_exists?(:enclosing_resource_path)
+      for
+      %a{:href => enclosing_resource_path} #{enclosing_resource_name.humanize}
 
-    %h1
-      Listing #{resource_name.humanize.pluralize}
-      - if enclosing_resource && path_exists?(:enclosing_resource_path)
-        for
-        %a{:href => enclosing_resource_path} #{enclosing_resource_name.humanize}
+  - if resources.respond_to? 'num_pages'
+    = paginate resources
 
-    - if resources.respond_to? 'num_pages'
-      = paginate resources
+  %table.table.table-striped.table-bordered.table-condensed.max-width
+    = render :partial => 'header'
+    = render :partial => 'row'
 
-    %table.table.table-striped.table-bordered.table-condensed.max-width
-      = render :partial => 'header'
-      = render :partial => 'row'
+  - if resources.respond_to? 'num_pages'
+    = paginate resources
 
-    - if resources.respond_to? 'num_pages'
-      = paginate resources
-
-    - if path_exists?(:new_resource_path)
-      %br.clearleft/
-      %a.btn.btn-primary{:href => new_resource_path} New #{resource_name.humanize}
+  - if path_exists?(:new_resource_path)
+    %br.clearleft/
+    %a.btn.btn-primary{:href => new_resource_path} New #{resource_name.humanize}
 

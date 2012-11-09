@@ -1,30 +1,28 @@
-.row
-  .span10.offset1
+.container
 
+  %ul.breadcrumb
+    %li
+      %a(href="/home") Home
+      %span.divider /
+    %li.active
+      %a(href="/home/auctions") Auctions
 
-    %ul.breadcrumb
-      %li
-        %a(href="/home") Home
-        %span.divider /
-      %li.active
-        %a(href="/home/auctions") Auctions
+  %h4
+    Listing:
+  %h1
+    Auctions
+  %p
+    - if path_exists?(:new_resource_path)
+      %a.btn.btn-yellow{:href => new_resource_path} Add New #{resource_name.humanize}
 
-    %h4
-      Listing:
-    %h1
-      Auctions
-    %p
-      - if path_exists?(:new_resource_path)
-        %a.btn.btn-yellow{:href => new_resource_path} Add New #{resource_name.humanize}
+  - if resources.respond_to? 'num_pages'
+    = paginate resources
 
-    - if resources.respond_to? 'num_pages'
-      = paginate resources
+  %table.table.table-striped.table-bordered.table-condensed.max-width
+    = render :partial => 'header'
+    = render :partial => 'row'
 
-    %table.table.table-striped.table-bordered.table-condensed.max-width
-      = render :partial => 'header'
-      = render :partial => 'row'
-
-    - if resources.respond_to? 'num_pages'
-      = paginate resources
+  - if resources.respond_to? 'num_pages'
+    = paginate resources
 
 

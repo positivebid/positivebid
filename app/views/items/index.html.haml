@@ -1,41 +1,39 @@
-.row
-  .span10.offset1
-
-    %ul.breadcrumb
-      %li
-        %a(href="/home") Home
-        %span.divider /
-      %li
-        %a(href="/home/auctions") Auctions
-        %span.divider /
-      %li
-        %a{:href => home_auction_path(@auction)}= truncate @auction.name
-        %span.divider /
-      %li
-        %a{:href => home_auction_lots_path(@auction)} Lots
-        %span.divider /
-      %li.active
-        %a{:href => home_auction_lot_path(@auction, @lot)} #{@lot.number} - #{truncate @lot.name}
-        %span.divider /
-      %li.active
-        Items
-
-    %h4
-      Lot: #{@lot.number} - #{@lot.name}
-    %h1
+.container
+  %ul.breadcrumb
+    %li
+      %a(href="/home") Home
+      %span.divider /
+    %li
+      %a(href="/home/auctions") Auctions
+      %span.divider /
+    %li
+      %a{:href => home_auction_path(@auction)}= truncate @auction.name
+      %span.divider /
+    %li
+      %a{:href => home_auction_lots_path(@auction)} Lots
+      %span.divider /
+    %li.active
+      %a{:href => home_auction_lot_path(@auction, @lot)} #{@lot.number} - #{truncate @lot.name}
+      %span.divider /
+    %li.active
       Items
-    %p
-      - if path_exists?(:new_resource_path)
-        %a.btn.btn-yellow{:href => new_resource_path} Add New #{resource_name.humanize}
 
-    - if resources.respond_to? 'num_pages'
-      = paginate resources
+  %h4
+    Lot: #{@lot.number} - #{@lot.name}
+  %h1
+    Items
+  %p
+    - if path_exists?(:new_resource_path)
+      %a.btn.btn-yellow{:href => new_resource_path} Add New #{resource_name.humanize}
 
-    %table.table.table-striped.table-bordered.table-condensed.max-width
-      = render :partial => 'header'
-      = render :partial => 'row'
+  - if resources.respond_to? 'num_pages'
+    = paginate resources
 
-    - if resources.respond_to? 'num_pages'
-      = paginate resources
+  %table.table.table-striped.table-bordered.table-condensed.max-width
+    = render :partial => 'header'
+    = render :partial => 'row'
+
+  - if resources.respond_to? 'num_pages'
+    = paginate resources
 
 

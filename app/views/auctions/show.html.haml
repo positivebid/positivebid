@@ -1,38 +1,37 @@
+.container
 
-.row
-  .span10.offset1
-    %ul.breadcrumb
-      %li
-        %a(href="/home") Home
-        %span.divider /
-      %li
-        %a(href="/home/auctions") Auctions
-        %span.divider /
-      %li.active
-        = truncate resource.name
-        %span.divider /
-      %li
-        %a{:href => resource_lots_path} Lots
+  %ul.breadcrumb
+    %li
+      %a(href="/home") Home
+      %span.divider /
+    %li
+      %a(href="/home/auctions") Auctions
+      %span.divider /
+    %li.active
+      = truncate resource.name
+      %span.divider /
+    %li
+      %a{:href => resource_lots_path} Lots
 
-    %h4
-      Auction:
-    %h1
-      = resource.name.titleize
-    %p 
-      %a.btn.btn-small{:href => edit_resource_path} Edit
-      %a.btn.btn-small.btn-danger{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
-
+  %h4
+    Auction:
+  %h1
+    = resource.name.titleize
+  %p 
+    %a.btn.btn-small{:href => edit_resource_path} Edit
+    %a.btn.btn-small.btn-danger{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
 
 
-    %table.table.table-striped.table-bordered
-      - for column in controller.resource_service.content_columns
-        %tr
-          %th= column.human_name
-          %td= resource.send(column.name)
+
+  %table.table.table-striped.table-bordered
+    - for column in controller.resource_service.content_columns
       %tr
-        %th Picture
-        %td
-          - if resource.picture.id
-            %img.p100{:src => p100_picture_path(resource.picture, :format => :jpg)}
+        %th= column.human_name
+        %td= resource.send(column.name)
+    %tr
+      %th Picture
+      %td
+        - if resource.picture.id
+          %img.p100{:src => p100_picture_path(resource.picture, :format => :jpg)}
 
 
