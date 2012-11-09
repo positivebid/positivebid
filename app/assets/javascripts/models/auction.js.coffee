@@ -12,6 +12,9 @@ PB.Auction = Backbone.Model.extend
     @description = args.description
     _.bindAll(@, 'serverChange', 'serverDelete', 'modelCleanup')
 
+    if @id?
+      @lots = PB.AuctionLots.for_auction(@id)
+
     # if we are creating a new model to push to the server we don't want
     # to iobind as we only bind new models from the server. This is because
     # the server assigns the id.
@@ -59,7 +62,6 @@ PB.Auction = Backbone.Model.extend
   modelCleanup: ->
     @ioUnbindAll()
     return @
-
 
 
 

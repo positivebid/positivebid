@@ -21,6 +21,10 @@ PB.Lot = Backbone.Model.extend
     if @id?
       @items = PB.LotItems.for_lot(@id)
 
+    # if we have an id add to the LotItems collection
+    if @id? and @auction_id?
+      PB.AuctionLots.for_auction(@auction_id).add @
+
     _.bindAll(@, 'serverChange', 'serverDelete', 'modelCleanup')
     # if we are creating a new model to push to the server we don't want
     # to iobind as we only bind new models from the server. This is because
