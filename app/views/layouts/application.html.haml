@@ -37,6 +37,8 @@
             %ul.nav.pull-right
               %li{:class => "#{"active" if params[:controller] == 'root' and params[:action] == "index"}"}
                 %a(href="/") Home
+              %li{:class => "#{"active" if params[:controller] == 'published_faqs'}"}
+                %a(href="/public/published_faqs/1" title="frequently asked questions") FAQ
               %li{:class => "#{"active" if params[:controller] == 'root' and params[:action] == "about"}"}
                 %a(href="/about") About
               %li{:class => "#{"active" if params[:controller] == 'blogs'}"}
