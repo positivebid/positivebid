@@ -32,3 +32,19 @@
     = paginate resources
 
 
+:javascript
+  $('table tbody').sortable({
+    axis: 'y', 
+    dropOnEmpty:false, 
+    handle:'.handle', 
+    items:'tr', 
+    update:function(){
+    $.ajax({
+      complete: function(request){
+        $('#false').effect('highlight');},
+      data: $(this).sortable('serialize',{key:'lot[]'}) + '&_method=put',
+      dataType:'script',
+      type:'post',
+      url: "#{order_resources_url}"})
+    }
+  });

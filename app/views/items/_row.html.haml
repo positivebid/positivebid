@@ -1,5 +1,8 @@
 - for resource in resources
-  %tr
+  %tr[resource]
+    %td.handle
+      %i.icon-move
+      #{resource.position}
     %td
       - if resource.picture
         %img.p80{:src => p80_picture_path(resource.picture, :format => :jpg)}

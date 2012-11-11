@@ -4,7 +4,10 @@ class LotsController < ApplicationController
 
   append_before_filter :set_time_zone
 
-
+  def order
+    order = params[:lot]
+    resource_service.order_by_ids(order)
+  end
 
   private 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105204609) do
+ActiveRecord::Schema.define(:version => 20121111160944) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name",                                               :null => false
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20121105204609) do
     t.string   "timing",          :default => "scheduled", :null => false
     t.datetime "actual_start_at"
     t.datetime "actual_end_at"
+    t.integer  "cents_paid",      :default => 0
   end
 
   add_index "lots", ["auction_id", "number"], :name => "index_lots_on_auction_id_and_number"

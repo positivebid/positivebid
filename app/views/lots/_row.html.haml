@@ -1,5 +1,8 @@
 - for resource in resources
-  %tr
+  %tr[resource]
+    %td.handle
+      %i.icon-move
+      #{resource.position}
     %td ##{resource.number} #{resource.name}
     %td= resource.buy_now_price
     %td £#{resource.min_increment}

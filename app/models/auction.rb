@@ -39,7 +39,7 @@ class Auction < ActiveRecord::Base
 
   belongs_to :user  # the requestor 
 
-  has_many :lots, :dependent => :destroy
+  has_many :lots, :order => 'position ASC', :dependent => :destroy
   has_many :items, :through => :lots
   has_many :bids, :through => :lots
 

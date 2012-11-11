@@ -60,7 +60,14 @@ Positive::Application.routes.draw do
 
     resources :auctions do
       resources :lots do
-        resources :items
+        collection do
+          put :order
+        end
+        resources :items do
+          collection do
+            put :order
+          end
+        end
       end
     end
 
