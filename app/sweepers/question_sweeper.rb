@@ -4,6 +4,7 @@ class QuestionSweeper < ActionController::Caching::Sweeper
   def sweep(question)
     if question.faq
       expire_page public_published_faq_path(question.faq)
+      expire_page public_published_faq_path(question.faq.id)
     end
   end
 

@@ -3,6 +3,7 @@ class FaqSweeper < ActionController::Caching::Sweeper
 
   def sweep(faq)
     expire_page public_published_faq_path(faq)
+    expire_page public_published_faq_path(faq.id)
   end
 
   alias_method :after_create, :sweep
