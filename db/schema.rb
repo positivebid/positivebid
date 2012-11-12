@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121111160944) do
+ActiveRecord::Schema.define(:version => 20121112114708) do
 
   create_table "auctions", :force => true do |t|
-    t.string   "name",                                               :null => false
+    t.string   "name",                                                 :null => false
     t.text     "description"
     t.string   "location"
     t.datetime "event_start_at"
@@ -27,16 +27,19 @@ ActiveRecord::Schema.define(:version => 20121111160944) do
     t.string   "charity_contact_name"
     t.string   "charity_contact_email"
     t.string   "charity_contact_telephone"
-    t.boolean  "charity_approved",          :default => false
+    t.boolean  "charity_approved",            :default => false
     t.integer  "fundraising_target"
-    t.text     "payment_methods"
-    t.boolean  "allow_anonymous_bids",      :default => false
-    t.string   "state",                     :default => "requested", :null => false
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
+    t.boolean  "allow_anonymous_bids",        :default => false
+    t.string   "state",                       :default => "requested", :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
     t.text     "log"
-    t.string   "time_zone",                 :default => "London"
-    t.string   "default_lot_timing",        :default => "scheduled", :null => false
+    t.string   "time_zone",                   :default => "London"
+    t.string   "default_lot_timing",          :default => "scheduled", :null => false
+    t.boolean  "manual_payment_accepted",     :default => false
+    t.string   "manual_payment_instructions"
+    t.boolean  "justgiving_payment_accepted", :default => false
+    t.string   "justgiving_sdi_charity_id"
   end
 
   add_index "auctions", ["event_start_at"], :name => "index_auctions_on_event_start_at"

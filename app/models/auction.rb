@@ -17,7 +17,10 @@ class Auction < ActiveRecord::Base
     :charity_name, 
     :charity_approved, 
     :fundraising_target, 
-    :payment_methods ,
+    :manual_payment_accepted,
+    :manual_payment_instructions,
+    :justgiving_payment_accepted,
+    :justgiving_sdi_charity_id,
     :picture_attributes
 
   ]
