@@ -1,7 +1,7 @@
 #lot_pay
   %div(data-role="page")
     %div.ui-bar-b(data-role="header" data-theme="b")
-      %a(data-rv-href="auction:lotsUrl" data-icon="arrow-l" data-direction="reverse") Catalog
+      %a(data-rv-href="lot:descriptionUrl" data-icon="arrow-l" data-direction="reverse") Lot
       %h1
         Lot
         %span(data-rv-text="lot.number")
@@ -10,13 +10,14 @@
       %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
 
     %div(data-role="content")
-      %a.right(data-inline="true" data-theme="e" data-rv-href="lot:biddingUrl" data-role="button" data-icon="gavel-halfway" data-iconpos="right") Bid
       %h1
-        %span Lot&thinsp;
+        %span Payment for Lot&thinsp;
         %span(data-rv-text="lot.number")>
         \:
         %span(data-rv-text="lot.name")
       %p(data-rv-show="lot:is_bought_or_sold < lot.state")
+        %strong(data-rv-show="lot:is_bought < lot.state") Bought
+        %strong(data-rv-show="lot:is_sold < lot.state") Sold
         %span at
         %span(data-rv-text="lot.sold_at | nice_datetime")
         (
@@ -39,9 +40,13 @@
         %br
         %time.fromNow(data-rv-datetime="lot:current_bid_created_at < lot.current_bid_id" data-rv-text="lot:current_bid_created_at < lot.current_bid_id | fromNow")
 
-    %div(data-role="content")
-      %h4 
-        pay todo:
+    %div(data-rv-show="auction.manual_payment_accepted" data-role="content")
+      %h4 Manual Payment
+      %p.whitespacepreline(data-rv-text="auction.manual_payment_instructions")
+    %div(data-rv-show="auction.justgiving_payment_accepted" data-role="content")
+      %h4 Online JustGiving Payment
+      %p Click here to pay now using Debit Card, Credit Card, or PayPal at the JustGiving website
+      %a(data-role="button" data-theme="e" data-rv-href="lot:justgivingUrl") JustGiving Pay Now
 
 
     %div.ui-bar-b(data-role="footer")

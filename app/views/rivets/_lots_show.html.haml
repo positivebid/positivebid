@@ -40,11 +40,9 @@
       %p(data-rv-show="lot:is_closing < lot.state")
         %strong 
           Closing Now! Final bids...
-      %p(data-rv-show="lot:is_sold < lot.state")
-        %strong Sold
-      %p(data-rv-show="lot:is_bought < lot.state")
-        %strong Bought
       %p(data-rv-show="lot:is_bought_or_sold < lot.state")
+        %strong(data-rv-show="lot:is_sold < lot.state") Sold
+        %strong(data-rv-show="lot:is_bought < lot.state") Bought
         %span at
         %span(data-rv-text="lot.sold_at | nice_datetime")
         (

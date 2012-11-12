@@ -48,6 +48,9 @@ PB.Lot = Backbone.Model.extend
     else
       "/img/logo/positivebid_rounded_128.png"
 
+  justgivingUrl: ->
+    "http://www.justgiving.com/donation/direct/charity/#{@auction().get('justgiving_sdi_charity_id')}?amount=#{@current_bid().get('amount')}&reference=lot-#{@id}&frequency=single&exitUrl=http%3a%2f%2fwww.positivebid.com%2freturn?donationId=JUSTGIVING-DONATION-ID"
+
   current_bid_user_name: -> @current_bid()?.user()?.name()
   current_bid_user_image_url: -> @current_bid()?.user()?.image_url
   current_bid_amount: -> @current_bid()?.get('amount') or 0

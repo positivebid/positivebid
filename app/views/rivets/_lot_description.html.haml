@@ -40,16 +40,16 @@
           Bidding open. Closing soon...
       %p(data-rv-show="lot:is_closing < lot.state")
         %strong Closing Now! Last Bids...
-      %p(data-rv-show="lot:is_sold < lot.state")
-        %strong Sold
-      %p(data-rv-show="lot:is_bought < lot.state")
-        %strong Bought
       %p(data-rv-show="lot:is_bought_or_sold < lot.state")
+        %strong(data-rv-show="lot:is_sold < lot.state") Sold
+        %strong(data-rv-show="lot:is_bought < lot.state") Bought
         %span at
         %span(data-rv-text="lot.sold_at | nice_datetime")
         (
         %time.fromNow(data-rv-datetime="lot.sold_at" data-rv-text="lot.sold_at | fromNow")>
         )
+      %p(jif="current_user" data-rv-show="lot:i_need_to_pay < lot.state")
+        %a(data-role="button" data-theme="e"  data-icon="gavel-halfway" data-iconpos="right" data-rv-href="lot:payUrl") You Won this. Pay Now.
       %p(data-rv-show="lot:is_paid < lot.state")
         %strong Paid for
         %span at
