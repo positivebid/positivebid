@@ -1,0 +1,49 @@
+#lot_pay
+  %div(data-role="page")
+    %div.ui-bar-b(data-role="header" data-theme="b")
+      %a(data-rv-href="auction:lotsUrl" data-icon="arrow-l" data-direction="reverse") Catalog
+      %h1
+        Lot
+        %span(data-rv-text="lot.number")
+        Pay
+
+      %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
+
+    %div(data-role="content")
+      %a.right(data-inline="true" data-theme="e" data-rv-href="lot:biddingUrl" data-role="button" data-icon="gavel-halfway" data-iconpos="right") Bid
+      %h1
+        %span Lot&thinsp;
+        %span(data-rv-text="lot.number")>
+        \:
+        %span(data-rv-text="lot.name")
+      %p(data-rv-show="lot:is_bought_or_sold < lot.state")
+        %span at
+        %span(data-rv-text="lot.sold_at | nice_datetime")
+        (
+        %time.fromNow(data-rv-datetime="lot.sold_at" data-rv-text="lot.sold_at | fromNow")>
+        )
+      %p(data-rv-show="lot:is_paid < lot.state")
+        %strong Paid for
+        %span at
+        %span(data-rv-text="lot.paid_at | nice_datetime")
+        (
+        %time.fromNow(data-rv-datetime="lot.paid_at" data-rv-text="lot.paid_at | fromNow")>
+        )
+
+    %div(data-role="content" data-theme="e")
+      %div.current_bid(data-rv-show="lot.current_bid_id")
+        %img.i80(data-rv-src="lot:current_bid_user_image_url < lot.current_bid_id")
+        %strong(data-rv-text="lot:current_bid_amount < lot.current_bid_id | pound")
+        %span Highest Bid by
+        %span(data-rv-text="lot:current_bid_user_name < lot.current_bid_id")
+        %br
+        %time.fromNow(data-rv-datetime="lot:current_bid_created_at < lot.current_bid_id" data-rv-text="lot:current_bid_created_at < lot.current_bid_id | fromNow")
+
+    %div(data-role="content")
+      %h4 
+        pay todo:
+
+
+    %div.ui-bar-b(data-role="footer")
+      %h4 PositiveBid
+

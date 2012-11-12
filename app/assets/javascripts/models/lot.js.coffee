@@ -41,6 +41,7 @@ PB.Lot = Backbone.Model.extend
   viewUrl: -> "#/lots/#{@id}"
   biddingUrl: -> "#/lots/#{@id}"
   descriptionUrl: -> "#/lots/#{@id}/description"
+  payUrl: -> "#/lots/#{@id}/pay"
   imageUrl: ->
     if fl = @items.first()
       fl.imageUrl()
@@ -64,6 +65,8 @@ PB.Lot = Backbone.Model.extend
   is_bought: -> @get('state') is "bought"
   is_bought_or_sold: -> @is_bought() or @is_sold()
   is_paid: -> @get('state') is "paid"
+
+  i_need_to_pay: -> @is_bought_or_sold() and current_user? and @current_bid()? and current_user.id == @current_bid().get('user_id')
 
   is_scheduled: -> @get('timing') is "scheduled"
   is_manual: -> @get('timing') is "manual"

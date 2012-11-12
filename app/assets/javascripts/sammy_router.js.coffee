@@ -102,14 +102,15 @@ PB.app = $.sammy(->
       return false
     render( new Sview('lot_description', {lot: lot, auction: lot.auction(), bid: lot.next_bid(), items: lot.items, status: PB.status }) )
 
- 
-  @get "#/items/:id", (context) ->
-    item = PB.items.get(context.params.id)
-    unless item?
-      console?.log 'item not found for id:', context.params.id
+  @get "#/lots/:id/pay", (context) ->
+    lot = PB.lots.get(context.params.id)
+    unless lot?
+      console?.log 'lot not found for id:', context.params.id
       context.redirect("#/")
       return false
-    render( new Sview('items_show', {item: item, lot: item.lot(), status: PB.status  }) )
+    render( new Sview('lot_pay', {lot: lot, auction: lot.auction(), bid: lot.next_bid(), items: lot.items, status: PB.status }) )
+
+ 
 
   @post "#/bids",  (context) ->
     #console?.log('context.params.bid', context.params.bid)
