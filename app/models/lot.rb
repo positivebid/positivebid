@@ -28,7 +28,7 @@ class Lot < ActiveRecord::Base
   belongs_to :auction
   has_many :bids, :dependent => :destroy
   belongs_to :current_bid, :class_name => 'Bid'
-  has_many :items, :dependent => :destroy
+  has_many :items, :order => 'position ASC', :dependent => :destroy
 
   after_save :outbid_notify # TODO MAKE ASYNC?
 
