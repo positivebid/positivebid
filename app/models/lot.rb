@@ -23,6 +23,7 @@ class Lot < ActiveRecord::Base
   TIMINGS = %w( scheduled manual )
   validates_inclusion_of :timing, :in => TIMINGS
 
+
   after_initialize :set_defaults
 
   belongs_to :auction
@@ -39,6 +40,7 @@ class Lot < ActiveRecord::Base
   validates_length_of :name, :in => 2..255
   validates_uniqueness_of :number, :scope => :auction_id
   acts_as_list  :scope => :auction
+  validate :validate_scheduled_timing
 
   scope :sorted, :order => 'position ASC'
 
@@ -51,6 +53,20 @@ class Lot < ActiveRecord::Base
   scope :paid, where(:state => 'paid')
 
   include NodeventGlobal
+
+  def validate_scheduled_timing
+    if timing == "scheduled"
+      if sale_start_at.blank?
+        errors.add(:sale_start_at, "start time required")
+      end
+      if sale_end_at.blank?
+        errors.add(:sale_end_at, "start time required")
+      end
+      if sale_start_at.present? and sale_end_at.present? and sale_end_at < sale_start_at
+        errors.add(:sale_end_at, "Sale must end after start")
+      end
+    end
+  end
 
   def outbid_notify
     Rails.logger.info changes.inspect

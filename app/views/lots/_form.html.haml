@@ -9,3 +9,16 @@
 = f.input :collected
 
 
+:coffeescript
+
+  $('#lot_timing').on 'change', ->
+    $this = $(this)
+    if $this.val() == "scheduled"
+      $this.closest('div.control-group').next().show()
+      $this.closest('div.control-group').next().next().show()
+    else
+      $this.closest('div.control-group').next().hide()
+      $this.closest('div.control-group').next().next().hide()
+
+  $ -> $('#lot_timing').trigger 'change'
+

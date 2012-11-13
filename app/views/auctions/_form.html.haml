@@ -21,8 +21,8 @@
 = #TODO f.input :charity_approved
 = f.input :manual_payment_accepted
 = f.input :manual_payment_instructions, input_html: { class: 'span6' }, :hint => 'e.g. Go the front desk now'
-= f.input :justgiving_payment_accepted
-= f.input :justgiving_sdi_charity_id
+= f.input :justgiving_payment_accepted, :label => "JustGiving Payment Accepted"
+= f.input :justgiving_sdi_charity_id, :label => "JustGiving SDI Charity Id"
 
 .control-group
   .controls
@@ -36,4 +36,17 @@
 = f.simple_fields_for :picture do |p|
   = p.input :image_file, as: :file, label: 'Photo File'
   = p.input :image_file_url, as: :url, label: 'Photo URL', hint: "You can either choose a file to upload as your photo, or supply the URL to a photo and we'll grab it for you.", input_html: { class: 'span6' }
+
+
+:coffeescript
+
+  $('#auction_manual_payment_accepted, #auction_justgiving_payment_accepted').on 'change', ->
+    $this = $(this)
+    if $this.is(':checked')
+      $this.closest('div.control-group').next().show()
+    else
+      $this.closest('div.control-group').next().hide()
+
+  $ ->
+    $('#auction_manual_payment_accepted, #auction_justgiving_payment_accepted').trigger 'change'
 

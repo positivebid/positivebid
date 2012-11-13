@@ -39,12 +39,36 @@ class Auction < ActiveRecord::Base
   validates_presence_of :name
   validates_length_of :name, :in => 2..100
   validates_inclusion_of :default_lot_timing, :in => Lot::TIMINGS
+  validate :validate_at_least_one_payment_method
+  validate :validate_justgiving_payment
+  validate :validate_manual_payment
+  validates_format_of :justgiving_sdi_charity_id, :with => /^\d+$/, :allow_blank => true, :message => 'numbers only'
+
 
   belongs_to :user  # the requestor 
 
   has_many :lots, :order => 'position ASC', :dependent => :destroy
   has_many :items, :through => :lots
   has_many :bids, :through => :lots
+
+
+  def validate_at_least_one_payment_method
+    if not manual_payment_accepted and not justgiving_payment_accepted
+      errors.add(:base, "must have at least one payment method accepted")
+    end
+  end
+
+  def validate_justgiving_payment
+    if justgiving_payment_accepted and justgiving_sdi_charity_id.blank?
+      errors.add(:justgiving_sdi_charity_id, "can not be blank when JustGiving payment is accepted")
+    end
+  end
+
+  def validate_manual_payment
+    if manual_payment_accepted and manual_payment_instructions.blank?
+      errors.add(:manual_payment_instructions, "can not be blank when manual payment is accepted")
+    end
+  end
 
   include NodeventGlobal
 
