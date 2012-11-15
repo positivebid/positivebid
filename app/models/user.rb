@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
       user.image_url = auth["info"]["image"]
       if auth["info"]["first_name"].present? and auth["info"]["last_name"].present?
         user.first_name = auth["info"]["first_name"]
-        user.first_name = auth["info"]["last_name"]
+        user.last_name = auth["info"]["last_name"]
       else
         nameparts = auth["info"]["name"].split(/\s+/)
         if nameparts.length > 1
