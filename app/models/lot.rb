@@ -139,6 +139,11 @@ class Lot < ActiveRecord::Base
       transition :sold => :paid
     end
 
+    event :organiser_payment do
+      transition :bought  => :paid
+      transition :sold => :paid
+    end
+
     before_transition any => :paid do |lot, transition|
       lot.paid_at = Time.now
       lot.paid = true
