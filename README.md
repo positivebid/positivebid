@@ -40,5 +40,6 @@ also maybe "brew install graphviz"
 npm start -g nodevent
 
 # go to homepage  ( local.host set to 127.0.0.1 in /etc/hosts )
-open http://local.host:3000/
+open http://local.host:3000/   # for twitter login
+open http://localhost:3000/    # for google login
 

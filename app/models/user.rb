@@ -89,14 +89,20 @@ class User < ActiveRecord::Base
     user = new do |user|
       user.provider = auth["provider"]
       user.uid = auth["uid"]
+      user.email = auth["info"]["email"]
       user.image_url = auth["info"]["image"]
-      nameparts = auth["info"]["name"].split(/\s+/)
-      if nameparts.length > 1
-        user.first_name = nameparts.shift
-        user.last_name = nameparts.join(" ")
+      if auth["info"]["first_name"].present? and auth["info"]["last_name"].present?
+        user.first_name = auth["info"]["first_name"]
+        user.first_name = auth["info"]["last_name"]
       else
-        user.first_name = auth["info"]["name"]
-        user.last_name = auth["info"]["name"]
+        nameparts = auth["info"]["name"].split(/\s+/)
+        if nameparts.length > 1
+          user.first_name = nameparts.shift
+          user.last_name = nameparts.join(" ")
+        else
+          user.first_name = auth["info"]["name"]
+          user.last_name = auth["info"]["name"]
+        end
       end
       user.activated_at = Time.now
       user.active = true
