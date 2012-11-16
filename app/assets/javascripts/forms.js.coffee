@@ -24,13 +24,13 @@ window.moment.calendar =
   nextWeek : 'dddd [at] LT'
   sameElse : 'L [at] LT'
 
-
-setInterval( ->
+window.fromNowUpdate = ->
   $('time.fromNow').each ->
     $this = $(this)
     if dt = $this.attr('datetime')
       $this.text  moment(dt).fromNow()
-, 10000 )
+
+window.fromNowUpdateIntervalId = setInterval( fromNowUpdate, 10000 )
 
 $document.on 'click vclick tap',  'a#bid_now', (event) ->
   event.preventDefault()
