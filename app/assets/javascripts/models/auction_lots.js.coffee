@@ -6,6 +6,10 @@ PB.AuctionLots = class
   @auctions = []
 
   @for_auction = (auction_id) ->
-    @auctions[auction_id] ?= new Backbone.Collection
+    return @auctions[auction_id]  if @auctions[auction_id]?
+    alots = new Backbone.Collection
+    alots.comparator = (ab) -> ab.get('position')
+    @auctions[auction_id] = alots
+    return alots
       
 
