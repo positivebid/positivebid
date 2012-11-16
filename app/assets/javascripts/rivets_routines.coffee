@@ -24,9 +24,15 @@ window.rivets.routines.jqbtntext = (el, value) ->
 
 window.rivets.routines.jq_a_btn_icon = (el, value) ->
   $el = $(el)
-  current = $el.attr('data-icon')
-  $el.attr('data-icon', value)
-  $el.find('span.ui-icon').removeClass("ui-icon-#{current}").addClass("ui-icon-#{value}")
+  setTimeout ->
+    if $el.attr('data-icon') and ($el.attr('data-icon') isnt "false")
+      $holder = $el
+    else
+      $holder = $el.find('[data-icon]:first')
+    current = $holder.attr('data-icon')
+    $holder.attr('data-icon', value)
+    $el.find('span.ui-icon').removeClass("ui-icon-#{current}").addClass("ui-icon-#{value}")
+  , 0
 
 
 window.rivets.routines.jq_a_btn_text = (el, value) ->

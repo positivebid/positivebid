@@ -79,6 +79,12 @@ PB.Lot = Backbone.Model.extend
   isBiddingPreSale: -> @is_draft() or @is_published()
   isBiddingPostSale: -> @is_bought() or @is_sold() or @is_paid()
 
+  icon: ->
+    return "gavel-closing" if @is_closing()
+    return "gavel-halfway" if @is_forsale()
+    return "gavel-down" if @isBiddingPostSale()
+    return "gavel-up"
+
   errors_base: -> ''  #todo
   errors_name: -> ''  #todo
   errors_description: -> ''  #todo

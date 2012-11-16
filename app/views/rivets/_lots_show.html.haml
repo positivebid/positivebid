@@ -48,7 +48,7 @@
         %time.fromNow(data-rv-datetime="lot.sold_at" data-rv-text="lot.sold_at | fromNow")>
         )
       %p(jif="current_user" data-rv-show="lot:i_need_to_pay < lot.state")
-        %a(data-role="button" data-theme="e"  data-icon="gavel-halfway" data-iconpos="right" data-rv-href="lot:payUrl") You Won this. Pay Now.
+        %a(data-role="button" data-theme="e"  data-icon="gavel-down" data-iconpos="right" data-rv-href="lot:payUrl") You Won this. Pay Now.
 
       %p(data-rv-show="lot:is_paid < lot.state")
         %strong Paid for
@@ -86,9 +86,9 @@
               %span(data-rv-text="lot.min_increment | pound")
         %input(type="hidden" name="bid[lot_id]" data-rv-value="lot:id")
         %a#bid_now(jif="current_user" data-role="button" data-theme="e"  data-rv-jq_a_btn_text="bid:bid_now < bid.amount" data-icon="gavel-halfway" data-iconpos="right" data-rv-show="lot:isBiddingOpen < lot.state") Bid Now
-        %a.ui-disabled(jif="current_user" data-role="button" data-theme="e" type="submit" data-icon="gavel-halfway" data-iconpos="right" data-rv-show="lot:isBiddingPreSale < lot.state") Bids not yet open
-        %a.ui-disabled(jif="current_user" data-role="button" data-theme="e" type="submit" data-icon="gavel-halfway" data-iconpos="right" data-rv-show="lot:isBiddingPostSale < lot.state") Bidding now closed
-        %a(jnif="current_user" data-theme="e" href="#/login" data-role="button" data-icon="gavel-halfway" data-iconpos="right") Login to Bid
+        %a.ui-disabled(jif="current_user" data-role="button" data-theme="e" type="submit" data-icon="gavel-up" data-iconpos="right" data-rv-show="lot:isBiddingPreSale < lot.state") Bids not yet open
+        %a.ui-disabled(jif="current_user" data-role="button" data-theme="e" type="submit" data-icon="gavel-down" data-iconpos="right" data-rv-show="lot:isBiddingPostSale < lot.state") Bidding now closed
+        %a(jnif="current_user" data-theme="e" href="#/login" data-role="button" data-icon="gavel-up" data-rv-jq_a_btn_icon="lot:icon < lot.state" data-iconpos="right") Login to Bid
 
     %div(data-role="content")
 

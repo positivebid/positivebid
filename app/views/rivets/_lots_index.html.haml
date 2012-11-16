@@ -11,7 +11,7 @@
       %div(data-rv-hide="lots:length < lots.models")
         %p Hmmm, no lots found.
 
-      %ul(data-role="listview" data-split-icon="gavel-halfway" data-inset="false" data-rv-show="lots:length < lots.models" data-rv-listview_refresh="lots:length < lots.models")
+      %ul(data-role="listview" data-inset="false" data-rv-show="lots:length < lots.models" data-rv-listview_refresh="lots:length < lots.models")
         %li(data-rv-each-lot="lots:models < lots.models")
           %a(data-rv-href="lot:descriptionUrl")
             %img.p80(data-rv-src="lot:imageUrl") 
@@ -21,7 +21,7 @@
               %span(data-rv-text="lot.name")
             %p
               %span(data-rv-text="lot.description")
-          %a(data-rv-href="lot:biddingUrl" data-theme="e" data-iconpos="notext" title="Bid Now") Bid Now
+          %a(data-rv-href="lot:biddingUrl" data-icon="arrow-r" data-rv-jq_a_btn_icon="lot:icon < lot.state" data-theme="e" data-iconpos="notext" title="Bid Now") Bid Now
 
     %div(data-role="content")
 
