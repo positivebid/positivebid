@@ -1,16 +1,16 @@
 #lots_show
   %div(data-role="page")
-    %div.ui-bar-b(data-role="header" data-theme="b")
-      %a(data-rv-href="auction:lotsUrl" data-icon="arrow-l" data-direction="reverse") Catalog
+    %div.ui-bar-e(data-role="header" data-theme="e")
+      %a(data-rv-href="auction:lotsUrl" data-icon="arrow-l" data-direction="reverse" data-theme="b") Catalog
       %h1 
         Lot
         %span(data-rv-text="lot.number")
         Bids
-      %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
+      %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text" data-theme="b") Initial
 
     %div(data-role="content")
       %a.right(data-inline="true" data-rv-href="lot:descriptionUrl" data-role="button" data-icon="arrow-l" data-iconpos="left") View
-      %h2
+      %h3
         %span(data-rv-text="lot.number")>
         \:
         %span(data-rv-text="lot.name")
@@ -58,8 +58,6 @@
         %time.fromNow(data-rv-datetime="lot.paid_at" data-rv-text="lot.paid_at | fromNow")>
         )
 
-
-    %div(data-role="content" data-theme="e")
       %div.current_bid(data-rv-hide="lot.current_bid_id")
         %p No Bids yet for this lot.
       %div.current_bid(data-rv-show="lot.current_bid_id")
