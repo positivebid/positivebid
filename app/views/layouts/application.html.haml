@@ -30,8 +30,9 @@
             %span.icon-bar
             %span.icon-bar
     
-          %a.brand(href="/") 
-            %strong.lato.pyellow PositiveBid
+          - unless @logo_only
+            %a.brand(href="/") 
+              %strong.lato.pyellow PositiveBid
     
           .nav-collapse
             %ul.nav.pull-right
