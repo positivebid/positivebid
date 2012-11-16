@@ -51,6 +51,10 @@ PB.app = $.sammy(->
   @get "#/", (context) ->
     context.redirect("#/auctions")
 
+  # workaround for facebook redirect 
+  @get "#_=_", (context) ->
+    context.redirect("#/reload")
+
   @get "#/options", (context) ->
     render( new Sview('options', {}) )
 
