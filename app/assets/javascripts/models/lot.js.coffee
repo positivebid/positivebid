@@ -85,6 +85,38 @@ PB.Lot = Backbone.Model.extend
     return "gavel-down" if @isBiddingPostSale()
     return "gavel-up"
 
+  summary: ->
+    if @is_draft_or_published()
+      if @is_scheduled()
+        return "Bidding from #{nice_datetime(@get('sale_start_at'))}"
+      else
+        return "Bidding opens soon"
+    if @is_forsale()
+      if @is_scheduled()
+        return "Closing #{moment(@get('sale_end_at')).fromNow()}"
+      else
+        return "Bidding open. Closing soon..."
+    if @is_closing()
+        return "Closing Now! Final bids..."
+    if @is_bought()
+      return "Bought at #{nice_datetime(@get('sold_at'))}"
+    if @is_sold()
+      return "Sold at #{nice_datetime(@get('sold_at'))}"
+    if @is_paid()
+      return "Payment recieved. Sold at #{nice_datetime(@get('sold_at'))}"
+    return ""
+
+  bidder_summary: ->
+    if not @get('current_bid_id')?
+      return ""
+    if @is_forsale() or @is_closing()
+      return "Current bid by #{@current_bid_user_name()}"
+    if @is_sold() or @is_paid()
+      return "Winning bid by #{@current_bid_user_name()}"
+    if @is_bought()
+      return "Bought by #{@current_bid_user_name()}"
+    return ""
+
   errors_base: -> ''  #todo
   errors_name: -> ''  #todo
   errors_description: -> ''  #todo

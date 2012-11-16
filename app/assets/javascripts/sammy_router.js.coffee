@@ -49,7 +49,7 @@ PB.app = $.sammy(->
   #  false
   
   @get "#/", (context) ->
-    context.redirect("#/auctions")
+    context.redirect("#/reload")
 
   # workaround for facebook redirect 
   @get "#_=_", (context) ->

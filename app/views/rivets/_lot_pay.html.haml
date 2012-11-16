@@ -31,7 +31,6 @@
         %time.fromNow(data-rv-datetime="lot.paid_at" data-rv-text="lot.paid_at | fromNow")>
         )
 
-    %div(data-role="content" data-theme="e")
       %div.current_bid(data-rv-show="lot.current_bid_id")
         %img.i80(data-rv-src="lot:current_bid_user_image_url < lot.current_bid_id")
         %strong(data-rv-text="lot:current_bid_amount < lot.current_bid_id | pound")
