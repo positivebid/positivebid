@@ -8,17 +8,6 @@ PB.User = Backbone.Model.extend
 
   initialize: (args = {}) ->
     @id = args.id
-    @first_name = args.first_name
-    @last_name = args.last_name
-    @image_url = args.image_url
-    @email = args.email
-    @admin = args.admin
-    @telephone_number = args.telephone_number
-    @anonymous_bidding = args.anonymous_bidding
-    @mobile_number = args.mobile_number
-    @bid_confirmation = args.bid_confirmation
-    @share_confirmation = args.share_confirmation
-    @outbid_confirmation = args.outbid_confirmation
 
     _.bindAll(@, 'serverChange', 'serverDelete', 'modelCleanup')
     # if we are creating a new model to push to the server we don't want
@@ -31,6 +20,13 @@ PB.User = Backbone.Model.extend
   viewUrl: -> "#/users/#{@id}"
 
   name: -> "#{@get('first_name')} #{@get('last_name')}"
+
+  imageUrl: ->
+    url = @get('image_url')
+    if (not url?) or (url is '')
+      "/img/logo/positivebid_rounded_128.png"
+    else
+      url
 
 
   serverChange: (data) ->
