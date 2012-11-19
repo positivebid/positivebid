@@ -61,7 +61,7 @@
     %div(data-role="content" data-theme="e")
       %div.current_bid(data-rv-hide="lot.current_bid_id")
         %p No Bids yet for this lot.
-      %div.current_bid(data-rv-show="lot.current_bid_id")
+      %div.current_bid(data-rv-show="lot.current_bid_id" data-rv-css_highlight="lot.current_bid_id")
         %img.i80(data-rv-src="lot:current_bid_user_image_url < lot.current_bid_id")
         %strong(data-rv-text="lot:current_bid_amount < lot.current_bid_id | pound")
         %span Highest Bid by
