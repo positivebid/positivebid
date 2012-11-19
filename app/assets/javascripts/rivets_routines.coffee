@@ -10,6 +10,9 @@ window.rivets.routines.src = (el, value) ->
 window.rivets.routines.datetime = (el, value) ->
   el.setAttribute 'datetime', value
 
+window.rivets.routines.css_highlight = (el, value) ->
+  $(el).css_highlight()
+
 window.rivets.routines.submitdisabled = (el, value) ->
   $el = $(el)
   if value

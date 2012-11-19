@@ -94,6 +94,11 @@ window.nice_time = (mins) ->
   h = 12 if h == 0
   "#{h}:#{D2(mins%60)} #{if mins < 720 then 'AM' else 'PM'}"
 
+$.fn.css_highlight = ->
+  @removeClass('transition').addClass('change')
+  @position()
+  @addClass('transition').removeClass('change')
+
 
 window.csrf_token = -> $("meta[name=csrf-token]").attr("content")
 window.csrf_param = -> $("meta[name=csrf-param]").attr("content")
