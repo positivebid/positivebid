@@ -37,9 +37,9 @@ PB.Item = Backbone.Model.extend
     else
       "/img/logo/positivebid_rounded_128.png"
 
-  imageUrl320: ->
+  imageUrl200: ->
     if id = @get('picture_id')
-      "/pictures/#{id}/p320.jpg"
+      "/pictures/#{id}/p200.jpg"
     else
       "/img/logo/positivebid_rounded_128.png"
 
