@@ -10,6 +10,10 @@ PB.Status = Backbone.Model.extend
   check_and_bind: ->
     @socket_bindings()
     @check()
+    # check again in 1.2 seconds for Firefox
+    setTimeout =>
+      @check()
+    , 1200
 
   check: ->
     if NoDevent.socket.socket.connected
@@ -39,4 +43,3 @@ PB.Status = Backbone.Model.extend
        else "unknown"
 
 PB.status = new PB.Status  # global status
-

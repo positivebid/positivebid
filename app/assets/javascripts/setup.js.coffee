@@ -27,14 +27,12 @@ $document.ajaxStart -> $.mobile.loading('show')
 $document.ajaxStop -> $.mobile.loading('hide')
 
 
-$ ->
+PB.domready = ->
   PB.status.check_and_bind()
   PB.$body = $('body')
   $('script').remove()
   $.mobile.initializePage()
-  #Backbone.history.start()
-  $('div.ui-page:not(.ui-page-active)').remove() # remove inital page.
-  #Backbone.history.navigate()
+  #$('div.ui-page:not(.ui-page-active)').remove() # remove inital page.
   
   window.R ?=
     app_host: ''
@@ -45,11 +43,12 @@ $ ->
     #assign_rest()
     #loadR R
 
-  setTimeout (->
+  setTimeout ->
     if current_user?
       PB.app.run "#/reload"
     else
       PB.app.run "#/reload"
-  ), 200 # TODO work out why a delay is required.
+  , 0
+
 
 

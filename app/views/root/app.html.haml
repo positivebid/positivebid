@@ -1,3 +1,8 @@
+%div.ui-page-active(data-role="page")
+  %div(data-role="header")
+    %h1 PostiveBid
+  %div(data-role="content")
+    %h3 Loading...
 #templates
   - for i in Dir.entries(Rails.root + "app/views/rivets").select{|f| f.match(/^_.*.html.haml/)}
     = render "rivets/#{i.gsub(/(^_|.html.haml$)/,'')}"

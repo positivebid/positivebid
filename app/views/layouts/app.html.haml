@@ -14,18 +14,32 @@
       = javascript_include_nodevent
       %script(charset="utf-8"){:src => "#{NoDevent::Emitter.config['host']}/socket.io/socket.io.js"}
       = javascript_include_tag "app", :charset => "utf-8"
-      %script(src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.js" charset="utf-8")
+      - if Rails.env.production?
+        %script(src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js" charset="utf-8")
+      - else
+        %script(src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.js" charset="utf-8")
     - else
       %link(rel="stylesheet"){:href => stylesheet_path('app').sub(/\A(http:\/\/[^\/]*)?\//,'')}
       %script(charset="utf-8" src="cordova.js")
       %script(charset="utf-8"){:src => javascript_path('app').sub(/\A(http:\/\/[^\/]*)?\//,'')}
       %script(charset="utf-8"){:src => javascript_path('app2').sub(/\A(http:\/\/[^\/]*)\//,'')}
       %script(charset="utf-8"){:src => javascript_path('app_gap').sub(/\A(http:\/\/[^\/]*)\//,'')}
-    :javascript
-      var R = #{@r.to_json};
     = csrf_meta_tags
     - if Rails.env.production? and session[:admin_id].blank?
       = render 'shared/google_analytics'
   %body
     = yield 
+    :javascript
+      var R = #{@r.to_json};
+      $(document).ready(function() { PB.domready(); });
+      // Monkey patch for jQM bug
+      // https://github.com/jquery/jquery-mobile/issues/5284
+      $.mobile._handleHashChange = (function(old) {
+        return function() {
+          if (undefined === $.mobile.pageContainer) {
+            return;
+         }
+         return old.apply(this, arguments);
+         };
+      }($.mobile._handleHashChange));
 
