@@ -34,7 +34,7 @@ class Lot < ActiveRecord::Base
   after_save :outbid_notify # TODO MAKE ASYNC?
 
 
-  validates_presence_of :name
+  validates_presence_of :name, :number
   validates_inclusion_of :min_increment, :in => 1..100
   validates_numericality_of :buy_now_price, :greater_than_or_equal_to => 1, :allow_nil => true
   validates_length_of :name, :in => 2..255
