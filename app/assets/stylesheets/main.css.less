@@ -4,6 +4,17 @@
 @pyellow1: #FFFF33;
 @pyellow2: #FDF950;
 
+/* set styles */
+
+.lato {
+  font-family: 'Lato', sans-serif; }
+
+.pyellow {
+  color: @pyellow1; }  
+
+
+/**********/  
+
 body {
   background: #FFF; }
 
@@ -13,6 +24,26 @@ body {
 .pfirstrowwhite {
   padding: 0; 
 }
+
+.outer-white {
+  background: #FFF; 
+  color: #000; }
+
+.outer-grey {
+  background: #AAA; 
+  color: #000; }
+
+.outer-black {
+  background: #000; 
+  color: #FFF; }
+
+.drop_shadowblk1 {
+  text-shadow: 1px 1px 1px #000;
+}
+
+
+
+
 
 .home {
   color: #FFF;
@@ -35,51 +66,6 @@ body {
     }
 }
 
-.outer-white {
-  background: #FFF; 
-  color: #000; }
-
-.outer-grey {
-  background: #AAA; 
-  color: #000; }
-
-.outer-black {
-  background: #000; 
-  color: #FFF; }
-
-.trns_blkbox {
-  text-shadow: 1px 1px 1px #000;
-}
-
-
-
-.home h1 {
-  line-height: 1.2em;
-  margin-top: 25px;
-}
-
-.tagline {
- margin-top: -15px;
- margin-bottom:15px;
- display:block;
- width:180px;
- line-height:1.2em;
-}   
-
-.pfirstrow {
-  padding: 0; 
-
-  .home_logo {
-    width: 110px;
-    height: 110px;
-    margin: -25px 0 10px 0;}
-}
-
-.pinforow {
-  background: #FFF;
-  padding: 2em 0; 
-}
-
 .aboutus {
   color: #FFF;
   background: #fff; 
@@ -99,6 +85,62 @@ body {
     background-size: inherit;
     }
 }
+
+
+.pfirstrow {
+  padding: 0; 
+
+  .home_logo {
+    width: 110px;
+    height: 110px;
+    margin: -25px 0 10px 0;}
+}
+
+.pinforow {
+  background: #FFF;
+  padding: 2em 0; 
+}
+
+
+.home h1 {
+  line-height: 1.2em;
+  margin-top: 25px;
+}
+
+.tagline {
+ margin-top: -15px;
+ margin-bottom:15px;
+ display:block;
+ width:180px;
+ line-height:1em;
+ text-align:center;
+ color:yellow;
+}   
+
+.home .visible-phone h1 {
+  line-height: 1.2em;
+  margin-top: 25px;
+  font-size:28px;
+  margin-top:15px;
+}
+
+.home .visible-phone .tagline {
+  font-size:20px;
+  font-weight:bold;
+  
+}
+
+.home .visible-phone .home_logo {
+  width:100px;
+  height:100px; 
+}
+
+.home .visible-phone .bigcontact {
+  font-size:17px;
+}
+
+
+
 
 .demosize {
   font-size: larger; }
@@ -121,6 +163,7 @@ body {
   border: 5px solid #fff;
   margin: 50px 5px 5px 5px;
   display: block;
+
 }
 
 .home .btn-xxlarge {
@@ -130,10 +173,7 @@ body {
 .lead {
 background-color:black;
 margin-top:0px
-  
 }
-
-.clear {clear:both;}
 
 .linkonleft {
   width:40%;
@@ -159,29 +199,17 @@ margin-top:0px
  .bigcontact {
  font-size:20px;
  font-weight:bold;
-
  }
 
-.visible-phone  {
+.videobtn_background  {
   background-color:black;
   clear:left;
-  p {
-    margin-top: -16px;
-    }
-  
-}
-
-p.phonelink {
-  margin-top:-16px;}
-
-a.linkcontact {
-  color:yellow;
-}
+  display:block;
+  }
 
 a.linkcontact:hover {
   color:#ccc;
 }
-
 
 .positivelogo .home_logo, .span4 .nesta_logo, .span4 .chandpp_logo {
   /*margin-left:auto;
@@ -205,8 +233,7 @@ a.linkcontact:hover {
   display: block;
   }
 
-.pyellow {
-  color: @pyellow1; }
+
 
 .pfooter {
   padding: 10px 0 0 0; 
@@ -219,10 +246,6 @@ a.linkcontact:hover {
   margin-top:40px;
 }
 
-
-
-.lato {
-  font-family: 'Lato', sans-serif; }
 
 /*
 ** bootstrap overrides

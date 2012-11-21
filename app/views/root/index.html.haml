@@ -2,36 +2,65 @@
   .container
     .row.pfirstrow
       .span6
-        %img.home_logo{:src => image_path("logo/positivebid_128.png") }
-        %h3.lato.pyellow
-          %span.trns_blkbox.tagline 
-            Interactive 
-            Silent Auctions
+        .hidden-phone
+          %img.home_logo{:src => image_path("logo/positivebid_128.png") }
+          %h3.lato
+            %span.drop_shadowblk1.tagline 
+              Interactive 
+              Silent Auctions
 
-        %h1.lato.trns_blkbox  A free, fun, mobile & social way of raising funds for charity
-        
-        .buttonrow   
-          %p.linkonleft      
-            %a.btn.btn-xxlarge.btn-yellow.btn-bold(href="/app")  View Auction
+          %h1.drop_shadowblk1.hidden-phone  A free, fun, mobile & social way of raising funds for charity
 
-           
-          %p.bigor
-            or
+          
+          .buttonrow   
+            %p.linkonleft      
+              %a.btn.btn-xxlarge.btn-yellow.btn-bold(href="/app")  View Auction
 
-          %p.linkonright        
-            %a.linkcontact(href="mailto:info@positivebid.com") 
-              %span.bigcontact Contact Us
-              %br/
-              To organise an auction 
+             
+            %p.bigor
+              or
+
+            %p.linkonright        
+              %a.linkcontact.pyellow(href="mailto:info@positivebid.com") 
+                %span.bigcontact Contact Us
+                %br/
+                To organise an auction 
+
+        .visible-phone
+          .promorow
+            %img.home_logo{:src => image_path("logo/positivebid_128.png") }
+            %p.lato
+              .drop_shadowblk1.tagline 
+                Interactive 
+                Silent Auctions
+
+          %h1.drop_shadowblk1
+            A free, fun, mobile & social way of raising funds for charity
+
+          
+          .buttonrow   
+            %p.linkonleft      
+              %a.btn.btn-large.btn-yellow.btn-bold(href="/app")  View Auction
+
+             
+            %p.bigor
+              or
+
+            %p.linkonright        
+              %a.linkcontact.pyellow(href="mailto:info@positivebid.com") 
+                %span.bigcontact Contact Us
+                %br/
+                To organise an auction           
               
       .span6
-        .hidden-phone
+        .hidden-phone.home-vidouter
           <iframe class="home-vid" src="http://player.vimeo.com/video/30516030" width="480" height="270" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-        .visible-phone
+
+        .visible-phone.videobtn_background
           %p.phonelink
-            %span.lead.trns_blkbox
-              Watch our video - real-time bidding and participation
-              %a.btn(href="http://vimeo.com/30516030")
+            %span.lead.drop_shadowblk1
+              Watch our video 
+              %a.btn.btn-yellow.btn-bold(href="http://vimeo.com/30516030")
                 Watch Now on Vimeo
                 %i.icon-film
 
