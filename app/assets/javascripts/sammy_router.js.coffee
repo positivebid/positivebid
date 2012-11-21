@@ -21,7 +21,7 @@ PB.app = $.sammy(->
     PB.$body.append $v
     $v.page()  # jquery mobile enhance
     $oldv = $.mobile.activePage
-    $.mobile.changePage $v
+    $.mobile.changePage $v, {changeHash: false}
     $oldv?.remove()
     #if  sv.cid != @oldsview?.cid
     @oldsview?.destroy()
