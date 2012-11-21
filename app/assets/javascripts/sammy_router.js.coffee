@@ -26,6 +26,7 @@ PB.app = $.sammy(->
     #if  sv.cid != @oldsview?.cid
     @oldsview?.destroy()
     @oldsview = sv
+    return false
 
   sammy_hack = (context) ->
     window.setTimeout (->
@@ -82,7 +83,6 @@ PB.app = $.sammy(->
       context.redirect("#/")
       return false
     render( new Sview('lots_index', {auction: auction, lots: auction.lots, status: PB.status }) )
-    return false
 
   @post "#/lots",  (context) ->
     new_lot = new PB.Lot(context.params.lot)
