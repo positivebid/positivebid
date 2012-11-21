@@ -121,7 +121,7 @@ PB.app = $.sammy(->
     #console?.log('context.params.bid.amount', context.params.bid.amount)
     new_bid = PB.bids.create(context.params.bid)
     #console?.log('new_bid', new_bid.get('amount'), new_bid)
-    context.redirect("#/lots/#{context.params.bid.lot_id}")
+    #context.redirect("#/lots/#{context.params.bid.lot_id}")
     return false
 
   @get "#/reload", (context) ->
