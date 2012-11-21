@@ -11,7 +11,7 @@ cucumber:
 
 staging:
   host: 'http://alpha.positivebid.com:8080'
-  namespace: '/positive'
+  namespace: '/staging'
 
 production:
   host: 'http://www.positivebid.com:8080'
