@@ -82,6 +82,7 @@ PB.app = $.sammy(->
       context.redirect("#/")
       return false
     render( new Sview('lots_index', {auction: auction, lots: auction.lots, status: PB.status }) )
+    return false
 
   @post "#/lots",  (context) ->
     new_lot = new PB.Lot(context.params.lot)
