@@ -28,7 +28,6 @@ $document.ajaxStop -> $.mobile.loading('hide')
 
 
 PB.domready = ->
-  PB.status.check_and_bind()
   PB.$body = $('body')
   $('script').remove()
   $.mobile.initializePage()
@@ -49,6 +48,7 @@ PB.domready = ->
     else
       PB.app.run "#/reload"
   , 0
+  PB.status.check_and_bind()
 
 
 

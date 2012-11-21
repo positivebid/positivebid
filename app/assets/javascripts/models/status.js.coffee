@@ -14,6 +14,7 @@ PB.Status = Backbone.Model.extend
     setTimeout =>
       @check()
     , 1200
+    return true
 
   check: ->
     if NoDevent.socket.socket.connected
@@ -42,4 +43,5 @@ PB.Status = Backbone.Model.extend
        when "disconnected" then "Offline"
        else "unknown"
 
-PB.status = new PB.Status  # global status
+# global status
+PB.status = new PB.Status()
