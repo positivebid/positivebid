@@ -19,7 +19,7 @@ PB.Status = Backbone.Model.extend
 
   message: ->
    if @get('status') == 'connected'
-     "Your connection is good. You can watch and bid."
+     "<p>Your connection is good.</p><p>You can watch and bid.</p>"
     else
       "<p>You are offline. You need to be online to see live auction updates and to bid.<p/><p>Please try <br/> 1. Reloading this page<br/> 2. Check your wifi/intenet connection.<br/>3. Using a different browser such as Opera, Firefox, or Chrome.</p>"
 
