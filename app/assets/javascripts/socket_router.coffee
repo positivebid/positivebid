@@ -27,6 +27,7 @@ window.message_popup = (title, text) ->
   window.message_popup_close() if window.popup_sv?
   window.popup_sv = sv = new Sview('popups_message', {title: title, message: text})
   $.mobile.activePage.append(sv.html)
+  $.mobile.activePage.page()
   sv.html.popup({history: false})
   sv.html.popup('open')
   window.popup_timeout = setTimeout message_popup_close, 4000

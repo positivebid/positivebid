@@ -36,3 +36,6 @@ $document.on 'click vclick tap',  'a#bid_now', (event) ->
   event.preventDefault()
   $(this).closest('form').submit()
 
+$document.on 'click vclick tap',  'a.status', (event) ->
+  event.preventDefault()
+  message_popup("Connection Status", PB.status.message())

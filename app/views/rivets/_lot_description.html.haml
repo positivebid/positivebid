@@ -83,6 +83,8 @@
         %div(data-role="collapsible" data-collapsed="false" data-rv-each-item="items:models < items.models")
           %h3(data-rv-text="item.name")
           %div.ibody 
+            %p
+              %strong(data-rv-text="item.name")
             %img.iimage.p200(data-rv-src="item:imageUrl200 < item.picture_id")
             %div.itext(data-rv-text="item.description")
 
