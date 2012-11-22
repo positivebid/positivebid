@@ -40,8 +40,9 @@ PB.Bid = Backbone.Model.extend
     d = if a < @next_minimum() then @next_minimum() else a
     @set 'amount', d
 
-  set_min_amount: ->
-    @set 'amount',  @next_minimum()
+  minus_enabled: -> @get('amount') > @next_minimum()
+
+  set_min_amount: -> @set 'amount',  @next_minimum()
 
   next_minimum: ->
     parseInt(@lot().current_bid_amount(),10) + parseInt(@lot().get('min_increment'),10)

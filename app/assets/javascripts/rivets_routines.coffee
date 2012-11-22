@@ -13,6 +13,13 @@ window.rivets.routines.datetime = (el, value) ->
 window.rivets.routines.css_highlight = (el, value) ->
   $(el).css_highlight()
 
+window.rivets.routines.a_enabled = (el, value) ->
+  $el = $(el)
+  if value
+    $el.removeClass('ui-disabled')
+  else
+    $el.addClass('ui-disabled')
+
 window.rivets.routines.submitdisabled = (el, value) ->
   $el = $(el)
   if value
