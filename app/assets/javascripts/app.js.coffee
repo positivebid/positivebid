@@ -15,7 +15,6 @@
 #= require vendor/sammy/plugins/sammy.nested_params
 #= require pb
 #= require sview
-#= require socket_defaults
 #= require socket_router
 #= require util
 #= require_tree ./models

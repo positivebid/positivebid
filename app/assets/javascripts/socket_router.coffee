@@ -10,9 +10,6 @@ global_room.join (err) ->
     console?.log "joined global_room"
   
 
-socket_defaults(global_room)
-
-
 global_room.on "join", (err) ->
   if err?
     console?.log "just got error joining global_room", err
@@ -44,13 +41,15 @@ global_room.on "user_entered", (data) ->
   , 4000
 
 
-window.message_popup = (text) ->
+window.message_popup = (title, text) ->
   window.message_popup_close() if window.popup_sv?
-  window.popup_sv = sv = new Sview('popups_message', {message: text})
+  window.popup_sv = sv = new Sview('popups_message', {title: title, message: text})
   $.mobile.activePage.append(sv.html)
   sv.html.popup({history: false})
   sv.html.popup('open')
   window.popup_timeout = setTimeout message_popup_close, 4000
+
+window.simple_message_popup = (text) -> message_popup('Message', text)
 
 window.message_popup_close = () ->
   if window.popup_sv?
@@ -60,7 +59,7 @@ window.message_popup_close = () ->
     window.popup_sv = null
 
 
-global_room.on "message", message_popup
+global_room.on "message", simple_message_popup
 
 global_room.on "user_left", (data) ->
   console?.log("got user_left", data)
@@ -78,13 +77,36 @@ global_room.on "lot_list", (data) ->
 
 NoDevent.on "connect", ->
   console?.log "socket connected.."
-  message_popup("Socket Connected!")
+  message_popup("Connection Status", "Connected!")
   #$("#status").removeClass("offline").addClass("online").find("p").text "You are online and can bid."
 
 NoDevent.on "disconnect", ->
   console?.log "socket disconnected.."
-  message_popup("Socket Disconnected! :-(")
+  message_popup("Connection Status", "Disconnected! :-(")
   #$("#connected").removeClass("on").find("strong").text "Offline"
   #$("#status").removeClass("online").addClass("offline").find("p").text "You are offline. please wait..."
 
+NoDevent.on "reconnect", ->
+  console?.log "socket reconnected.."
+  message_popup("Connection Status", "Reconnected! ")
+
+NoDevent.on "reconnecting", (delay, attempts) ->
+  console?.log "socket reconnecting.."
+  message_popup("Connection Status", "Reconnecting... (attempt ##{attempts})")
+
+NoDevent.on "error", ->
+  console?.log "socket error.."
+  message_popup("Connection Status", "Socket Error :-(")
+
+NoDevent.on "connecting", (transport_type) ->
+  console?.log "socket connecting.."
+  message_popup("Connection Status", "Connecting... (via #{transport_type})")
+
+NoDevent.on "close", (transport_type) ->
+  console?.log "socket closed..."
+  message_popup "Connection Status", "Socket Closed. :-("
+
+NoDevent.on "reconnect_failed", (transport_type) ->
+  console?.log "socket reconnect failed..."
+  message_popup("Connection Status", "Reconnect Failed :-(")
 

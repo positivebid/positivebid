@@ -15,15 +15,15 @@
         %li(data-rv-each-lot="lots:models < lots.models")
           %a(data-rv-href="lot:descriptionUrl" data-rv-css_highlight="lot.current_bid_id")
             %img.p80(data-rv-src="lot:imageUrl") 
-            %p.ui-li-aside.transition
+            %p.ui-li-aside.p_aside_width
               £
               %strong(data-rv-text="lot:current_bid_amount < lot.current_bid_id")>
             %h3
               %span(data-rv-text="lot.number")>
               \:
-              %span.transition(data-rv-text="lot.name")
+              %span(data-rv-text="lot.name")
             %p
-              %span.transition(data-rv-html="lot:summary < lot.state")
+              %span(data-rv-html="lot:summary < lot.state")
             %p
               %span(data-rv-text="lot:bidder_summary < lot.state lot.current_bid_id")
           %a(data-rv-href="lot:biddingUrl" data-icon="arrow-r" data-rv-jq_a_btn_icon="lot:icon < lot.state" data-theme="e" data-iconpos="notext" title="Bid Now") Bid Now

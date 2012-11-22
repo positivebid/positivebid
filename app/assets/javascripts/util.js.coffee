@@ -41,7 +41,7 @@ window.loadR = (R = {}) ->
     setTimeout ->
       room = NoDevent.room("User_#{current_user.id}")
       room.join()
-      room.on('message', message_popup)
+      room.on('message', simple_message_popup)
     , 1
   else
     window.current_user = null
