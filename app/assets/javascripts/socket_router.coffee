@@ -3,12 +3,7 @@ PB = window.PB ||= {}
 
 
 window.global_room = NoDevent.room('global_room')
-global_room.join (err) ->
-  if err?
-    console?.log "error joining global_room", err
-  else
-    console?.log "joined global_room"
-  
+
 
 global_room.on "join", (err) ->
   if err?
@@ -22,23 +17,10 @@ global_room.on "leave", (err) ->
   else
     console?.log "just left global_room"
 
-global_room.on "auction_list", (data) ->
-  console?.log("got auction_list", data)
-  PB.auctions.reset(data.auctions)
 
-global_room.on "user_entered", (data) ->
-  #TODO add to model/collection
-  # bind UI to model/collection events
-  console?.log("got user_entered", data)
-  sv = new Sview('popups_user_entered', {user: data})
-  $.mobile.activePage.append(sv.html)
-  sv.html.popup({history: false})
-  sv.html.popup('open')
-  setTimeout ->
-    sv.html.popup('close')
-    sv.html.remove()
-    sv.destroy()
-  , 4000
+# joining room here..
+global_room.join()
+
 
 
 window.message_popup = (title, text) ->
@@ -74,39 +56,62 @@ global_room.on "lot_list", (data) ->
   console?.log("got lot_list", data)
   PB.lots.reset(data.lots)
 
-
-NoDevent.on "connect", ->
-  console?.log "socket connected.."
-  message_popup("Connection Status", "Connected!")
-  #$("#status").removeClass("offline").addClass("online").find("p").text "You are online and can bid."
-
-NoDevent.on "disconnect", ->
-  console?.log "socket disconnected.."
-  message_popup("Connection Status", "Disconnected! :-(")
-  #$("#connected").removeClass("on").find("strong").text "Offline"
-  #$("#status").removeClass("online").addClass("offline").find("p").text "You are offline. please wait..."
-
-NoDevent.on "reconnect", ->
-  console?.log "socket reconnected.."
-  message_popup("Connection Status", "Reconnected! ")
-
-NoDevent.on "reconnecting", (delay, attempts) ->
-  console?.log "socket reconnecting.."
-  message_popup("Connection Status", "Reconnecting... (attempt ##{attempts})")
-
-NoDevent.on "error", ->
-  console?.log "socket error.."
-  message_popup("Connection Status", "Socket Error :-(")
+global_room.on "auction_list", (data) ->
+  console?.log("got auction_list", data)
+  PB.auctions.reset(data.auctions)
 
 NoDevent.on "connecting", (transport_type) ->
   console?.log "socket connecting.."
-  message_popup("Connection Status", "Connecting... (via #{transport_type})")
 
-NoDevent.on "close", (transport_type) ->
-  console?.log "socket closed..."
-  message_popup "Connection Status", "Socket Closed. :-("
+NoDevent.on "connect", ->
+  console?.log "socket connected.."
 
-NoDevent.on "reconnect_failed", (transport_type) ->
-  console?.log "socket reconnect failed..."
-  message_popup("Connection Status", "Reconnect Failed :-(")
+NoDevent.on "disconnect", ->
+  console?.log "socket disconnected.."
+
+#  wait for domready for messge_popups
+jQuery ->
+
+  global_room.on "user_entered", (data) ->
+    #TODO add to model/collection
+    # bind UI to model/collection events
+    console?.log("got user_entered", data)
+    sv = new Sview('popups_user_entered', {user: data})
+    $.mobile.activePage.append(sv.html)
+    sv.html.popup({history: false})
+    sv.html.popup('open')
+    setTimeout ->
+      sv.html.popup('close')
+      sv.html.remove()
+      sv.destroy()
+    , 4000
+
+  NoDevent.on "connect", ->
+    message_popup("Connection Status", "Connected!")
+
+  NoDevent.on "disconnect", ->
+    message_popup("Connection Status", "Disconnected! :-(")
+
+  NoDevent.on "reconnect", ->
+    console?.log "socket reconnected.."
+    message_popup("Connection Status", "Reconnected! ")
+
+  NoDevent.on "reconnecting", (delay, attempts) ->
+    console?.log "socket reconnecting.."
+    message_popup("Connection Status", "Reconnecting... (attempt ##{attempts})")
+
+  NoDevent.on "error", ->
+    console?.log "socket error.."
+    message_popup("Connection Status", "Socket Error :-(")
+
+  NoDevent.on "connecting", (transport_type) ->
+    message_popup("Connection Status", "Connecting... (via #{transport_type})")
+
+  NoDevent.on "close", (transport_type) ->
+    console?.log "socket closed..."
+    message_popup "Connection Status", "Socket Closed. :-("
+
+  NoDevent.on "reconnect_failed", (transport_type) ->
+    console?.log "socket reconnect failed..."
+    message_popup("Connection Status", "Reconnect Failed :-(")
 
