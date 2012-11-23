@@ -40,6 +40,24 @@
   padding-left: 0.5em;
   width: auto; }
 
+@-webkit-keyframes blink {  
+    from { opacity: 1.0; }
+      to { opacity: 0.0; }
+    }
+
+.blink {
+  -moz-text-blink: blink;
+  text-blink: blink;
+  text-decoration: blink; 
+  -webkit-animation-name: blink;  
+  -webkit-animation-iteration-count: infinite;  
+  -webkit-animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+  -webkit-animation-duration: 1s; 
+}
+
+
+
+
 img.i300 {
   width: 300px;
   height: 300px; }
@@ -61,15 +79,15 @@ img.i80, img.p80 {
   height: 80px; }
 
 .transition {
-  -moz-transition: all 3s; /* Firefox 4 */
-  -webkit-transition: all 3s; /* Safari and Chrome */
-  -o-transition: all 3s; /* Opera */
-  transition: all 3s;
+  -moz-transition: background-color 4s linear, font-weight 3s linear; /* Firefox 4 */
+  -webkit-transition: background-color 4s linear, font-weight 3s linear ; /* Safari and Chrome */
+  -o-transition: background-color 4s linear, font-weight 3s linear; /* Opera */
+  transition: background-color 4s linear, font-weight 3s linear;
 }
 
 .change {
   background: yellow;
-  font-weight: bold; 
+  font-weight: 700; 
 }
 
   

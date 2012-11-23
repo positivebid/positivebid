@@ -37,7 +37,7 @@
         %span(data-rv-show="lot:is_manual < lot.timing")
           Bidding open. Closing soon...
       %p(data-rv-show="lot:is_closing < lot.state")
-        %strong 
+        %strong.blink
           Closing Now! Final bids...
       %p(data-rv-show="lot:is_bought_or_sold < lot.state")
         %strong(data-rv-show="lot:is_sold < lot.state") Sold
