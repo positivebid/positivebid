@@ -1,8 +1,8 @@
 .outerwhite.home
   .container
     .row.pfirstrow
-      .span6
-        .hidden-phone
+      .hidden-phone
+        .span6
           %img.home_logo{:src => image_path("logo/positivebid_128.png") }
           %h3.lato
             %span.drop_shadowblk1.tagline 
@@ -11,7 +11,6 @@
 
           %h1.drop_shadowblk1.hidden-phone  A free, fun, mobile & social way of raising funds for charity
 
-          
           .buttonrow   
             %p.linkonleft      
               %a.btn.btn-xxlarge.btn-yellow.btn-bold(href="/app")  View Auction
@@ -26,44 +25,38 @@
                 %br/
                 To organise an auction 
 
-        .visible-phone
+        .span6
+          .home-vidouter
+            <iframe class="home-vid" src="http://player.vimeo.com/video/30516030" width="480" height="270" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>          
+
+
+      .visible-phone          
+        .span6
           .promorow
             %img.home_logo{:src => image_path("logo/positivebid_128.png") }
             %p.lato
               .drop_shadowblk1.tagline 
-                Interactive 
-                Silent Auctions
-
+                Charity Auction Software
+     
           %h1.drop_shadowblk1
             A free, fun, mobile & social way of raising funds for charity
 
-          
-          .buttonrow   
-            %p.linkonleft      
-              %a.btn.btn-large.btn-yellow.btn-bold(href="/app")  View Auction
-
-             
-            %p.bigor
-              or
-
-            %p.linkonright        
-              %a.linkcontact.pyellow(href="mailto:info@positivebid.com") 
-                %span.bigcontact Contact Us
-                %br/
-                To organise an auction           
+          %p
+            %a.btn.btn-block.btn-pmobile.videobtn(href="http://vimeo.com/30516030")
+              %i.icon-film
+              Watch Video Now
+              %i.icon-play
               
-      .span6
-        .hidden-phone.home-vidouter
-          <iframe class="home-vid" src="http://player.vimeo.com/video/30516030" width="480" height="270" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+          %p     
+            %a.btn.btn-large.btn-yellow.btn-bold.btn-block.btn-pmobile(href="/app")  View Auction
 
-        .visible-phone.videobtn_background
-          %p.phonelink
-            %span.lead.drop_shadowblk1
-              Watch our video 
-              %a.btn.btn-yellow.btn-bold(href="http://vimeo.com/30516030")
-                Watch Now on Vimeo
-                %i.icon-film
-
+          %p       
+            %a.btn.btn-large.btn-yellow.btn-bold.btn-block.btn-pmobile.btn-tieredmob(href="mailto:info@positivebid.com") 
+              Contact Us 
+              %br/
+              %span.smltxt-inbtn To organise an auction           
+ 
+        
 .outer-white
   .container
     .row.pinforow
