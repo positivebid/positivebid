@@ -23,14 +23,14 @@ global_room.join()
 
 
 
-window.message_popup = (title, text) ->
+window.message_popup = (title, text, delay = 4000) ->
   window.message_popup_close() if window.popup_sv?
   window.popup_sv = sv = new Sview('popups_message', {title: title, message: text})
   $.mobile.activePage.append(sv.html)
   $.mobile.activePage.page()
   sv.html.popup({history: false})
   sv.html.popup('open')
-  window.popup_timeout = setTimeout message_popup_close, 4000
+  window.popup_timeout = setTimeout message_popup_close, delay
 
 window.simple_message_popup = (text) -> message_popup('Message', text)
 
@@ -69,6 +69,12 @@ NoDevent.on "connect", ->
 
 NoDevent.on "disconnect", ->
   console?.log "socket disconnected.."
+
+NoDevent.on "reconnect", ->
+  window.updateR ->
+    message_popup("Data Refreshed", "nice!", 2000)
+  , ->
+    message_popup("Data Problem", "Data could not be refreshed :-(", 5000)
 
 #  wait for domready for messge_popups
 jQuery ->

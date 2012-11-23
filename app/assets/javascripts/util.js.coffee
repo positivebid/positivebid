@@ -1,7 +1,6 @@
 
-$window = $(window)
-
-window.window_width = ->  $window.width()
+#$window = $(window)
+#window.window_width = ->  $window.width()
 
 window.supports_html5_storage = ->
   try
@@ -27,7 +26,6 @@ window.localStorage_setItem = (key, value) ->
 window.R ?= {}
 
 window.loadR = (R = {}) ->
-  #removeExistingModelData()
   PB.auctions.reset(R.auctions) if R.auctions?
   PB.lots.reset(R.lots) if R.lots?
   PB.items.reset(R.items) if R.items?
@@ -42,14 +40,14 @@ window.loadR = (R = {}) ->
       room = NoDevent.room("User_#{current_user.id}")
       room.join()
       room.on('message', simple_message_popup)
-    , 1
+    , 0
   else
     window.current_user = null
 
-window.removeExistingModelData = ->
-  window.current_user = null
-  for m in [ PB.auctions, PB.lots, PB.items, PB.bids, PB.users ]
-    m.reset()
+#window.removeExistingModelData = ->
+# window.current_user = null
+#  for m in [ PB.auctions, PB.lots, PB.items, PB.bids, PB.users ]
+#    m.reset()
 
 
 window.reloadR = (callback, error_callback = null) ->
@@ -67,15 +65,52 @@ window.reloadR = (callback, error_callback = null) ->
       console?.log "reload R error", data
       error_callback.call()  if callback
 
+window.mergeR = (R = {}) ->
+  PB.auctions.update(R.auctions) if R.auctions?
+  PB.lots.update(R.lots) if R.lots?
+  PB.items.update(R.items) if R.items?
+  PB.users.update(R.users) if R.users?
+  PB.bids.update(R.bids) if R.bids?
+  if R.current_user?
+    if window.current_user?
+      window.current_user.set(R.current_user)
+    else
+      window.current_user = new PB.User(R.current_user)
+
+      # TODO relocate some where better
+      
+      setTimeout ->
+        room = NoDevent.room("User_#{current_user.id}")
+        room.join()
+        room.on('message', simple_message_popup)
+      , 0
+  else
+    window.current_user = null
+
+window.updateR = (callback, error_callback = null) ->
+  json_url = "#{R.app_host}/app.json"
+  $.ajax
+    dataType: "json"
+    type: "GET"
+    url: json_url
+    success: (data) ->
+      R = data
+      mergeR R
+      callback.call()  if callback
+
+    error: (data) ->
+      console?.log "update R error", data
+      error_callback.call()  if callback
+
 window.D2 = (val) -> (if (val < 10) then "0" + val else val)
 
 
-window.phonegap = -> PhoneGap?
-window.phonegap_target = -> if PhoneGap? then "_blank" else "_top"
+#window.phonegap = -> PhoneGap?
+#window.phonegap_target = -> if PhoneGap? then "_blank" else "_top"
 
-window.progressHandlingFunction = (e) ->
- if e.lengthComputable
-   $('progress').attr({value:e.loaded,max:e.total})
+#window.progressHandlingFunction = (e) ->
+# if e.lengthComputable
+#   $('progress').attr({value:e.loaded,max:e.total})
 
 
 window.nice_date = (string) ->
