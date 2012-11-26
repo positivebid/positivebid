@@ -1,13 +1,13 @@
 #auctions_index
   %div(data-role="page")
     %div.ui-bar-b(data-role="header" data-theme="b")
-      %a(href="#/reload" data-icon="refresh" data-direction="reverse") Reload
+      %a(sam="#/reload" data-icon="refresh" data-direction="reverse") Reload
       %h1 Auctions
       %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
 
     %div(data-role="content" data-theme="b" jnif="current_user")
 
-      %a(href="#/login" data-role="button") Login to Bid
+      %a(sam="#/login" data-role="button") Login to Bid
 
     %div(data-role="content" data-theme="a" jif="current_user")
       %p
@@ -16,24 +16,24 @@
         %img.i80(data-rv-src="current_user:imageUrl < current_user.image_url")
 
 
-      %a(data-rel="external" href="/logout" data-mini="true" data-role="button") Logout
+      %a(data-rel="external" sam="/logout" data-mini="true" data-role="button") Logout
 
     %div(data-role="content")
 
       %div(data-rv-hide="auctions:length < auctions.models")
         %p 
           Hmmm, no auctions found,
-          %a(href="#/reload" data-icon="refresh" data-role="button") Try Reload
+          %a(sam="#/reload" data-icon="refresh" data-role="button") Try Reload
 
       %ul(data-role="listview" data-inset="true" data-rv-show="auctions:length < auctions.models" data-rv-listview_refresh="auctions:length < auctions.models")
         %li(data-rv-each-auction="auctions:models < auctions.models")
-          %a(data-rv-href="auction:viewUrl")
+          %a(data-rv-sam="auction:viewUrl")
             %img.p80(data-rv-src="auction:imageUrl < auction.picture_id") 
             %h3(data-rv-text="auction:name")
             %p
               %span(data-rv-text="auction:description")
 
-      /%a(href="#/options" data-role="button") User Options
+      /%a(sam="#/options" data-role="button") User Options
 
     %div.ui-bar-b(data-role="footer")
       %h4 PositiveBid

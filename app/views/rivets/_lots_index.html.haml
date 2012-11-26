@@ -1,7 +1,7 @@
 #lots_index
   %div(data-role="page")
     %div.ui-bar-b(data-role="header" data-theme="b")
-      %a(href="#/" data-icon="home" data-direction="reverse") Home
+      %a(sam="#/" data-icon="home" data-direction="reverse") Home
       %h1 Catalog
       %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
 
@@ -13,7 +13,7 @@
 
       %ul(data-role="listview" data-inset="false" data-rv-show="lots:length < lots.models" data-rv-listview_refresh="lots:length < lots.models")
         %li(data-rv-each-lot="lots:models < lots.models")
-          %a(data-rv-href="lot:descriptionUrl" data-rv-css_highlight="lot.current_bid_id")
+          %a(data-rv-sam="lot:descriptionUrl" data-rv-css_highlight="lot.current_bid_id")
             %img.p80(data-rv-src="lot:imageUrl") 
             %p.ui-li-aside.p_aside_width
               £
@@ -26,7 +26,7 @@
               %span(data-rv-class-blink="lot:is_closing < lot.state" data-rv-html="lot:summary < lot.state")
             %p
               %span(data-rv-text="lot:bidder_summary < lot.state lot.current_bid_id")
-          %a(data-rv-href="lot:biddingUrl" data-icon="arrow-r" data-rv-jq_a_btn_icon="lot:icon < lot.state" data-theme="e" data-iconpos="notext" title="Bid Now") Bid Now
+          %a(data-rv-sam="lot:biddingUrl" data-icon="arrow-r" data-rv-jq_a_btn_icon="lot:icon < lot.state" data-theme="e" data-iconpos="notext" title="Bid Now") Bid Now
 
     %div(data-role="content")
 

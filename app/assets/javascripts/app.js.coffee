@@ -1,6 +1,6 @@
 
 
-#= require socket.io/socket.io
+#    #= require socket.io/socket.io
 #= require nodevent/eventemitter
 #= require nodevent/nodevent
 #= require nodevent/nodevent_instance
@@ -13,6 +13,7 @@
 #= require rivets_routines
 #= require rivets_adapter
 #= require vendor/sammy/sammy
+#= require vendor/sammy/plugins/sammy.data_location_proxy
 #= require vendor/sammy/plugins/sammy.nested_params
 #= require pb
 #= require sview

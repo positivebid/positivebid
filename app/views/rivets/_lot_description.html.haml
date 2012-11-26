@@ -1,7 +1,7 @@
 #lot_description
   %div(data-role="page")
     %div.ui-bar-b(data-role="header" data-theme="b")
-      %a(data-rv-href="auction:lotsUrl" data-icon="arrow-l" data-direction="reverse") Catalog
+      %a(data-rv-sam="auction:lotsUrl" data-icon="arrow-l" data-direction="reverse") Catalog
       %h1
         Lot
         %span(data-rv-text="lot.number")
@@ -10,7 +10,7 @@
       %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
 
     %div(data-role="content")
-      %a.right(data-inline="true" data-theme="e" data-rv-href="lot:biddingUrl" data-role="button" data-icon="arrow-r" data-rv-jq_a_btn_icon="lot:icon < lot.state" data-iconpos="left") Bid
+      %a.right(data-inline="true" data-theme="e" data-rv-sam="lot:biddingUrl" data-role="button" data-icon="arrow-r" data-rv-jq_a_btn_icon="lot:icon < lot.state" data-iconpos="left") Bid
       %h3
         %span(data-rv-text="lot.number")>
         \:
@@ -48,7 +48,7 @@
         %time.fromNow(data-rv-datetime="lot.sold_at" data-rv-text="lot.sold_at | fromNow")>
         )
       %p(jif="current_user" data-rv-show="lot:i_need_to_pay < lot.state")
-        %a(data-role="button" data-theme="e"  data-icon="gavel-halfway" data-iconpos="right" data-rv-href="lot:payUrl") You Won this. Pay Now.
+        %a(data-role="button" data-theme="e"  data-icon="gavel-halfway" data-iconpos="right" data-rv-sam="lot:payUrl") You Won this. Pay Now.
       %p(data-rv-show="lot:is_paid < lot.state")
         %strong Paid for
         %span at

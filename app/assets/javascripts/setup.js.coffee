@@ -17,6 +17,12 @@ $document.bind 'mobileinit', () ->
     defaultPageTransition: 'none'
 
 
+  $document.on 'tap click', '[sam]', (event) ->
+    $link = $(this)
+    window.reverse_back = ($link.attr('data-direction') == 'reverse')
+    app.runRoute $link.attr("method") or "get", $link.attr("sam")
+    event.preventDefault()
+    #return false
 
 rivets.configure({ prefix: 'rv' })
 

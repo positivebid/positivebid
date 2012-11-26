@@ -1,19 +1,18 @@
 #auctions_show
   %div(data-role="page")
     %div.ui-bar-b(data-role="header" data-theme="b")
-      %a(href="#/auctions" data-icon="back" data-direction="reverse") Auctions
+      %a(sam="#/auctions" data-icon="back" data-direction="reverse") Auctions
       %h1 Auction
       %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
 
     %div(data-role="content")
       %h1(data-rv-text="auction.name")
-      %a(data-rv-href="auction:lotsUrl" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="b")  View Catalog
+      %a(data-rv-sam="auction:lotsUrl" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="b")  View Catalog
       %p
         %span(data-rv-text="auction.description")
       %p
         %img.p200(data-rv-src="auction:imageLargeUrl < auction.picture_id")
       
-
     %div.ui-bar-b(data-role="footer")
       %h4 PositiveBid
 

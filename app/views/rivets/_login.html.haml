@@ -1,7 +1,7 @@
 #login
   %div(data-role="page")
     %div(data-role="header")
-      %a(href="#/auctions" data-icon="back" data-direction="reverse") Auctions
+      %a(sam="#/auctions" data-icon="back" data-direction="reverse") Auctions
       %h1 PositiveBid
     %div(data-role="content")
       %p Login using...
@@ -9,9 +9,9 @@
       %p
         %a.spin(data-role="button" data-rel="external" href="/auth/twitter")
           Twitter
-        %a.spin(data-role="button" href="/auth/google_oauth2")
+        %a.spin(data-role="button" data-rel="external" href="/auth/google_oauth2")
           Google or Google Apps
-        %a.spin(data-role="button" href="/auth/facebook")
+        %a.spin(data-role="button" data-rel="external" href="/auth/facebook")
           facebook
 
       %p ... and always use the same login account.

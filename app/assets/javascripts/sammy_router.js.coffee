@@ -1,6 +1,6 @@
 PB = window.PB ||= {}
 
-PB.app = $.sammy(->
+window.app = PB.app = $.sammy(->
   
   reverse_back = false  # here for closure scope 
 
@@ -11,9 +11,9 @@ PB.app = $.sammy(->
     else
       false
 
-  # remove the last page.
-  #$('div').live 'pageshow', (event, ui) ->
-  #  ui.prevPage.remove()
+  #see render: remove the last page.
+  #see render:$('div').live 'pageshow', (event, ui) ->
+  #see render:  ui.prevPage.remove()
 
   render = (sv) ->
     #window.sv = sv
@@ -37,8 +37,8 @@ PB.app = $.sammy(->
     ), 55 # so that the same path can be called twice, eg '#/more'
 
   @element_selector = "body"
-  #location_proxy = new Sammy.DataLocationProxy(this, "location", "sam_click")
-  #@setLocationProxy location_proxy
+  location_proxy = new Sammy.DataLocationProxy(this, "location", "sam_click")
+  @setLocationProxy location_proxy
   @use Sammy.NestedParams
   @hist = []
   reverse_back = false

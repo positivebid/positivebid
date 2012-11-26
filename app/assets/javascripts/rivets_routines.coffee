@@ -1,38 +1,41 @@
 
 $ = jQuery
 
-window.rivets.routines.href = (el, value) ->
+window.rivets.binders.href = (el, value) ->
   el.href = value
 
-window.rivets.routines.src = (el, value) ->
+window.rivets.binders.src = (el, value) ->
   el.src = value
 
-window.rivets.routines.datetime = (el, value) ->
+window.rivets.binders.datetime = (el, value) ->
   el.setAttribute 'datetime', value
 
-window.rivets.routines.css_highlight = (el, value) ->
+window.rivets.binders.sam = (el, value) ->
+  el.setAttribute 'sam', value
+
+window.rivets.binders.css_highlight = (el, value) ->
   $(el).css_highlight()
 
-window.rivets.routines.a_enabled = (el, value) ->
+window.rivets.binders.a_enabled = (el, value) ->
   $el = $(el)
   if value
     $el.removeClass('ui-disabled')
   else
     $el.addClass('ui-disabled')
 
-window.rivets.routines.submitdisabled = (el, value) ->
+window.rivets.binders.submitdisabled = (el, value) ->
   $el = $(el)
   if value
     $el.closest('div.ui-btn').addClass('ui-disabled')
   else
     $el.closest('div.ui-btn').removeClass('ui-disabled')
 
-window.rivets.routines.jqbtntext = (el, value) ->
+window.rivets.binders.jqbtntext = (el, value) ->
   $el = $(el)
   if value
     $el.closest('div.ui-btn').find('span.ui-btn-text').text(value)
 
-window.rivets.routines.jq_a_btn_icon = (el, value) ->
+window.rivets.binders.jq_a_btn_icon = (el, value) ->
   $el = $(el)
   setTimeout ->
     if $el.attr('data-icon') and ($el.attr('data-icon') isnt "false")
@@ -45,7 +48,7 @@ window.rivets.routines.jq_a_btn_icon = (el, value) ->
   , 0
 
 
-window.rivets.routines.jq_a_btn_text = (el, value) ->
+window.rivets.binders.jq_a_btn_text = (el, value) ->
   $el = $(el)
   setTimeout ->
     $el.find('span.ui-btn-text').text value
@@ -53,7 +56,7 @@ window.rivets.routines.jq_a_btn_text = (el, value) ->
 
 # dummy routine that runs jquerymobile listview('refresh') on the next tick
 # after the dom has been updated with new raw markup
-window.rivets.routines.listview_refresh = (el, value) ->
+window.rivets.binders.listview_refresh = (el, value) ->
   $el = $(el)
   setTimeout ->
     $el.listview()

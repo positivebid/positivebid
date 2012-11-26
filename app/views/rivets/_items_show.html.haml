@@ -1,7 +1,7 @@
 #items_show
   %div(data-role="page")
     %div.ui-bar-b(data-role="header" data-theme="b")
-      %a(data-rv-href="lot:viewUrl" data-icon="back" data-direction="reverse") Lot
+      %a(data-rv-sam="lot:viewUrl" data-icon="back" data-direction="reverse") Lot
       %h1 Item
       %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
 
@@ -22,7 +22,7 @@
       %h3 Donor
       %p
         %strong(data-rv-text="item.donor_name")
-        %a(rel="external" data-rv-href="item.donor_website_url" data-rv-text="item.donor_website_url")
+        %a(rel="external" data-rv-sam="item.donor_website_url" data-rv-text="item.donor_website_url")
 
 
     %div.ui-bar-b(data-role="footer")
