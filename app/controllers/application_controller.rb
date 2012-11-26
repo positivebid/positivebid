@@ -3,9 +3,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user_session, :current_user, :public_owner
 
-  if !(Rails.env.production? or Rails.env.development?)
-    http_basic_authenticate_with :name => "positive", :password => "bid", :realm => 'PostiveBid access.'
-  end
 
   # Image sizes are excluded (they are consider public and 
   # are accessed using asset_host where session cookie isn't set)
