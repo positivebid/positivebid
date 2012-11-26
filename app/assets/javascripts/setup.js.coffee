@@ -1,4 +1,3 @@
-
 PB = window.PB ||= {}
 
 $document = $(document)
@@ -31,24 +30,28 @@ PB.domready = ->
   PB.$body = $('body')
   $('script').remove()
   $.mobile.initializePage()
-  #$('div.ui-page:not(.ui-page-active)').remove() # remove inital page.
-  
-  window.R ?=
-    app_host: ''
+  setTimeout ->
+    #$('div.ui-page:not(.ui-page-active)').remove() # remove inital page.
+    
+    window.R ?=
+      app_host: ''
 
-  if PhoneGap?
-    #assign_rest R.app_host
-  else
-    #assign_rest()
+    #if PhoneGap?
+    # assign_rest R.app_host
+    #else
+    # assign_rest()
     #loadR R
 
-  setTimeout ->
-    if current_user?
-      PB.app.run "#/reload"
-    else
-      PB.app.run "#/reload"
+    setTimeout ->
+      if current_user?
+        PB.app.run "#/reload"
+      else
+        PB.app.run "#/reload"
+    , 200
+    PB.status.check_and_bind()
   , 0
-  PB.status.check_and_bind()
 
 
+jQuery ->
+  PB.domready()
 

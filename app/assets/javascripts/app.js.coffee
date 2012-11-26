@@ -1,5 +1,6 @@
 
 
+#= require socket.io/socket.io
 #= require nodevent/eventemitter
 #= require nodevent/nodevent
 #= require nodevent/nodevent_instance
