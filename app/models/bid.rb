@@ -9,8 +9,9 @@ class Bid < ActiveRecord::Base
   validate :check_greater
   validate :bidding_open
 
-  include NodeventGlobal
 
+  after_create :emit_create #custom
+  after_create :emit_update
   after_create :update_current_bid
 
   def check_greater
@@ -42,5 +43,16 @@ class Bid < ActiveRecord::Base
     lot.save
     return true
   end
+
+  def emit_create
+    NoDevent::Emitter.emit('global_room', "users:create", UserSerializer.new(self.user, :root => false).to_json )
+    NoDevent::Emitter.emit('global_room', "bids:create", self )
+  end
+
+  def emit_update
+    NoDevent::Emitter.emit('global_room', "bids:update", self )
+  end
+
+  #include NodeventGlobal
 
 end

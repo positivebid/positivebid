@@ -10,12 +10,15 @@ PB.Users = Backbone.Collection.extend
     @ioBind('create', window.global_room, @serverCreate, @)
 
   serverCreate: (data) ->
-    console?.log('creating new user with', data)
+    if not data.id?
+      data = JSON.parse(data)
     # make sure no duplicates, just in case
     exists = @get(data.id)
     if not exists?
+      console?.log('creating new user with', data)
       @add(data)
     else
+      console?.log("updating user #{exists.id} with", data)
       data.fromServer = true
       exists.set(data)
 

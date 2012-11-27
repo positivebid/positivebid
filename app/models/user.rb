@@ -118,7 +118,4 @@ class User < ActiveRecord::Base
   has_many :auctions, :dependent => :nullify
   has_many :bids, :dependent => :nullify
 
-  include NodeventGlobal
-
-
 end
