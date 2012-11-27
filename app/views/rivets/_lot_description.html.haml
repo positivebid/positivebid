@@ -60,7 +60,8 @@
 
     %div(data-role="content" data-theme="e")
       %div.current_bid(data-rv-hide="lot.current_bid_id")
-        %p No Bids yet for this lot.
+        %img.i80{:src => image_path("gavel/gavel_2_blue_256px.png")}
+        %span No Bids yet for this lot.
       %div.current_bid(data-rv-show="lot.current_bid_id" data-rv-css_highlight="lot.current_bid_id")
         %img.i80(data-rv-src="lot:current_bid_user_image_url < lot.current_bid_id")
         %span Highest Bid

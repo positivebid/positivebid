@@ -24,7 +24,7 @@ PB.User = Backbone.Model.extend
   imageUrl: ->
     url = @get('image_url')
     if (not url?) or (url is '')
-      "/img/logo/positivebid_rounded_128.png"
+      "<%= image_path("gavel/gavel_3_yellow_256px.png") %>"
     else
       url
 
