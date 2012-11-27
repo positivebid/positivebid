@@ -7,7 +7,7 @@
       #{resource.name}
       %br
       %em #{truncate(resource.description)}
-    %td #{truncate(resource.location)}
+    %td #{resource.state}
     %td 
       - Time.zone = resource.time_zone  # FIXME
       #{resource.event_start_at.try(:to_s, :long)}

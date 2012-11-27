@@ -116,6 +116,7 @@ class User < ActiveRecord::Base
 
   ########################## app stuff #############
   has_many :auctions, :dependent => :nullify
+  has_many :bids, :dependent => :nullify
 
   include NodeventGlobal
 

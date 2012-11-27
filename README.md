@@ -25,13 +25,13 @@ rake db:setup
 brew install redis
 npm install -g nodevent
 
-# Deal Model State Machine
+# Auction and Lot Model State Machine
 
-The Lot model use the state_machine gem https://github.com/pluginaweek/state_machine
+The Auction and Lot models use the state_machine gem https://github.com/pluginaweek/state_machine
 
 The graphical diagram of the states can be updated by running 
 
-  rake state_machine:draw CLASS=Lot
+  rake state_machine:draw CLASS=Lot,Auction
 
 also maybe "brew install graphviz"
 

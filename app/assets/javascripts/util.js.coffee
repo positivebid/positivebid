@@ -27,9 +27,9 @@ window.R ?= {}
 
 window.loadR = (R = {}) ->
   PB.auctions.reset(R.auctions) if R.auctions?
+  PB.users.reset(R.users) if R.users?
   PB.lots.reset(R.lots) if R.lots?
   PB.items.reset(R.items) if R.items?
-  PB.users.reset(R.users) if R.users?
   PB.bids.reset(R.bids) if R.bids?
   if R.current_user?
     window.current_user = new PB.User(R.current_user)
@@ -67,10 +67,10 @@ window.reloadR = (callback, error_callback = null) ->
 
 window.mergeR = (R = {}) ->
   PB.auctions.update(R.auctions) if R.auctions?
+  PB.users.update(R.users) if R.users? # refresh users before bids
+  PB.bids.update(R.bids) if R.bids?   # refresh bids before lots (i think)
   PB.lots.update(R.lots) if R.lots?
   PB.items.update(R.items) if R.items?
-  PB.users.update(R.users) if R.users?
-  PB.bids.update(R.bids) if R.bids?
   if R.current_user?
     if window.current_user?
       window.current_user.set(R.current_user)

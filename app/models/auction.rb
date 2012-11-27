@@ -21,8 +21,8 @@ class Auction < ActiveRecord::Base
     :manual_payment_instructions,
     :justgiving_payment_accepted,
     :justgiving_sdi_charity_id,
-    :picture_attributes
-
+    :picture_attributes,
+    :state_event
   ]
 
   ADMIN_ONLY_FIELDS = [ :charity_approved ]
@@ -70,7 +70,41 @@ class Auction < ActiveRecord::Base
     end
   end
 
-  include NodeventGlobal
+  include NodeventGlobal  # todo: only for active
+
+  STATES = %w( requested active archived )
+  validates_inclusion_of :state, in: STATES
+
+  scope :requested, where(:state => 'requested')
+  scope :active, where(:state => 'active')
+  scope :archived, where(:state => 'archived')
+
+  state_machine :initial => :requested do
+
+    event :organiser_activate do
+      transition :requested => :active
+    end
+
+    event :organiser_archive do
+      transition :active => :archived
+    end
+
+    before_transition any => any do |auction, transition|
+      auction.append_to_log %|Transitioning from state "#{transition.from}" to state "#{transition.to}" due to event "#{transition.human_event}"|
+    end
+
+  end
+
+  def append_to_log(text)
+    if self.new_record?
+      logger.info("#{Time.now.to_s} Deal New: #{text}\n")
+      self.log = (log || '') + "#{Time.now.to_s} #{text}\n"
+    else
+      logger.info("#{Time.now.to_s} Deal #{id}: #{text}\n")
+      self.update_column(:log, (log || '') + "#{Time.now.to_s} #{text}\n")
+    end
+  end
+
 
 
 end
