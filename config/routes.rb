@@ -34,6 +34,8 @@ Positive::Application.routes.draw do
   match '/about' => 'root#about', :as => :about
   match '/demo' => 'root#demo', :as => :demo
   match '/return' => 'root#justgiving_return', :as => :return
+  match '/frameset' => 'root#frameset', :as => :frameset
+  match '/frameset3' => 'root#frameset3', :as => :frameset3
 
 
   #omni auth
