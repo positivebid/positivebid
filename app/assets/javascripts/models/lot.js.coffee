@@ -95,7 +95,7 @@ PB.Lot = Backbone.Model.extend
       if @is_scheduled()
         return "Closing <time class=\"fromNow\" datetime=\"#{@get('sale_end_at')}\">#{moment(@get('sale_end_at')).fromNow()}</time>"
       else
-        return "Bidding open. Closing soon..."
+        return "Bidding open. Bid now!"
     if @is_closing()
         return "Closing Now! Final bids..."
     if @is_bought()

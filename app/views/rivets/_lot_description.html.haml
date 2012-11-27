@@ -36,7 +36,7 @@
           %time.fromNow(data-rv-datetime="lot.sale_end_at" data-rv-text="lot.sale_end_at | fromNow")>
           )
         %span(data-rv-show="lot:is_manual < lot.timing")
-          Bidding open. Closing soon...
+          Bidding open. Bid now!
       %p(data-rv-show="lot:is_closing < lot.state")
         %strong.blink Closing Now! Last Bids...
       %p(data-rv-show="lot:is_bought_or_sold < lot.state")
@@ -75,7 +75,7 @@
 
     %div(data-role="content")
       %h4 
-        lot items:
+        number of lot items:
         %span(data-rv-text="items:length")
       %div(data-rv-hide="items:length < items.models")
         %p No items for this lot found.
