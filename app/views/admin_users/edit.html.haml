@@ -1,0 +1,17 @@
+%h1
+  Edit #{resource_name.titleize}
+  - if enclosing_resource && path_exists?(:enclosing_resource_path)
+    for
+    = link_to enclosing_resource_path do
+      #{enclosing_resource_name.humanize}
+      - if name_or_title(enclosing_resource)
+        \: #{name_or_title(enclosing_resource)}
+
+= simple_form_for_resource do |f|
+  = f.error_notifcation 
+  = render "form", :f => f
+  = f.button :wrapped
+
+= link_to 'Show this ' + resource_name, resource_path
+|
+= link_to 'Back to Index', resources_path

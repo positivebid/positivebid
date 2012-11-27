@@ -105,5 +105,13 @@ Positive::Application.routes.draw do
     end
   end
 
+  resources :admin_users do
+    collection do
+      get :report
+    end
+  end
+
+
+
 
 end

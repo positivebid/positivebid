@@ -15,6 +15,9 @@
         %a.btn{:href => logout_path} Logout
       - if current_user.is_admin?
         %hr
+        - if current_user.id != session[:admin_id]
+          %p
+            %a.btn.btn-primary{href: switch_user_session_path(session[:admin_id])} Switch Back to #{User.find(session[:admin_id]).name}
         %p
           %a.btn{:href => posts_path} Blog Posts Admin
           %a.btn{:href => admin_public_faqs_path} Faq Admin

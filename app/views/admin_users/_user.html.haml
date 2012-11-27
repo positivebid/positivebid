@@ -1,0 +1,23 @@
+%tr
+  %td
+    - if user.image_url.present?
+      %img.p80{:src => user.image_url }
+  %td= link_to "#{user.name}", switch_user_session_path(:id => user.id ) 
+  %td= mail_to user.email
+  %td= user.provider
+  %td #{user.login_count} / #{user.failed_login_count}
+  %td
+    - if user.last_request_at
+      = distance_of_time_in_words_to_now(user.last_request_at)
+  %td
+    - if user.current_login_at
+      = user.current_login_at.to_s
+      %br
+      (#{distance_of_time_in_words_to_now(user.current_login_at)} ago)
+    %br
+    - if user.last_login_at
+      = user.last_login_at.to_s
+      %br
+      (#{distance_of_time_in_words_to_now(user.last_login_at)} ago)
+  %td
+    = link_to 'show', admin_user_path(user)

@@ -1,0 +1,14 @@
+%tr
+  %th image
+  %th= link_to 'name', :order => 'first_name'
+  %th= link_to 'email', :order => 'email'
+  %th provider
+  %th 
+    = link_to 'login#/', :order => 'login_count DESC'
+    %br
+    = link_to 'failed#/', :order => 'failed_login_count DESC'
+  %th= link_to 'last request at', :order => 'last_request_at DESC'
+  %th 
+    current / 
+    %br
+    last login

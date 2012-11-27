@@ -1,0 +1,22 @@
+= form_for :search, :url => admin_users_path, :html => { :method => :get } do |f|
+  Search Username: 
+  = f.text_field :login, :value => params[:search] && params[:search][:login]
+  Or Email: 
+  = f.text_field :email,  :value => params[:search] && params[:search][:email]
+  = f.submit "search"
+  %a{:href => admin_users_path} clear
+
+
+- if current_user.id != session[:admin_id]
+  %p
+    %a.btn.btn-primary{href: switch_user_session_path(session[:admin_id])} Switch Back to #{User.find(session[:admin_id]).name}
+
+%br.clearboth
+= paginate resources
+%br.clearboth
+%table.wb.table
+  = render :partial => 'header'
+  = render :partial => 'user', :collection => resources
+
+%br.clearboth
+= paginate resources

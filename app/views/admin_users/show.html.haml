@@ -1,0 +1,74 @@
+
+%a.right.btn{:href => resources_path} &larr; back to index
+%h2.system Admin User Show
+%br
+
+%table
+  %tr
+    %th.right name
+    %td
+      = resource.name
+      = link_to "Switch to: #{resource.name}", switch_user_session_path(:id => resource.id)
+
+  %tr
+    %th.right email
+    %td
+      -if resource.email.present?
+        = mail_to resource.email
+  %tr
+    %th.right login count
+    %td #{resource.login_count} 
+  %tr 
+    %th.right failed login count
+    %td #{resource.failed_login_count}
+
+  %tr
+    %th.right last request at
+    %td
+      - if resource.last_request_at
+        = distance_of_time_in_words_to_now(resource.last_request_at)
+
+  %tr
+    %th.right current login at
+    %td
+      - if resource.current_login_at
+        = resource.current_login_at.to_s
+        = "(#{distance_of_time_in_words_to_now(resource.current_login_at)} ago)"
+  %tr
+    %th.right current login ip
+    %td= resource.current_login_ip
+  %tr
+    %th.right last login at
+    %td
+      - if resource.last_login_at
+        = resource.last_login_at.to_s
+        = "(#{distance_of_time_in_words_to_now(resource.last_login_at)} ago)"
+  %tr
+    %th.right last login ip
+    %td= resource.last_login_ip
+
+  - if !resource.active?
+    %tr
+      %th.right activate link
+      %td= activate_url(resource.perishable_token)
+
+  %tr
+    %th.right auctions
+    %td= resource.auctions.count
+  %tr
+    %th
+    %td
+
+  %tr
+    %th.right ap
+    %td
+      %pre= raw resource.attributes.awesome_inspect(:plain => true)
+
+  %tr
+    %th.right Edit
+    %td
+      %a.awesome{:href => edit_resource_path} Edit User
+  %tr
+    %th.right Delete
+    %td
+      %a.awesome{:href => resource_path, 'data-method' => 'DELETE', 'data-confirm' => 'Are you really sure?'} Delete User
