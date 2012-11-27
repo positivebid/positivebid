@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
 
   before_validation :strip_attributes
   validates_presence_of :first_name, :last_name, :time_zone
-  validates_length_of :first_name, :in => 2..40
-  validates_length_of :last_name, :in => 2..40
+  validates_length_of :first_name, :in => 1..50
+  validates_length_of :last_name, :in => 1..50
 
 
   acts_as_authentic do |c|
