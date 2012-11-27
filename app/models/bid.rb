@@ -45,7 +45,7 @@ class Bid < ActiveRecord::Base
   end
 
   def emit_create
-    NoDevent::Emitter.emit('global_room', "users:create", UserSerializer.new(self.user, :root => false).to_json )
+    NoDevent::Emitter.emit('global_room', "users:create", UserSerializer.new(self.user, :root => false).as_json )
     NoDevent::Emitter.emit('global_room', "bids:create", self )
   end
 

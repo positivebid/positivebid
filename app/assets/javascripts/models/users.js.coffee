@@ -10,8 +10,6 @@ PB.Users = Backbone.Collection.extend
     @ioBind('create', window.global_room, @serverCreate, @)
 
   serverCreate: (data) ->
-    if not data.id?
-      data = JSON.parse(data)
     # make sure no duplicates, just in case
     exists = @get(data.id)
     if not exists?
