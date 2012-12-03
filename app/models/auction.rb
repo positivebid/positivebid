@@ -80,21 +80,17 @@ class Auction < ActiveRecord::Base
   scope :active, where(:state => 'active')
   scope :archived, where(:state => 'archived')
 
-  state_machine :initial => :requested do
+  state_machine :initial => :draft do
 
-    event :organiser_submit do
-      transition :draft => :submiteed
+    event :organiser_submit, :admin_submit do
+      transition :draft => :submitted
     end
 
     event :admin_approve do
-      transition :submited => :active
+      transition :submitted => :active
     end
 
-    event :admin_archive do
-      transition :active => :archived
-    end
-
-    event :organiser_archive do
+    event :organiser_archive, :admin_archive do
       transition :active => :archived
     end
 
