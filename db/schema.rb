@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112114708) do
+ActiveRecord::Schema.define(:version => 20121203132241) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name",                                                 :null => false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20121112114708) do
     t.boolean  "charity_approved",            :default => false
     t.integer  "fundraising_target"
     t.boolean  "allow_anonymous_bids",        :default => false
-    t.string   "state",                       :default => "requested", :null => false
+    t.string   "state",                       :default => "draft",     :null => false
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.text     "log"

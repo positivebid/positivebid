@@ -72,17 +72,26 @@ class Auction < ActiveRecord::Base
 
   include NodeventGlobal  # todo: only for active
 
-  STATES = %w( requested active archived )
+  STATES = %w( draft submitted active archived )
   validates_inclusion_of :state, in: STATES
 
-  scope :requested, where(:state => 'requested')
+  scope :draft, where(:state => 'draft')
+  scope :submitted, where(:state => 'submitted')
   scope :active, where(:state => 'active')
   scope :archived, where(:state => 'archived')
 
   state_machine :initial => :requested do
 
-    event :organiser_activate do
-      transition :requested => :active
+    event :organiser_submit do
+      transition :draft => :submiteed
+    end
+
+    event :admin_approve do
+      transition :submited => :active
+    end
+
+    event :admin_archive do
+      transition :active => :archived
     end
 
     event :organiser_archive do

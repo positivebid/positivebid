@@ -1,9 +1,9 @@
 = form_for :search, :url => admin_users_path, :html => { :method => :get } do |f|
-  Search Username: 
-  = f.text_field :login, :value => params[:search] && params[:search][:login]
+  Search First Name: 
+  = f.text_field :first_name, :value => params[:search] && params[:search][:first_name]
   Or Email: 
   = f.text_field :email,  :value => params[:search] && params[:search][:email]
-  = f.submit "search"
+  = f.submit "search", :class => 'btn'
   %a{:href => admin_users_path} clear
 
 

@@ -4,8 +4,8 @@ class AdminUsersController < ApplicationController
 
   def find_resources
     results = resource_service.page( params[:page] ).order(params[:order] || 'last_request_at DESC')
-    if params[:search] && params[:search][:login].present?
-      results = results.where(["login ilike ?", "%#{params[:search][:login]}%"])
+    if params[:search] && params[:search][:first_name].present?
+      results = results.where(["first_name ilike ?", "%#{params[:search][:first_name]}%"])
     elsif params[:search] && params[:search][:email].present?
       results = results.where(["email ilike ?", "%#{params[:search][:email]}%"])
     end
