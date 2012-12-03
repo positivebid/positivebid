@@ -1,0 +1,19 @@
+- for resource in resources
+  %tr
+    %td
+      - if resource.picture
+        %img.p80{:src => p80_picture_path(resource.picture, :format => :jpg)}
+    %td
+      #{resource.name}
+      %br
+      %em #{truncate(resource.description)}
+    %td 
+      %a{:href => admin_user_path(resource.user)} #{resource.user.name}
+    %td #{resource.state}
+    %td 
+      - Time.zone = resource.time_zone  # FIXME
+      #{resource.event_start_at.try(:to_s, :long)}
+      %br
+      #{resource.event_end_at.try(:to_s, :long)}
+    %td
+      %a.btn{:href => resource_path(resource)} View

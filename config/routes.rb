@@ -111,7 +111,15 @@ Positive::Application.routes.draw do
     end
   end
 
-
+  resources :admin_auctions do
+    resources :admin_lots do
+      resources :admin_items
+      resources :admin_bids
+    end
+  end
+  resources :admin_lots
+  resources :admin_items
+  resources :admin_bids
 
 
 end

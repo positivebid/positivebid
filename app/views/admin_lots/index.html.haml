@@ -1,0 +1,32 @@
+.container
+
+  %ul.breadcrumb
+    %li
+      %a(href="/home") Home
+      %span.divider /
+    %li
+      %a(href="/admin_auctions") Admin Auctions
+      %span.divider /
+    - if @admin_auction.present?
+      %li
+        %a{:href => admin_auction_path(@admin_auction)}= truncate @admin_auction.name
+        %span.divider /
+    %li.active
+      Admin Lots
+
+  - if @admin_auction
+    %h4
+      Admin Auction: #{@admin_auction.name}
+  %h1
+    Admin Lots
+
+  - if resources.respond_to? 'num_pages'
+    = paginate resources
+
+  %table.table.table-striped.table-bordered.table-condensed.max-width
+    = render :partial => 'header'
+    = render :partial => 'row'
+
+  - if resources.respond_to? 'num_pages'
+    = paginate resources
+

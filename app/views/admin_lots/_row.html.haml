@@ -1,0 +1,26 @@
+- for resource in resources
+  %tr[resource]
+    %td
+      %a{:href => admin_auction_path(resource.auction)} #{truncate resource.auction.name}
+    %td #{resource.position}
+    %td ##{resource.number} #{resource.name}
+    %td= resource.buy_now_price
+    %td £#{resource.min_increment}
+    %td
+      = resource.timing
+      %br
+      = resource.sale_start_at.try(:to_s,:long)
+      %br
+      = resource.sale_end_at.try(:to_s, :long)
+    %td
+      = resource.actual_start_at.try(:to_s,:long)
+      %br
+      = resource.actual_end_at.try(:to_s, :long)
+    %td
+      = resource.state
+    %td
+      - resource.state_events.each do |event|
+        - if event.to_s.match(/^admin/)
+          %a.btn.btn-small{:href => resource_path(resource, 'lot[state_event]' => event ), 'data-method' => 'PUT'} #{event.to_s.humanize}
+    %td
+      %a.btn{:href => resource_path(resource)} View

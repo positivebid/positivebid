@@ -14,6 +14,12 @@ class ApplicationController < ActionController::Base
   map_enclosing_resource :public, :singleton=> true, :class => PublicOwner, :find => :public_owner
   map_enclosing_resource :admin_public, :singleton=> true, :class => PublicOwner, :find => :admin_public_owner
 
+  map_enclosing_resource :admin_user, :class => User
+  map_enclosing_resource :admin_auction, :class => Auction
+  map_enclosing_resource :admin_lot, :class => Lot
+  map_enclosing_resource :admin_item, :class => Item
+  map_enclosing_resource :admin_bid, :class => Bid
+
 
   before_filter :set_r_var
 

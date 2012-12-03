@@ -1,0 +1,44 @@
+.container
+
+  %ul.breadcrumb
+    %li
+      %a(href="/home") Home
+      %span.divider /
+    %li
+      %a(href="/home/auctions") Admin Auctions
+      %span.divider /
+    %li.active
+      = truncate resource.name
+      %span.divider /
+    %li
+      %a{:href => resource_admin_lots_path} Admin Lots
+
+  %h4
+    Admin Auction:
+  %h1
+    = resource.name.titleize
+  %p 
+    %a.btn.btn-small{:href => edit_resource_path} Edit
+    - resource.state_events.each do |event|
+      - if event.to_s.match(/^admin/)
+        %a.btn.btn-small{:href => resource_path(resource, 'auction[state_event]' => event ), 'data-method' => 'PUT'} #{event.to_s.humanize}
+
+    %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
+
+
+
+  %table.table.table-striped.table-bordered
+    - for column in [ :name, :description, :location, :time_zone, :hashtag, :event_start_at, :event_end_at, :default_lot_timing, :default_sale_start_at, :default_sale_end_at, :allow_anonymous_bids, :charity_contact_email, :charity_contact_name, :charity_contact_telephone, :charity_name, :charity_approved, :fundraising_target, :manual_payment_accepted, :manual_payment_instructions, :justgiving_payment_accepted, :justgiving_sdi_charity_id, :state ]
+      %tr
+        %th= column.to_s.humanize
+        %td= resource.send(column)
+    %tr
+      %th Log
+      %td.log #{resource.log}
+    %tr
+      %th Picture
+      %td
+        - if resource.picture.id
+          %img.p100{:src => p100_picture_path(resource.picture, :format => :jpg)}
+
+

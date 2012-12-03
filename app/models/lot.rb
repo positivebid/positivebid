@@ -95,27 +95,19 @@ class Lot < ActiveRecord::Base
 
   state_machine :initial => :draft do
 
-    event :organiser_publish do
+    event :organiser_publish, :admin_publish do
       transition :draft => :published
     end
 
-    event :auto_open do
+    event :auto_open, :organiser_open, :admin_publish do
       transition :published => :forsale
     end
 
-    event :organiser_open do
-      transition :published => :forsale
-    end
-
-    event :auto_close_start do
+    event :auto_close_start, :organiser_close_start, :admin_close_start do
       transition :forsale => :closing
     end
 
-    event :organiser_close_start do
-      transition :forsale => :closing
-    end
-
-    event :organiser_close_immediate do
+    event :organiser_close_immediate, :admin_close_immediate do
       transition :closing => :sold
       transition :forsale => :sold
     end
@@ -139,7 +131,7 @@ class Lot < ActiveRecord::Base
       transition :sold => :paid
     end
 
-    event :organiser_payment do
+    event :organiser_payment, :admin_payment do
       transition :bought  => :paid
       transition :sold => :paid
     end

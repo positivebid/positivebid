@@ -26,5 +26,12 @@
         %p
           %a.btn{:href => admin_users_path} Admin Users
           %a.btn{:href => report_admin_users_path} User Report
+        %p
+          %a.btn{:href => admin_auctions_path} Admin Auctions
+          %a{:href => admin_auctions_path('search[state]' => 'submitted')} #{pluralize(Auction.submitted.count, "Submitted Auction")}
+        %p
+          %a.btn{:href => admin_lots_path} Admin Lots
+          %a.btn{:href => admin_items_path} Admin Items
+          %a.btn{:href => admin_bids_path} Admin Bids
 
 

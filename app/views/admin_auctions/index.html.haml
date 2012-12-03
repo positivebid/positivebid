@@ -1,0 +1,37 @@
+.container
+
+  %ul.breadcrumb
+    %li
+      %a(href="/home") Home
+      %span.divider /
+    %li.active
+      %a(href="/admin_auctions") Admin Auctions
+
+  %h4
+    Listing:
+  %h1
+    #{params[:search][:state].capitalize if  params[:search] and params[:search][:state].present?} Admin Auctions
+  %p
+
+
+  = form_for :search, :url => resources_path, :html => { :method => :get, :class => 'form-inline' } do |f|
+    Deal Name:
+    = f.text_field :name, :value => params[:search] && params[:search][:name]
+    Description:
+    = f.text_field :description,  :value => params[:search] && params[:search][:description]
+    State:
+    = f.select :state, Auction::STATES, {:selected => params[:search].try(:fetch,:state), :include_blank => true}, {:class => "span2"}
+    = f.submit "search", :class => 'btn btn-primary'
+    %a{:href => resources_path} clear
+
+  - if resources.respond_to? 'num_pages'
+    = paginate resources
+
+  %table.table.table-striped.table-bordered.table-condensed.max-width
+    = render :partial => 'header'
+    = render :partial => 'row'
+
+  - if resources.respond_to? 'num_pages'
+    = paginate resources
+
+
