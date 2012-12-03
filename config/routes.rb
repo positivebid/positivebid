@@ -114,7 +114,7 @@ Positive::Application.routes.draw do
   resources :admin_auctions do
     resources :admin_lots do
       resources :admin_items
-      resources :admin_bids
+      resources :admin_bids, :except => [:edit, :update]
     end
   end
   resources :admin_lots, :only => [:index]

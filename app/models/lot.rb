@@ -99,7 +99,7 @@ class Lot < ActiveRecord::Base
       transition :draft => :published
     end
 
-    event :auto_open, :organiser_open, :admin_publish do
+    event :auto_open, :organiser_open, :admin_open do
       transition :published => :forsale
     end
 

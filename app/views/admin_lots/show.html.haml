@@ -17,7 +17,8 @@
       %span.divider /
     %li
       %a{:href => admin_auction_admin_lot_admin_items_path(resource.auction, resource)} Admin Items
-
+      or
+      %a{:href => admin_auction_admin_lot_admin_bids_path(resource.auction, resource)} Admin Bids
 
   %h4 Lot:
   %h1 #{resource.number} - #{resource.name.titleize}

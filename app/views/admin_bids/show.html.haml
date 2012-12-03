@@ -1,0 +1,41 @@
+.container
+  %ul.breadcrumb
+    %li
+      %a(href="/home") Home
+      %span.divider /
+    %li
+      %a(href="admin_auctions") Admin Auctions
+      %span.divider /
+    %li
+      %a{:href => admin_auction_admin_lot_path(@admin_auction, @admin_lot)}= truncate @admin_auction.name
+      %span.divider /
+    %li
+      %a{:href => admin_auction_admin_lots_path(@admin_auction)} Admin Lots
+      %span.divider /
+    %li.active
+      %a{:href => admin_auction_admin_lot_path(@admin_auction, @admin_lot)} #{@admin_lot.number}: #{truncate @admin_lot.name}
+      %span.divider /
+    %li
+      %a{:href => resources_path} Admin Bids
+      %span.divider /
+    %li.active
+      #{@admin_bid.id}
+
+  %h4
+    Admin Bid:
+  %h1
+    Bid Id #{resource.id}
+
+  %p
+    %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
+
+  %table.table.table-striped.table-bordered
+    - for column in controller.resource_service.content_columns
+      %tr
+        %th= column.human_name
+        %td= resource.send(column.name)
+    %tr
+      %th User
+      %td 
+        %a{:href => admin_user_path(resource.user)} #{resource.user.name}
+

@@ -1,0 +1,10 @@
+- for resource in resources
+  %tr[resource]
+    %td
+      %a{:href => admin_auction_admin_lot_path(resource.lot.auction, resource.lot)} #{truncate resource.lot.name}
+    %td
+      %a{:href => admin_user_path(resource.user)} #{truncate resource.user.name}
+    %td
+      = resource.amount
+    %td
+      %a.btn{:href => admin_auction_admin_lot_admin_bid_path(resource.lot.auction, resource.lot, resource)} View
