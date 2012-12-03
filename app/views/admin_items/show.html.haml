@@ -4,30 +4,30 @@
       %a(href="/home") Home
       %span.divider /
     %li
-      %a(href="/home/auctions") Auctions
+      %a(href="admin_auctions") Admin Auctions
       %span.divider /
     %li
-      %a{:href => home_auction_path(@auction)}= truncate @auction.name
+      %a{:href => admin_auction_admin_lot_path(@admin_auction, @admin_lot)}= truncate @admin_auction.name
       %span.divider /
     %li
-      %a{:href => home_auction_lots_path(@auction)} Lots
+      %a{:href => admin_auction_admin_lots_path(@admin_auction)} Admin Lots
       %span.divider /
     %li.active
-      %a{:href => home_auction_lot_path(@auction, @lot)} #{@lot.number}: #{truncate @lot.name}
+      %a{:href => admin_auction_admin_lot_path(@admin_auction, @admin_lot)} #{@admin_lot.number}: #{truncate @admin_lot.name}
       %span.divider /
     %li
-      %a{:href => resources_path} Items
+      %a{:href => resources_path} Admin Items
       %span.divider /
     %li.active
-      #{truncate @item.name}
+      #{truncate @admin_item.name}
 
   %h4
-    Item:
+    Admin Item:
   %h1
     = resource.name.titleize
   %p 
     %a.btn.btn-small{:href => edit_resource_path} Edit
-    %a.btn.btn-small.btn-danger{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
+    %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
 
   %table.table.table-striped.table-bordered
     - for column in controller.resource_service.content_columns

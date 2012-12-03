@@ -19,8 +19,4 @@
     %td
       = resource.state
     %td
-      - resource.state_events.each do |event|
-        - if event.to_s.match(/^admin/)
-          %a.btn.btn-small{:href => resource_path(resource, 'lot[state_event]' => event ), 'data-method' => 'PUT'} #{event.to_s.humanize}
-    %td
-      %a.btn{:href => resource_path(resource)} View
+      %a.btn{:href => admin_auction_admin_lot_path(resource.auction, resource)} View

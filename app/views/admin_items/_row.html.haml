@@ -1,0 +1,20 @@
+- for resource in resources
+  %tr[resource]
+    %td
+      %a{:href => admin_auction_admin_lot_path(resource.lot.auction, resource.lot)} #{truncate resource.lot.name}
+    %td
+      #{resource.position}
+    %td
+      - if resource.picture
+        %img.p80{:src => p80_picture_path(resource.picture, :format => :jpg)}
+    %td
+      = truncate(resource.name)
+      %br
+      %em= truncate(resource.description)
+    %td= truncate resource.terms
+    %td= truncate resource.collection_info
+    %td= truncate resource.donor_name
+    %td= truncate resource.donor_byline
+    %td= truncate resource.organiser_notes
+    %td
+      %a.btn{:href => admin_auction_admin_lot_admin_item_path(resource.lot.auction, resource.lot, resource)} View

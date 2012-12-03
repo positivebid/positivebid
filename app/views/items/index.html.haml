@@ -13,13 +13,13 @@
       %a{:href => home_auction_lots_path(@auction)} Lots
       %span.divider /
     %li.active
-      %a{:href => home_auction_lot_path(@auction, @lot)} #{@lot.number} - #{truncate @lot.name}
+      %a{:href => home_auction_lot_path(@auction, @lot)} #{@lot.number}: #{truncate @lot.name}
       %span.divider /
     %li.active
       Items
 
   %h4
-    Lot: #{@lot.number} - #{@lot.name}
+    Lot: #{@lot.number}: #{@lot.name}
   %h1
     Items
   %p

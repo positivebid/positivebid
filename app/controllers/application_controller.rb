@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   map_enclosing_resource :admin_user, :class => User
   map_enclosing_resource :admin_auction, :class => Auction
-  map_enclosing_resource :admin_lot, :class => Lot
+  map_enclosing_resource :admin_lot, :class => Lot, :source => :lots
   map_enclosing_resource :admin_item, :class => Item
   map_enclosing_resource :admin_bid, :class => Bid
 

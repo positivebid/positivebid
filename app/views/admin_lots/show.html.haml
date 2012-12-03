@@ -4,19 +4,19 @@
       %a(href="/home") Home
       %span.divider /
     %li
-      %a(href="/home/auctions") Auctions
+      %a(href="/admin_auctions") Admin Auctions
       %span.divider /
     %li
-      %a{:href => home_auction_path(@auction)}= truncate @auction.name
+      %a{:href => admin_auction_path(resource.auction)}= truncate resource.auction.name
       %span.divider /
     %li
-      %a{:href => resources_path} Lots
+      %a{:href => resources_path} Admin Lots
       %span.divider /
     %li.active
       #{resource.number}: #{truncate resource.name}
       %span.divider /
     %li
-      %a{:href => resource_items_path} Items
+      %a{:href => admin_auction_admin_lot_admin_items_path(resource.auction, resource)} Admin Items
 
 
   %h4 Lot:
@@ -24,7 +24,7 @@
   %p  
     %a.btn.btn-small{:href => edit_resource_path} Edit
     - resource.state_events.each do |event|
-      - if event.to_s.match(/^organiser/)
+      - if event.to_s.match(/^admin/)
         %a.btn.btn-small{:href => resource_path(resource, 'lot[state_event]' => event ), 'data-method' => 'PUT'} #{event.to_s.humanize}
     %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure you want to delete the Lot? really sure?', 'data-method' => :delete } Delete
 

@@ -117,9 +117,9 @@ Positive::Application.routes.draw do
       resources :admin_bids
     end
   end
-  resources :admin_lots
-  resources :admin_items
-  resources :admin_bids
+  resources :admin_lots, :only => [:index]
+  resources :admin_items, :only => [:index]
+  resources :admin_bids, :only => [:index]
 
 
 end
