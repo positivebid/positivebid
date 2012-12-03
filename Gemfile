@@ -44,9 +44,9 @@ gem 'httparty'
 gem "nodevent"
 
 
-gem 'prawn', '0.12.0'
-gem 'prawn-fast-png', :git => 'git://github.com/jlsync/prawn-fast-png.git', :require => 'prawn/fast_png'
-gem "prawnto_2", :git => 'git://github.com/jlsync/prawnto.git', :require => "prawnto"
+#gem 'prawn', '0.12.0'
+#gem 'prawn-fast-png', :git => 'git://github.com/jlsync/prawn-fast-png.git', :require => 'prawn/fast_png'
+#gem "prawnto_2", :git => 'git://github.com/jlsync/prawnto.git', :require => "prawnto"
 
 
 # Gems used only for assets and not required
