@@ -1,11 +1,11 @@
 
-= f.input :name, label: 'Auction Name', input_html: { class: 'span6' }
-= f.input :description, input_html: { rows: 5 , class: 'span6' }
-= f.input :location, input_html: { class: 'span6' }
-= f.input :time_zone, :hint => "Make sure you set this correctly"
+= f.input :name, label: 'Auction Name', input_html: { class: 'span6' }, :helplink => 'auction_name'
+= f.input :description, input_html: { rows: 5 , class: 'span6' }, helplink: 'auction_description'
+= f.input :location, input_html: { class: 'span6' }, helplink: 'auction_location'
+= f.input :time_zone, :hint => "Make sure you set this correctly", helplink: 'auction_timezone'
 = f.input :hashtag, input_html: { class: 'span6' }
 
-= f.input :event_start_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.event_start_at.try(:strftime,"%Y-%m-%d %H:%M")}
+= f.input :event_start_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.event_start_at.try(:strftime,"%Y-%m-%d %H:%M")}, helplink: 'auction_description'
 = f.input :event_end_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.event_end_at.try(:strftime,"%Y-%m-%d %H:%M")}
 
 = f.input :default_lot_timing, as: :select, collection: Lot::TIMINGS, :include_blank => false

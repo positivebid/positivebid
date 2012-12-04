@@ -87,6 +87,8 @@ Positive::Application.routes.draw do
     end
   end
 
+  resources :helplinks
+
   # admin routes
   resources :posts do
     collection do

@@ -15,6 +15,7 @@
 //= require moment
 //= require jlObserve
 //= require twitter/bootstrap
+//= require helplinks
 //= require internal
 
 

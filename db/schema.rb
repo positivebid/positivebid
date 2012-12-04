@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203132241) do
+ActiveRecord::Schema.define(:version => 20121204130120) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name",                                                 :null => false
@@ -76,6 +76,18 @@ ActiveRecord::Schema.define(:version => 20121203132241) do
   add_index "faqs", ["key"], :name => "index_faqs_on_key", :unique => true
   add_index "faqs", ["owner_id", "owner_type"], :name => "index_faqs_on_owner_id_and_owner_type"
   add_index "faqs", ["published"], :name => "index_faqs_on_published"
+
+  create_table "helplinks", :force => true do |t|
+    t.string   "key"
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "helplinks", ["key"], :name => "index_helplinks_on_key", :unique => true
+  add_index "helplinks", ["user_id"], :name => "index_helplinks_on_user_id"
 
   create_table "items", :force => true do |t|
     t.integer  "lot_id",            :null => false
