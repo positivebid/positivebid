@@ -8,7 +8,13 @@ module SimpleForm
       def helplink
         @helplink ||= begin
           if options[:helplink].present?
-            "<a class=\"btn btn-helplink #{options[:helplink]}\"><i class=\"icon-info-sign helplink #{options[:helplink]}\"></i></a>".html_safe
+            if options[:helplink] == true
+              key = "#{object_name}_#{attribute_name}"
+            else
+              key = options[:helplink]
+            end
+
+            "<a class=\"btn btn-helplink\" data-helplink=\"#{key}\"><i class=\"icon-info-sign helplink #{key}\"></i></a>".html_safe
           else
             nil
           end

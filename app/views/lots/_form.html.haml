@@ -1,13 +1,12 @@
 
-= f.input :name, :label => 'Lot Name'
-= f.input :number, label: 'Lot Number', hint: 'Must be unique', input_html: { min: 0 }
-= f.input :buy_now_price, input_html: { min: 0 }, hint: 'Optional'
-= f.input :min_increment, input_html: { min: 1 }
-= f.input :timing, as: :select, collection: Lot::TIMINGS, include_blank: false
-= f.input :sale_start_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.sale_start_at.try(:strftime,"%Y-%m-%d %H:%M")}
-= f.input :sale_end_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.sale_end_at.try(:strftime,"%Y-%m-%d %H:%M")}
-= f.input :collected
-
+= f.input :name, :label => 'Lot Name', helplink: true
+= f.input :number, label: 'Lot Number', hint: 'Must be unique', input_html: { min: 0 }, helplink: true
+= # f.input :buy_now_price, input_html: { min: 0 }, hint: 'Optional', helplink: true
+= f.input :min_increment, input_html: { min: 1 }, helplink: true
+= f.input :timing, as: :select, collection: Lot::TIMINGS, include_blank: false, helplink: true
+= f.input :sale_start_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.sale_start_at.try(:strftime,"%Y-%m-%d %H:%M")}, helplink: true
+= f.input :sale_end_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.sale_end_at.try(:strftime,"%Y-%m-%d %H:%M")}, helplink: true
+= # f.input :collected
 
 :coffeescript
 

@@ -15,6 +15,7 @@
         %a.btn{:href => logout_path} Logout
       - if current_user.is_admin?
         %hr
+        %h3 Positive Admin Only Links
         - if current_user.id != session[:admin_id]
           %p
             %a.btn.btn-primary{href: switch_user_session_path(session[:admin_id])} Switch Back to #{User.find(session[:admin_id]).name}
@@ -33,5 +34,7 @@
           %a.btn{:href => admin_lots_path} Admin Lots
           %a.btn{:href => admin_items_path} Admin Items
           %a.btn{:href => admin_bids_path} Admin Bids
+        %p
+          %a.btn{:href => helplinks_path} Helplinks
 
 
