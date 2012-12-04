@@ -2,7 +2,11 @@
   %h1
     New #{resource_name.titleize}
     - if enclosing_resource && path_exists?(:enclosing_resource_path)
-      for #{link_to enclosing_resource_name, enclosing_resource_path}
+      for 
+      - if enclosing_resource.respond_to?(:name)
+        #{link_to enclosing_resource.name, enclosing_resource_path}
+      - else
+        #{link_to enclosing_resource_name, enclosing_resource_path}
 
   = simple_form_for_resource(:html => {:class => 'form-horizontal' }) do |f|
     = f.error_messages
