@@ -18,6 +18,10 @@
     %li
       %a{:href => resource_items_path} Items
 
+  .well
+    This lot is detailed below. To add items to this Lot click the 
+    %em Items
+    link above.
 
   %h4 Lot:
   %h1 #{resource.number} - #{resource.name.titleize}
@@ -26,6 +30,7 @@
     - resource.state_events.each do |event|
       - if event.to_s.match(/^organiser/)
         %a.btn.btn-small{:href => resource_path(resource, 'lot[state_event]' => event ), 'data-method' => 'PUT'} #{event.to_s.humanize}
+    = helplink("lot_show_links")
     %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure you want to delete the Lot? really sure?', 'data-method' => :delete } Delete
 
   %table.table.table-striped.table-bordered

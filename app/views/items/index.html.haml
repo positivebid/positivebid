@@ -18,8 +18,20 @@
     %li.active
       Items
 
+  .well
+    %p 
+      The Items for this Lot are listed below.
+      - if resources.blank?
+        To add new items to this Lot use the 
+        %em Add New Item
+        button. One or more items can be added to each lot.
+      - else
+        The order of the items can be rearranged by clicking and dragging the 
+        %em Position
+        column.
+
   %h4
-    Lot: #{@lot.number}: #{@lot.name}
+    Lot #{@lot.number}: #{@lot.name}
   %h1
     Items
   %p

@@ -4,7 +4,6 @@
       %i.icon-move
       #{resource.position}
     %td ##{resource.number} #{resource.name}
-    %td= resource.buy_now_price
     %td £#{resource.min_increment}
     %td
       = resource.timing
@@ -18,9 +17,5 @@
       = resource.actual_end_at.try(:to_s, :long)
     %td
       = resource.state
-    %td
-      - resource.state_events.each do |event|
-        - if event.to_s.match(/^organiser/)
-          %a.btn.btn-small{:href => resource_path(resource, 'lot[state_event]' => event ), 'data-method' => 'PUT'} #{event.to_s.humanize}
     %td
       %a.btn{:href => resource_path(resource)} View

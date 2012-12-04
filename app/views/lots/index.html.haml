@@ -13,13 +13,25 @@
     %li.active
       Lots
 
+  .well
+    %p 
+      The Lots for this auction are listed below.
+      - if resources.blank?
+        To add new lots to this auction use the 
+        %em Add New Lot
+        button. One or more items can be added to each lot.
+      - else
+        Each lot needs a unique Lot Number. The order of the lots can be rearranged by clicking and dragging the 
+        %em Position
+        column.
+
   %h4
     Auction: #{@auction.name}
   %h1
     Lots
   %p
     - if path_exists?(:new_resource_path)
-      %a.btn.btn-yellow{:href => new_resource_path} Add New #{resource_name.humanize}
+      %a.btn.btn-primary{:href => new_resource_path} Add New #{resource_name.humanize}
 
   - if resources.respond_to? 'num_pages'
     = paginate resources

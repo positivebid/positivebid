@@ -3,7 +3,7 @@
 = f.input :description, input_html: { rows: 5 , class: 'span6' }, helplink: true
 = f.input :location, input_html: { class: 'span6' }, helplink: true
 = f.input :time_zone, :hint => "Make sure you set this correctly", helplink: true
-= f.input :hashtag, input_html: { class: 'span6' }, helplink: true
+= # f.input :hashtag, input_html: { class: 'span6' }, helplink: true
 
 = f.input :event_start_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.event_start_at.try(:strftime,"%Y-%m-%d %H:%M")}, helplink: true
 = f.input :event_end_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.event_end_at.try(:strftime,"%Y-%m-%d %H:%M")}, helplink: true
@@ -15,9 +15,10 @@
 
 = #TODO f.input :allow_anonymous_bids
 = f.input :charity_name, input_html: { class: 'span6'  }, helplink: true
-= f.input :fundraising_target, input_html: {  class: 'span2', min: 0  }, helplink: true
+= # f.input :fundraising_target, input_html: {  class: 'span2', min: 0  }, helplink: true
 = f.input :charity_contact_name, input_html: { class: 'span6'  }, helplink: true
 = f.input :charity_contact_email, input_html: { class: 'span6'  }, helplink: true
+= f.input :charity_contact_telephone, input_html: { class: 'span6'  }, helplink: true
 = #TODO f.input :charity_approved
 = f.input :manual_payment_accepted, helplink: true
 = f.input :manual_payment_instructions, input_html: { class: 'span6' }, :hint => 'e.g. Go the front desk now', helplink: true

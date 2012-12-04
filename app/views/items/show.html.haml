@@ -21,13 +21,16 @@
     %li.active
       #{truncate @item.name}
 
+  .well
+    Use the links above to make further changes to your auction.
+
   %h4
     Item:
   %h1
     = resource.name.titleize
   %p 
     %a.btn.btn-small{:href => edit_resource_path} Edit
-    %a.btn.btn-small.btn-danger{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
+    %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
 
   %table.table.table-striped.table-bordered
     - for column in controller.resource_service.content_columns
