@@ -20,7 +20,7 @@
       - if current_user.is_admin?
         %hr
         %h3 Positive Admin Only Links
-        - if current_user.id != session[:admin_id]
+        - if session[:admin_id] and current_user.id != session[:admin_id]
           %p
             %a.btn.btn-primary{href: switch_user_session_path(session[:admin_id])} Switch Back to #{User.find(session[:admin_id]).name}
         %p
