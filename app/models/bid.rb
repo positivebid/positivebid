@@ -6,13 +6,15 @@ class Bid < ActiveRecord::Base
 
   validates_presence_of :lot, :user, :amount
   validates_numericality_of :amount, :greater_than_or_equal_to => 0
+  validates_uniqueness_of :amount, :scope => :lot_id
   validate :check_greater
   validate :bidding_open
 
 
   after_create :emit_create #custom
   after_create :emit_update
-  after_create :update_current_bid
+  after_create :update_lot_current_bid
+  after_destroy :update_lot_current_bid_from_db
 
   def check_greater
     if lot.current_bid and amount <= lot.current_bid.amount
@@ -38,9 +40,16 @@ class Bid < ActiveRecord::Base
     end
   end
 
-  def update_current_bid
+  def update_lot_current_bid
     lot.current_bid = self
     lot.save
+    return true
+  end
+
+  def update_lot_current_bid_from_db
+    if last_hightest = lot.bids.order('amount DESC').first
+      last_hightest.update_lot_current_bid
+    end
     return true
   end
 

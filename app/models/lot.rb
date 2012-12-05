@@ -70,10 +70,8 @@ class Lot < ActiveRecord::Base
   end
 
   def outbid_notify
-    Rails.logger.info changes.inspect
     if changes["current_bid_id"].present? and (old_id = changes["current_bid_id"][0]).present?
-      old_bid = Bid.find(old_id)
-      if old_bid.user_id != current_bid.user_id and (old_user = old_bid.user).present?
+      if old_bid = self.bids.where(:id => old_id).first and old_bid.user_id != current_bid.user_id and (old_user = old_bid.user).present?
         if old_user.outbid_confirmation
           room = NoDevent::Emitter.room(old_user)
           Rails.logger.info("ROOM IS #{room.inspect}")
@@ -82,7 +80,6 @@ class Lot < ActiveRecord::Base
       end
     end
   end
-
 
 
   def set_defaults

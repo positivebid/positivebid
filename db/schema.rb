@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204130120) do
+ActiveRecord::Schema.define(:version => 20121205124729) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name",                                                 :null => false
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(:version => 20121204130120) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "bids", ["amount"], :name => "index_bids_on_amount"
+  add_index "bids", ["lot_id", "amount"], :name => "index_bids_on_lot_id_and_amount", :unique => true
   add_index "bids", ["lot_id", "created_at"], :name => "index_bids_on_lot_id_and_created_at"
   add_index "bids", ["lot_id"], :name => "index_bids_on_lot_id"
   add_index "bids", ["user_id"], :name => "index_bids_on_user_id"
