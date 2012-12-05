@@ -6,13 +6,17 @@
   .row
     .span8.offset2
       %p
+        For everyone...
+      %p
         %a.btn.btn-yellow{:href => app_path} View Auctions &amp; Bidding &rarr;
+      %p
+        %a.btn{:href => logout_path} Logout
   .row
     .span8.offset2
       %p
-        %a.btn.btn-primary{:href => resource_auctions_path} Auction Setup
+        For Auction Organisers only...
       %p
-        %a.btn{:href => logout_path} Logout
+        %a.btn.btn-primary{:href => resource_auctions_path} Auction Setup
       - if current_user.is_admin?
         %hr
         %h3 Positive Admin Only Links
