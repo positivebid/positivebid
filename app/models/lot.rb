@@ -17,7 +17,8 @@ class Lot < ActiveRecord::Base
   attr_accessible *USER_FIELDS
   attr_accessible *ADMIN_FIELDS, :as => :admin
 
-  STATES = %w( draft published withdrawn forsale bought closing sold paid )
+  STATES = %w( draft published forsale closing sold paid )
+  VISIBLE_STATES = %w( published forsale closing sold paid )
   validates_inclusion_of :state, in: STATES
 
   TIMINGS = %w( scheduled manual )
@@ -47,10 +48,10 @@ class Lot < ActiveRecord::Base
   scope :draft, where(:state => 'draft')
   scope :published, where(:state => 'published')
   scope :forsale, where(:state => 'forsale')
-  scope :bought, where(:state => 'bought')
-  scope :sold, where(:state => 'sold')
   scope :closing, where(:state => 'closing')
+  scope :sold, where(:state => 'sold')
   scope :paid, where(:state => 'paid')
+  scope :visible, where(:state => VISIBLE_STATES )
 
   include NodeventGlobal
 
@@ -119,20 +120,12 @@ class Lot < ActiveRecord::Base
       lot.sold_at = Time.now
     end
 
-    event :buy_now do
-      transition :forsale => :bought
-    end
-    before_transition any => :bought do |lot, transition|
-      lot.sold_at = Time.now
-    end
 
     event :payment do
-      transition :bought  => :paid
       transition :sold => :paid
     end
 
     event :organiser_payment, :admin_payment do
-      transition :bought  => :paid
       transition :sold => :paid
     end
 

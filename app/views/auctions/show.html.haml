@@ -36,10 +36,18 @@
 
 
   %table.table.table-striped.table-bordered
-    - for column in [ :name, :description, :location, :time_zone, :hashtag, :event_start_at, :event_end_at, :default_lot_timing, :default_sale_start_at, :default_sale_end_at, :charity_contact_email, :charity_contact_name, :charity_contact_telephone, :charity_name, :manual_payment_accepted, :manual_payment_instructions, :justgiving_payment_accepted, :justgiving_sdi_charity_id, :state ]
+    - for column in [ :name, :description, :location, :time_zone, :hashtag, :event_start_at, :event_end_at, :default_lot_timing, :default_sale_start_at, :default_sale_end_at, :charity_contact_email, :charity_contact_name, :charity_contact_telephone, :charity_name, :manual_payment_accepted, :manual_payment_instructions, :justgiving_payment_accepted, :justgiving_sdi_charity_id ]
       %tr
         %th= column.to_s.humanize
         %td= resource.send(column)
+    %tr
+      %th State
+      %td
+        - resource.class::STATES.each do |s|
+          - if resource.state == s
+            %strong #{resource.state}
+          - else
+            #{s}
     %tr
       %th Log
       %td.log #{resource.log}
