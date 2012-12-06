@@ -88,6 +88,18 @@
               %strong(data-rv-text="item.name")
             %img.iimage.p200(data-rv-src="item:imageUrl200 < item.picture_id")
             %div.itext(data-rv-text="item.description")
+            %p(data-rv-show="item:hasTerms")
+              %em Terms and Conditions
+            %div.itext(data-rv-text="item.terms" data-rv-show="item:hasTerms")
+            %p(data-rv-show="item:hasCollectionInfo")
+              %em Collection Information
+            %div.itext(data-rv-text="item.collection_info" data-rv-show="item:hasCollectionInfo")
+            %p(data-rv-show="item:hasDonor")
+              %em Donated by...
+            %h4(data-rv-text="item.donor_name" data-rv-show="item:hasDonorName")
+            %div.itext(data-rv-text="item.donor_byline" data-rv-show="item:hasDonorByline")
+            %p
+              %a(rel="external" data-rv-text="item.donor_website_url" data-rv-show="item:hasDonorWebsiteUrl" data-rv-href="item.donor_website_url")
 
 
     %div.ui-bar-b(data-role="footer")

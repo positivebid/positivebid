@@ -5,6 +5,7 @@ class Item < ActiveRecord::Base
     :terms, 
     :collection_info, 
     :donor_name, 
+    :donor_website_url,
     :donor_byline, 
     :organiser_notes,
     :picture_attributes

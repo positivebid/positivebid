@@ -52,6 +52,13 @@ PB.Item = Backbone.Model.extend
   errors_image_url: -> ''  #todo
   errors_description: -> ''  #todo
 
+  hasTerms: -> @get('terms')? and @get('terms') != ''
+  hasCollectionInfo: -> @get('collection_info')? and @get('collection_info') != ''
+  hasDonorName: -> @get('donor_name')? and @get('donor_name') != ''
+  hasDonorWebsiteUrl: -> @get('donor_website_url')? and @get('donor_website_url') != ''
+  hasDonorByline: -> @get('donor_byline')? and @get('donor_byline') != ''
+  hasDonor : -> @hasDonorName() or @hasDonorWebsiteUrl() or @hasDonorByline()
+
 
   serverChange: (data) ->
     # Useful to prevent loops when dealing with client-side updates (ie: forms).
