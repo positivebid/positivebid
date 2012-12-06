@@ -2,7 +2,7 @@
   %div(data-role="page")
     %div.ui-bar-b(data-role="header" data-theme="b")
       %a(sam="#/reload" data-icon="refresh" data-direction="reverse") Reload
-      %h1 Auctions
+      %h1 PostiveBid Auctions
       %a.status(data-icon="alert" data-rv-jq_a_btn_icon="status:icon < status.connected" data-rv-jq_a_btn_text="status:text < status.status" data-rv-text="status:text") Initial
 
     %div(data-role="content" data-theme="b" jnif="current_user")
@@ -19,6 +19,8 @@
       %a(data-rel="external" href="/logout" data-mini="true" data-role="button") Logout
 
     %div(data-role="content")
+      %p 
+        View an auction...
 
       %div(data-rv-hide="auctions:length < auctions.models")
         %p 
@@ -33,8 +35,8 @@
             %p
               %span(data-rv-text="auction:description")
 
-      /%a(sam="#/options" data-role="button") User Options
 
-    %div.ui-bar-b(data-role="footer")
+      %a(sam="#/options" data-theme="b" data-role="button" data-iconpos="right" data-icon="info") Bidding Information
+    %div.ui-bar.ui-bar-b(data-role="footer")
       %h4 PositiveBid
 
