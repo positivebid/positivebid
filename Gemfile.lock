@@ -158,7 +158,7 @@ GEM
     multi_json (1.4.0)
     multi_xml (0.5.1)
     multipart-post (1.1.5)
-    newrelic_rpm (3.5.2.17)
+    newrelic_rpm (3.5.3.25)
     nodevent (3.1.9)
       httparty (>= 0.9.0)
       redis (>= 2.0.0)
