@@ -19,5 +19,5 @@
 - f.object.picture or f.object.build_picture
 = f.simple_fields_for :picture do |p|
   = p.input :image_file, as: :file, label: 'Photo File', helplink: true
-  = p.input :image_file_url, as: :url, label: 'Photo URL', hint: "You can either choose a file to upload as your photo, or supply the URL to a photo and we'll grab it for you.", input_html: { class: 'span6' }, helplink: true
+  - # = p.input :image_file_url, as: :url, label: 'Photo URL', hint: "You can either choose a file to upload as your photo, or supply the URL to a photo and we'll grab it for you.", input_html: { class: 'span6' }, helplink: true
 
