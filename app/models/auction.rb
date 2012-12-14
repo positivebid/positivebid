@@ -38,6 +38,7 @@ class Auction < ActiveRecord::Base
 
   validates_presence_of :name
   validates_length_of :name, :in => 2..100
+  validates_length_of :manual_payment_instructions, :maximum => 250, :allow_nil => true
   validates_inclusion_of :default_lot_timing, :in => Lot::TIMINGS
   validate :validate_at_least_one_payment_method
   validate :validate_justgiving_payment
