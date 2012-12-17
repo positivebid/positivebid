@@ -47,9 +47,11 @@
       %td
         - resource.class::STATES.each do |s|
           - if resource.state == s
-            %strong #{resource.state}
+            %strong #{resource.state} 
           - else
             #{s}
+          \- #{resource.class::STATE_DESCRIPTIONS[s]}
+          %br
     %tr
       %th Log
       %td.log #{resource.log}

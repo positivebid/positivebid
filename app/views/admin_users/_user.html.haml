@@ -2,7 +2,8 @@
   %td
     - if user.image_url.present?
       %img.p80{:src => user.image_url }
-  %td= link_to "#{user.name}", switch_user_session_path(:id => user.id ) 
+  %td
+    %a{:href => switch_user_session_path(:id => user.id ), :title => "Switch login to #{user.name}" } #{user.name}
   %td= mail_to user.email
   %td= user.provider
   %td #{user.login_count} / #{user.failed_login_count}
@@ -20,4 +21,4 @@
       %br
       (#{distance_of_time_in_words_to_now(user.last_login_at)} ago)
   %td
-    = link_to 'show', admin_user_path(user)
+    %a{:href => admin_user_path(user)} Show
