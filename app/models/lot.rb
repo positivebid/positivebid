@@ -17,8 +17,18 @@ class Lot < ActiveRecord::Base
   attr_accessible *USER_FIELDS
   attr_accessible *ADMIN_FIELDS, :as => :admin
 
-  STATES = %w( draft published forsale closing sold paid )
-  VISIBLE_STATES = %w( published forsale closing sold paid )
+  STATE_DESCRIPTIONS = {
+   'draft' => 'Lot is being setup and it\'s listing is not yet visible.',
+   'published' => 'Lot listing is now visible.',
+   'open' => 'Lot is open for bidding',
+   'closing' => 'Lot bidding is closing. Last chance for new bids.',
+   'sold' => 'Lot is sold. New bids not acceptted',
+   'paid' => 'Lot has been paid for by winning bidder.'
+  }
+
+  STATES = STATE_DESCRIPTIONS.keys
+
+  VISIBLE_STATES = %w( published open closing sold paid )
   validates_inclusion_of :state, in: STATES
 
   TIMINGS = %w( scheduled manual )
@@ -47,7 +57,7 @@ class Lot < ActiveRecord::Base
 
   scope :draft, where(:state => 'draft')
   scope :published, where(:state => 'published')
-  scope :forsale, where(:state => 'forsale')
+  scope :open, where(:state => 'open')
   scope :closing, where(:state => 'closing')
   scope :sold, where(:state => 'sold')
   scope :paid, where(:state => 'paid')
@@ -88,7 +98,7 @@ class Lot < ActiveRecord::Base
   end
 
   def bidable?
-    forsale? or closing?
+    open? or closing?
   end
 
   state_machine :initial => :draft do
@@ -98,16 +108,16 @@ class Lot < ActiveRecord::Base
     end
 
     event :auto_open, :organiser_open, :admin_open do
-      transition :published => :forsale
+      transition :published => :open
     end
 
     event :auto_close_start, :organiser_close_start, :admin_close_start do
-      transition :forsale => :closing
+      transition :open => :closing
     end
 
     event :organiser_close_immediate, :admin_close_immediate do
       transition :closing => :sold
-      transition :forsale => :sold
+      transition :open => :sold
     end
 
     event :auto_close_done do
@@ -161,7 +171,7 @@ class Lot < ActiveRecord::Base
     Lot.published.where("sale_start_at < ?", Time.now).find_each do |lot|
       lot.auto_open
     end
-    Lot.forsale.where("sale_end_at < ?", Time.now).find_each do |lot|
+    Lot.open.where("sale_end_at < ?", Time.now).find_each do |lot|
       lot.auto_close_start
     end
     Lot.closing.where("updated_at < ?", Time.now - 55.seconds).find_each do |lot|

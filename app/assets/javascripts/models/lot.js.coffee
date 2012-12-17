@@ -62,7 +62,7 @@ PB.Lot = Backbone.Model.extend
   is_draft: -> @get('state') is "draft"
   is_published: -> @get('state') is "published"
   is_draft_or_published: -> @is_draft() or @is_published()
-  is_forsale: -> @get('state') is "forsale"
+  is_open: -> @get('state') is "open"
   is_closing: -> @get('state') is "closing"
   is_sold: -> @get('state') is "sold"
   is_bought: -> @get('state') is "bought"
@@ -74,14 +74,14 @@ PB.Lot = Backbone.Model.extend
   is_scheduled: -> @get('timing') is "scheduled"
   is_manual: -> @get('timing') is "manual"
 
-  isBiddingDisabled: -> not ( @is_forsale() or @is_closing() )
-  isBiddingOpen: -> @is_forsale() or @is_closing()
+  isBiddingDisabled: -> not ( @is_open() or @is_closing() )
+  isBiddingOpen: -> @is_open() or @is_closing()
   isBiddingPreSale: -> @is_draft() or @is_published()
   isBiddingPostSale: -> @is_bought() or @is_sold() or @is_paid()
 
   icon: ->
     return "gavel-closing" if @is_closing()
-    return "gavel-halfway" if @is_forsale()
+    return "gavel-halfway" if @is_open()
     return "gavel-down" if @isBiddingPostSale()
     return "gavel-up"
 
@@ -91,7 +91,7 @@ PB.Lot = Backbone.Model.extend
         return "Bidding from #{nice_datetime(@get('sale_start_at'))}"
       else
         return "Bidding opens soon"
-    if @is_forsale()
+    if @is_open()
       if @is_scheduled()
         return "Closing <time class=\"fromNow\" datetime=\"#{@get('sale_end_at')}\">#{moment(@get('sale_end_at')).fromNow()}</time>"
       else
@@ -109,7 +109,7 @@ PB.Lot = Backbone.Model.extend
   bidder_summary: ->
     if not @get('current_bid_id')?
       return ""
-    if @is_forsale() or @is_closing()
+    if @is_open() or @is_closing()
       return "Current bid by #{@current_bid_user_name()}"
     if @is_sold() or @is_paid()
       return "Winning bid by #{@current_bid_user_name()}"
