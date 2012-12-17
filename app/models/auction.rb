@@ -73,7 +73,15 @@ class Auction < ActiveRecord::Base
 
   include NodeventGlobal  # todo: only for active
 
-  STATES = %w( draft submitted active archived )
+  STATE_DESCRIPTIONS = {
+    'draft' => 'Auction is being setup by organiser and has not yet been submitted for approval.',
+    'submitted' => 'Auction has bee submitted for approval by PositiveBid. PositiveBid will check accuracy of auction details before approving Auction',
+    'active' => 'Auction has been approved and now listed live on the PositiveBid.com bidding website app for bidders to view and bid on open lots.',
+    'archived' => 'The Auction has been archived and removed from the listing on the PositiveBid.com website app.'
+    }
+
+  STATES = STATE_DESCRIPTIONS.keys
+
   validates_inclusion_of :state, in: STATES
 
   scope :draft, where(:state => 'draft')
@@ -83,7 +91,7 @@ class Auction < ActiveRecord::Base
 
   state_machine :initial => :draft do
 
-    event :organiser_submit, :admin_submit do
+    event :organiser_submit_for_approval, :admin_submit do
       transition :draft => :submitted
     end
 
