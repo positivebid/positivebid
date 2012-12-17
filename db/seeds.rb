@@ -9,7 +9,8 @@
 
 # generate new faq_seed_data.rb from database with
 #
-# s = 'FAQS = [' + Faq.all.sort_by{|p| p.key}.map{|p| pa = p.attributes.reject{|k,v| k.match(/^(updated_at|created_at|id)$/); pa['questions_attributes'] =  p.questions.map{|p| p.attributes.reject{|k,v| v.blank? or k.match(/^(updated_at|created_at|id|faq_id)$/)} ;  pa.awesome_inspect(:plain => true, :index => false, :sort_keys => true)}.join(',')  + ']'
+#
+s = 'FAQS = [' + Faq.all.sort_by{|p| p.key}.map{|p| pa = p.attributes.reject{|k,v| k.match(/^(updated_at|created_at|id)$/)}; pa['questions_attributes'] =  p.questions.map{|p| p.attributes.reject{|k,v| v.blank? or k.match(/^(updated_at|created_at|id|faq_id)$/)} } ;  pa.awesome_inspect(:plain => true, :index => false, :sort_keys => true)}.join(',')  + ']'
 #
 # f = File.open("db/faq_seed_data.rb", "w"); f.write(s); f.close
 
@@ -29,7 +30,7 @@ FAQS.each do |attrs|
 end
 
 
-# s = 'HELPS = [' + Helplinks.all.sort_by{|p| p.key}.map{|p| p.attributes.reject{|k,v| k.match(/^(updated_at|created_at|id)$/)}.awesome_inspect(:plain => true, :sort_keys => true)}.join(',')  + ']'
+# s = 'HELPS = [' + Helplink.all.sort_by{|p| p.key}.map{|p| p.attributes.reject{|k,v| k.match(/^(updated_at|created_at|id)$/)}.awesome_inspect(:plain => true, :sort_keys => true)}.join(',')  + ']'
 #
 #f = File.open("db/helplinks_seed_data.rb", "w"); f.write(s); f.close
 
