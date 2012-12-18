@@ -1,11 +1,12 @@
 class Faq < ActiveRecord::Base
-  attr_accessible :after_html, :before_html, :key, :published, :show_answers_on_faq, :show_index, :show_position, :title
+  attr_accessible :after_html, :before_html, :key, :published, :show_answers_on_faq, :show_index, :show_position, :title, :questions_attributes
 
   validates_presence_of :title, :key
   validates_uniqueness_of :key
 
   belongs_to :owner, :polymorphic => true
   has_many :questions, :inverse_of => :faq, :dependent => :destroy, :order => 'position'
+  accepts_nested_attributes_for :questions
 
   has_many :published_questions, :class_name => 'Question', :conditions => { :published => true }, :order => "position"
 

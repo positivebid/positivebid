@@ -1,3 +1,5 @@
+# encoding: UTF-8
+#
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -10,7 +12,7 @@
 # generate new faq_seed_data.rb from database with
 #
 #
-s = 'FAQS = [' + Faq.all.sort_by{|p| p.key}.map{|p| pa = p.attributes.reject{|k,v| k.match(/^(updated_at|created_at|id)$/)}; pa['questions_attributes'] =  p.questions.map{|p| p.attributes.reject{|k,v| v.blank? or k.match(/^(updated_at|created_at|id|faq_id)$/)} } ;  pa.awesome_inspect(:plain => true, :index => false, :sort_keys => true)}.join(',')  + ']'
+s = 'FAQS = [' + Faq.all.sort_by{|p| p.key}.map{|p| pa = p.attributes.reject{|k,v| k.match(/^(updated_at|created_at|owner_id|owner_type|id)$/)}; pa['questions_attributes'] =  p.questions.map{|p| p.attributes.reject{|k,v| v.blank? or k.match(/^(updated_at|created_at|id|faq_id)$/)} } ;  pa.awesome_inspect(:plain => true, :index => false, :sort_keys => true)}.join(',')  + ']'
 #
 # f = File.open("db/faq_seed_data.rb", "w"); f.write(s); f.close
 
@@ -25,12 +27,12 @@ FAQS.each do |attrs|
     end
   else
     puts "creating FAQ #{attrs['key']}"
-    Faq.create!(attrs)
+    PublicOwner.instance.faqs.create!(attrs)
   end
 end
 
 
-# s = 'HELPS = [' + Helplink.all.sort_by{|p| p.key}.map{|p| p.attributes.reject{|k,v| k.match(/^(updated_at|created_at|id)$/)}.awesome_inspect(:plain => true, :sort_keys => true)}.join(',')  + ']'
+# s = 'HELPS = [' + Helplink.all.sort_by{|p| p.key}.map{|p| p.attributes.reject{|k,v| k.match(/^(updated_at|created_at|user_id|id)$/)}.awesome_inspect(:plain => true, :sort_keys => true)}.join(',')  + ']'
 #
 #f = File.open("db/helplinks_seed_data.rb", "w"); f.write(s); f.close
 
