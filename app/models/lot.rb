@@ -103,6 +103,8 @@ class Lot < ActiveRecord::Base
 
   state_machine :initial => :draft do
 
+    before_transition :draft => :published, :do => :validate_has_an_item
+
     event :organiser_publish_listing, :admin_publish_listing do
       transition :draft => :published
     end
@@ -155,6 +157,15 @@ class Lot < ActiveRecord::Base
     else
       logger.info("#{Time.now.to_s} Deal #{id}: #{text}\n")
       self.update_column(:log, (log || '') + "#{Time.now.to_s} #{text}\n")
+    end
+  end
+
+  def validate_has_an_item
+    if self.items.blank?
+      self.errors.add(:base, "A Lot needs at least 1 item added before being published")
+      return true
+    else
+      return true
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217224541) do
+ActiveRecord::Schema.define(:version => 20121218104835) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name",                                                 :null => false
@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(:version => 20121217224541) do
     t.string   "manual_payment_instructions"
     t.boolean  "justgiving_payment_accepted", :default => false
     t.string   "justgiving_sdi_charity_id"
+    t.string   "organiser_name"
+    t.string   "organiser_email"
+    t.string   "organiser_telephone"
   end
 
   add_index "auctions", ["event_start_at"], :name => "index_auctions_on_event_start_at"
