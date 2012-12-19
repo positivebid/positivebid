@@ -13,8 +13,14 @@
         %a.btn{:href => logout_path} Logout
   .row
     .span8.offset2
+      %hr
       %p
         For Auction Organisers only...
+      %p
+        Auction organsiers please review our
+        = succeed "." do 
+          %a(href="https://docs.google.com/document/pub?id=1FhREBHkTAFkLI20bmnRqR7AIMu2R_kjPHQ1W3WIrDIk") Auction Organsiers Guide
+
       %p
         %a.btn.btn-primary{:href => resource_auctions_path} Auction Setup
       - if current_user.is_admin?
