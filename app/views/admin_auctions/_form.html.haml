@@ -14,8 +14,11 @@
 = f.input :default_sale_end_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.default_sale_end_at.try(:strftime,"%Y-%m-%d %H:%M")}, :hint => "For lots with timing set to 'scheduled'"
 
 = #TODO f.input :allow_anonymous_bids
+= f.input :organiser_name, input_html: { class: 'span6' }
+= f.input :organiser_email, input_html: { class: 'span6' }
+= f.input :organiser_telephone, input_html: { class: 'span6' }
 = f.input :charity_name, input_html: { class: 'span6'  }
-= f.input :fundraising_target, input_html: {  class: 'span2', min: 0  }
+= # f.input :fundraising_target, input_html: {  class: 'span2', min: 0  }
 = f.input :charity_contact_name, input_html: { class: 'span6'  }
 = f.input :charity_contact_email, input_html: { class: 'span6'  }
 = #TODO f.input :charity_approved

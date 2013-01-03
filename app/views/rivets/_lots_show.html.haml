@@ -27,7 +27,7 @@
           %span(data-rv-text="lot.sale_end_at | nice_datetime")
         %span(data-rv-show="lot:is_manual < lot.timing")
           Bidding opens soon 
-      %p(data-rv-show="lot:is_forsale < lot.state")
+      %p(data-rv-show="lot:is_open < lot.state")
         %span(data-rv-show="lot:is_scheduled < lot.timing")
           Closing at
           %span(data-rv-text="lot.sale_end_at | nice_datetime")

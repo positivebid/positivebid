@@ -12,6 +12,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 # staging
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 
+#* * * * * curl -s http://cron:access@alpha.positivebid.com/minute > /dev/null
+* * * * * curl -s http://positive:bid@alpha.positivebid.com/minute > /dev/null
+
 #TODO 40 10 * * * cd /home/positive/alpha.positivebid.com/positive/current && SAVETO="/home/positive/alpha.positivebid.com/positive/remote-backups" cap production db:daily_dump
 
 

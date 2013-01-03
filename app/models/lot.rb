@@ -17,8 +17,18 @@ class Lot < ActiveRecord::Base
   attr_accessible *USER_FIELDS
   attr_accessible *ADMIN_FIELDS, :as => :admin
 
-  STATES = %w( draft published forsale closing sold paid )
-  VISIBLE_STATES = %w( published forsale closing sold paid )
+  STATE_DESCRIPTIONS = {
+   'draft' => 'Lot is being setup and it\'s listing is not yet visible.',
+   'published' => 'Lot listing is now visible.',
+   'open' => 'Lot is open for bidding',
+   'closing' => 'Lot bidding is closing. Last chance for new bids.',
+   'sold' => 'Lot is sold. New bids not acceptted',
+   'paid' => 'Lot has been paid for by winning bidder.'
+  }
+
+  STATES = STATE_DESCRIPTIONS.keys
+
+  VISIBLE_STATES = %w( published open closing sold paid )
   validates_inclusion_of :state, in: STATES
 
   TIMINGS = %w( scheduled manual )
@@ -47,7 +57,7 @@ class Lot < ActiveRecord::Base
 
   scope :draft, where(:state => 'draft')
   scope :published, where(:state => 'published')
-  scope :forsale, where(:state => 'forsale')
+  scope :open, where(:state => 'open')
   scope :closing, where(:state => 'closing')
   scope :sold, where(:state => 'sold')
   scope :paid, where(:state => 'paid')
@@ -88,26 +98,28 @@ class Lot < ActiveRecord::Base
   end
 
   def bidable?
-    forsale? or closing?
+    open? or closing?
   end
 
   state_machine :initial => :draft do
 
-    event :organiser_publish, :admin_publish do
+    before_transition :draft => :published, :do => :validate_has_an_item
+
+    event :organiser_publish_listing, :admin_publish_listing do
       transition :draft => :published
     end
 
-    event :auto_open, :organiser_open, :admin_open do
-      transition :published => :forsale
+    event :auto_open, :organiser_open_bidding_now, :admin_open_bidding_now do
+      transition :published => :open
     end
 
-    event :auto_close_start, :organiser_close_start, :admin_close_start do
-      transition :forsale => :closing
+    event :auto_close_start, :organiser_start_auto_closing_now, :admin_start_auto_closing_now do
+      transition :open => :closing
     end
 
-    event :organiser_close_immediate, :admin_close_immediate do
+    event :organiser_close_bidding_immediately, :admin_close_bidding_immediately do
       transition :closing => :sold
-      transition :forsale => :sold
+      transition :open => :sold
     end
 
     event :auto_close_done do
@@ -122,7 +134,7 @@ class Lot < ActiveRecord::Base
       transition :sold => :paid
     end
 
-    event :organiser_payment, :admin_payment do
+    event :organiser_mark_payment_recieved, :admin_payment do
       transition :sold => :paid
     end
 
@@ -148,6 +160,15 @@ class Lot < ActiveRecord::Base
     end
   end
 
+  def validate_has_an_item
+    if self.items.blank?
+      self.errors.add(:base, "A Lot needs at least 1 item added before being published")
+      return true
+    else
+      return true
+    end
+  end
+
 
   def self.order_by_ids(ids)
     transaction do
@@ -161,7 +182,7 @@ class Lot < ActiveRecord::Base
     Lot.published.where("sale_start_at < ?", Time.now).find_each do |lot|
       lot.auto_open
     end
-    Lot.forsale.where("sale_end_at < ?", Time.now).find_each do |lot|
+    Lot.open.where("sale_end_at < ?", Time.now).find_each do |lot|
       lot.auto_close_start
     end
     Lot.closing.where("updated_at < ?", Time.now - 55.seconds).find_each do |lot|

@@ -18,13 +18,13 @@
         %a{:href => admin_auction_admin_lot_path(@admin_auction, @admin_lot)} #{@admin_lot.number}: #{truncate @admin_lot.name}
         %span.divider /
     %li.active
-      Admin Items
+      Admin Bids
 
   - if @admin_lot
     %h4
       Admin Lot: #{@admin_lot.number}: #{@admin_lot.name}
   %h1
-    Admin Items
+    Admin Bids
 
   - if resources.respond_to? 'num_pages'
     = paginate resources

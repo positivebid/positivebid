@@ -11,6 +11,9 @@ class Auction < ActiveRecord::Base
     :default_sale_start_at, 
     :default_sale_end_at, 
     :allow_anonymous_bids, 
+    :organiser_name,
+    :organiser_email,
+    :organiser_telephone,
     :charity_contact_email, 
     :charity_contact_name, 
     :charity_contact_telephone, 
@@ -38,6 +41,7 @@ class Auction < ActiveRecord::Base
 
   validates_presence_of :name
   validates_length_of :name, :in => 2..100
+  validates_length_of :manual_payment_instructions, :maximum => 250, :allow_nil => true
   validates_inclusion_of :default_lot_timing, :in => Lot::TIMINGS
   validate :validate_at_least_one_payment_method
   validate :validate_justgiving_payment
@@ -72,7 +76,15 @@ class Auction < ActiveRecord::Base
 
   include NodeventGlobal  # todo: only for active
 
-  STATES = %w( draft submitted active archived )
+  STATE_DESCRIPTIONS = {
+    'draft' => 'Auction is being setup by organiser and has not yet been submitted for approval.',
+    'submitted' => 'Auction has bee submitted for approval by PositiveBid. PositiveBid will check accuracy of auction details before approving Auction',
+    'active' => 'Auction has been approved and now listed live on the PositiveBid.com bidding website app for bidders to view and bid on open lots.',
+    'archived' => 'The Auction has been archived and removed from the listing on the PositiveBid.com website app.'
+    }
+
+  STATES = STATE_DESCRIPTIONS.keys
+
   validates_inclusion_of :state, in: STATES
 
   scope :draft, where(:state => 'draft')
@@ -82,9 +94,12 @@ class Auction < ActiveRecord::Base
 
   state_machine :initial => :draft do
 
-    event :organiser_submit, :admin_submit do
+    before_transition :draft => :submitted, :do => :validate_can_submit
+
+    event :organiser_submit_for_approval, :admin_submit do 
       transition :draft => :submitted
     end
+
 
     event :admin_approve do
       transition :submitted => :active
@@ -108,6 +123,17 @@ class Auction < ActiveRecord::Base
       logger.info("#{Time.now.to_s} Deal #{id}: #{text}\n")
       self.update_column(:log, (log || '') + "#{Time.now.to_s} #{text}\n")
     end
+  end
+
+  def validate_can_submit
+    self.errors.add(:charity_name, "Please specify the Charity before submitting your auction for Approval") if self.charity_name.blank?
+    self.errors.add(:charity_contact_name, "Please specify the Charity Contact Name before submitting your auction for approval") if self.charity_contact_name.blank?
+    self.errors.add(:charity_contact_email, "Please specify the Charity Contact email address before submitting your auction for approval") if self.charity_contact_email.blank?
+    self.errors.add(:charity_contact_telephone, "Please specify the Charity Contact telephone address before submitting your auction for approval") if self.charity_contact_telephone.blank?
+    self.errors.add(:organiser_name, "Please specify the Organiser Name (Your Name) before submitting your auction for approval") if self.organiser_name.blank?
+    self.errors.add(:organiser_email, "Please specify the Organiser Email (Your Email) before submitting your auction for approval") if self.organiser_email.blank?
+    self.errors.add(:organiser_telephone, "Please specify the Organiser Telephone Number (Your Number) before submitting your auction for approval") if self.organiser_telephone.blank?
+    return self.errors.size == 0
   end
 
 
