@@ -32,8 +32,15 @@
         
 
       .span4.positivelogo
-        %h3 PositiveBid is launching
-        %p  We are now entering the trial phase of our project and are looking to partner with charitable fundraisers that would like to raise additional funds at an event before Christmas by using our application. 
+        %h3 PositiveBid is Live
+        %p  
+          PositiveBid is now available for you to use for your next charity auction. Organisers can 
+          %a{:href => login_url} Login 
+          to get started. If you have any questions then you can 
+          %strong contact us
+          by email
+          = succeed "." do 
+            %a{:mailto => 'info@positivebid.com'} info@positivebid.com
         %img.home_logo{:alt => "positivebid log", :src => image_path("logo/positivebid_128.png") }/
     
            
