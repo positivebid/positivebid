@@ -46,6 +46,12 @@
       %th Log
       %td.log #{resource.log}
     %tr
+      %th Created At
+      %td.log #{resource.created_at}
+    %tr
+      %th Last Updated At
+      %td.log #{resource.updated_at}
+    %tr
       %th Picture
       %td
         - if resource.picture
