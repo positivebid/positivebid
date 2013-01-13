@@ -2,22 +2,22 @@
   %ul.breadcrumb
     %li
       %a(href="/home") Home
-      %span.divider /
+      %span.divider &rarr;
     %li
       %a(href="/home/auctions") Auctions
-      %span.divider /
+      %span.divider &rarr;
     %li
       %a{:href => home_auction_path(@auction)}= truncate @auction.name
-      %span.divider /
+      %span.divider &rarr;
     %li
       %a{:href => home_auction_lots_path(@auction)} Lots
-      %span.divider /
+      %span.divider &rarr;
     %li.active
       %a{:href => home_auction_lot_path(@auction, @lot)} #{@lot.number}: #{truncate @lot.name}
-      %span.divider /
+      %span.divider &rarr;
     %li
       %a{:href => resources_path} Items
-      %span.divider /
+      %span.divider &rarr;
     %li.active
       #{truncate @item.name}
 

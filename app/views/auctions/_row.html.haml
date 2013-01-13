@@ -14,4 +14,11 @@
       %br
       #{resource.event_end_at.try(:to_s, :long)}
     %td
-      %a.btn{:href => resource_path(resource)} View
+      %p
+        %a.btn{:href => resource_path(resource)} View
+      %p
+        - if resource.lots.any?
+          %a.btn{:href => resource_lots_path(resource)} View Auction Lots
+        - else
+          %a.btn.btn-primary(title="An Auction needs at least one Lot"){:href => new_resource_lot_path(resource)} Add Lot to Auction
+

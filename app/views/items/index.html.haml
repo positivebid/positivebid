@@ -2,21 +2,21 @@
   %ul.breadcrumb
     %li
       %a(href="/home") Home
-      %span.divider /
+      %span.divider &rarr;
     %li
       %a(href="/home/auctions") Auctions
-      %span.divider /
+      %span.divider &rarr;
     %li
       %a{:href => home_auction_path(@auction)}= truncate @auction.name
-      %span.divider /
+      %span.divider &rarr;
     %li
       %a{:href => home_auction_lots_path(@auction)} Lots
-      %span.divider /
+      %span.divider &rarr;
     %li.active
       %a{:href => home_auction_lot_path(@auction, @lot)} #{@lot.number}: #{truncate @lot.name}
-      %span.divider /
+      %span.divider &rarr;
     %li.active
-      Items
+      Items for Lot
 
   .well
     %p 
@@ -36,7 +36,10 @@
     Items
   %p
     - if path_exists?(:new_resource_path)
-      %a.btn.btn-yellow{:href => new_resource_path} Add New #{resource_name.humanize}
+      - if resources.blank?
+        %a.btn.btn-yellow{:href => new_resource_path} Add Item to this Lot
+      - else
+        %a.btn.btn-yellow{:href => new_resource_path} Add another Item to this Lot
 
   - if resources.respond_to? 'num_pages'
     = paginate resources

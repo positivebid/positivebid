@@ -3,13 +3,13 @@
   %ul.breadcrumb
     %li
       %a(href="/home") Home
-      %span.divider /
+      %span.divider &rarr;
     %li
       %a(href="/home/auctions") Auctions
-      %span.divider /
+      %span.divider &rarr;
     %li.active
       = truncate resource.name
-      %span.divider /
+      %span.divider &rarr;
     %li
       %a{:href => resource_lots_path} Lots
 
@@ -36,12 +36,34 @@
 
 
   %table.table.table-striped.table-bordered
-    - for column in [ :name, :description, :location, :time_zone, :hashtag, :event_start_at, :event_end_at, :default_lot_timing, :default_sale_start_at, :default_sale_end_at, :charity_contact_email, :charity_contact_name, :charity_contact_telephone, :charity_name, :manual_payment_accepted, :manual_payment_instructions, :justgiving_payment_accepted, :justgiving_sdi_charity_id ]
+    - for column in [ :name, :description, :location, :time_zone, :event_start_at, :event_end_at, :default_lot_timing, :charity_contact_email, :charity_contact_name, :charity_contact_telephone, :charity_name ]
       %tr
         %th= column.to_s.humanize
         %td= resource.send(column)
+    - if resource.default_sale_start_at    
+      %tr
+        %th Default Sale Start At
+        %td= resource.default_sale_start_at.to_s(:long)
+    - if resource.default_sale_end_at    
+      %tr
+        %th Default Sale End At
+        %td= resource.default_sale_end_at.to_s(:long)
     %tr
-      %th State
+      %th Manual Payment Accepted
+      %td= resource.manual_payment_accepted
+    - if resource.manual_payment_accepted
+      %tr
+        %th Manual Payment Instructions
+        %td= resource.manual_payment_instructions
+    %tr
+      %th JustGiving Payment Accepted
+      %td= resource.justgiving_payment_accepted
+    - if resource.justgiving_payment_accepted
+      %tr
+        %th JustGiving SDI Charity Id
+        %td= resource.justgiving_sdi_charity_id
+    %tr
+      %th Auction State
       %td
         - resource.class::STATES.each do |s|
           - if resource.state == s

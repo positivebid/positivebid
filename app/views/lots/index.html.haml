@@ -3,13 +3,13 @@
   %ul.breadcrumb
     %li
       %a(href="/home") Home
-      %span.divider /
+      %span.divider &rarr;
     %li
       %a(href="/home/auctions") Auctions
-      %span.divider /
+      %span.divider &rarr;
     %li
       %a{:href => home_auction_path(@auction)}= truncate @auction.name
-      %span.divider /
+      %span.divider &rarr;
     %li.active
       Lots
 
@@ -43,6 +43,12 @@
   - if resources.respond_to? 'num_pages'
     = paginate resources
 
+  %h3 Lot States
+  - Lot::STATES.each do |s|
+    %p
+      %strong #{s}
+      \-
+      #{Lot::STATE_DESCRIPTIONS[s]}
 
 :javascript
   $('table tbody').sortable({

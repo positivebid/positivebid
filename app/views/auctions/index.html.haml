@@ -3,7 +3,7 @@
   %ul.breadcrumb
     %li
       %a(href="/home") Home
-      %span.divider /
+      %span.divider &rarr;
     %li.active
       %a(href="/home/auctions") Auctions
 
@@ -13,7 +13,7 @@
     Auctions
   %p
     - if path_exists?(:new_resource_path)
-      %a.btn.btn-yellow{:href => new_resource_path} Add New #{resource_name.humanize}
+      %a.btn.btn-primary{:href => new_resource_path} Add New #{resource_name.humanize}
 
   - if resources.respond_to? 'num_pages'
     = paginate resources
@@ -24,5 +24,14 @@
 
   - if resources.respond_to? 'num_pages'
     = paginate resources
+
+
+
+  %h3 Auction States
+  - Auction::STATES.each do |s|
+    %p
+      %strong #{s}
+      \-
+      #{Auction::STATE_DESCRIPTIONS[s]}
 
 

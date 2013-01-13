@@ -32,8 +32,6 @@
   .controls
     - if resource.picture.try(:id)
       %img.m#item_photo{:src => m_picture_path(resource.picture, :format => :jpg)}
-    - else
-      %img.s#item_photo
 
 
 - f.object.picture or f.object.build_picture

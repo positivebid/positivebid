@@ -18,4 +18,10 @@
     %td
       = resource.state
     %td
-      %a.btn{:href => resource_path(resource)} View
+      %p
+        %a.btn{:href => resource_path(resource)} View Lot
+      %p
+        - if resource.items.any?
+          %a.btn{:href => resource_items_path(resource)} View Lot Items
+        - else
+          %a.btn.btn-primary(title="A Lot needs at least one item"){:href => new_resource_item_path(resource)} Add Item to Lot
