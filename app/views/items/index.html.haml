@@ -37,9 +37,9 @@
   %p
     - if path_exists?(:new_resource_path)
       - if resources.blank?
-        %a.btn.btn-yellow{:href => new_resource_path} Add Item to this Lot
+        %a.btn.btn-primary(title="Each Lot needs an item"){:href => new_resource_path} Add Item to this Lot
       - else
-        %a.btn.btn-yellow{:href => new_resource_path} Add another Item to this Lot
+        %a.btn.btn-primary{:href => new_resource_path} Add another Item to this Lot
 
   - if resources.respond_to? 'num_pages'
     = paginate resources
