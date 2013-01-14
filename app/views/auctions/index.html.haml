@@ -11,6 +11,14 @@
     Listing:
   %h1
     Auctions
+
+  %p
+    %strong
+      Setting up an Auction? Please first read our
+      = succeed "." do 
+        %strong
+          %a(href="https://docs.google.com/document/pub?id=1FhREBHkTAFkLI20bmnRqR7AIMu2R_kjPHQ1W3WIrDIk" target="_blank")> Auction Organiser Guide
+
   %p
     - if path_exists?(:new_resource_path)
       %a.btn.btn-primary{:href => new_resource_path} Add New #{resource_name.humanize}
