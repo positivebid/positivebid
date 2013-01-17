@@ -78,7 +78,7 @@ class Auction < ActiveRecord::Base
 
   STATE_DESCRIPTIONS = {
     'draft' => 'Auction is being setup by organiser and has not yet been submitted for approval.',
-    'submitted' => 'Auction has bee submitted for approval by PositiveBid. PositiveBid will check accuracy of auction details before approving Auction',
+    'submitted' => 'Auction has been submitted for approval to PositiveBid. PositiveBid will check accuracy of auction details before approving Auction',
     'active' => 'Auction has been approved and now listed live on the PositiveBid.com bidding website app for bidders to view and bid on open lots.',
     'archived' => 'The Auction has been archived and removed from the listing on the PositiveBid.com website app.'
     }
