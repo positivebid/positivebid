@@ -1,5 +1,3 @@
-# encoding: UTF-8
-#
 FAQS = [{
               "after_html" => "",
              "before_html" => "",
@@ -55,10 +53,16 @@ FAQS = [{
                 "title" => "Who has supported PositiveBid?"
         },
         {
-                 "body" => "You can contact the PositiveBid team using the \"Contact Us\" link on the Positive Bid home page.",
+                 "body" => "By visiting www.positivebid.com you are accepting and consenting to the PositiveBid Ltd (Company No. 08103402) Terms and Conditions as outlined below:\r\n\r\n1. We may collect Personal Data about you when you sign into the PositiveBid application. This Personal Data shall not be kept longer than necessary in order to support the operation of auctions using the PositiveBid application, and obligations of PositiveBid Ltd. Information may be used internally by PositiveBid, publicly displayed within the application, or supplied to auction organisers and organisations that have supported PositiveBid Ltd.\r\n\r\n2. Any bids placed through the PositiveBid application are considered to be legally binding offers between bidder and auction organiser to purchase the goods and/or services detailed in the relevant Lot. Winning bidders will be expected to honour the offer they have made. The accuracy of Lot details are wholly and exclusively the responsibility of the auction organiser. PositiveBid Ltd excludes all liability regarding the payment for, accuracy or delivery of Lots, as well as the operation of auctions.\r\n\r\n3. If you provide false or inaccurate information to us and we suspect fraud, we will record this and may share it with other people and organisations. We, and other credit and insurance organisations, may also use technology to detect and prevent fraud.\r\n\r\n4. We may amend these Terms and Conditions from time to time without notice to you, in which case, we will publish the amended version on www.positivebid.com and within the PositiveBid application.  You confirm that we shall not be liable to you or any third party for any change to these Terms and Conditions from time to time.  It is your responsibility to check regularly to determine whether these Terms and Conditions have changed.",
              "position" => 9,
             "published" => true,
-                "title" => "How can I find out more?"
+                "title" => "What are the Terms and Conditions?"
+        },
+        {
+                 "body" => "You can contact the PositiveBid team by email at info@positivebid.com. ",
+             "position" => 10,
+            "published" => true,
+                "title" => "How can I findout more?"
         }
     ],
      "show_answers_on_faq" => true,
@@ -106,6 +110,12 @@ FAQS = [{
              "position" => 6,
             "published" => true,
                 "title" => "Payment options"
+        },
+        {
+                 "body" => "By visiting www.positivebid.com you are accepting and consenting to the PositiveBid Ltd (Company No. 08103402) Terms and Conditions as outlined below:\r\n\r\n1. We may collect Personal Data about you when you sign into the PositiveBid application. This Personal Data shall not be kept longer than necessary in order to support the operation of auctions using the PositiveBid application, and obligations of PositiveBid Ltd. Information may be used internally by PositiveBid, publicly displayed within the application, or supplied to auction organisers and organisations that have supported PositiveBid Ltd.\r\n\r\n2. Any bids placed through the PositiveBid application are considered to be legally binding offers between bidder and auction organiser to purchase the goods and/or services detailed in the relevant Lot. Winning bidders will be expected to honour the offer they have made. The accuracy of Lot details are wholly and exclusively the responsibility of the auction organiser. PositiveBid Ltd excludes all liability regarding the payment for, accuracy or delivery of Lots, as well as the operation of auctions.\r\n\r\n3. If you provide false or inaccurate information to us and we suspect fraud, we will record this and may share it with other people and organisations. We, and other credit and insurance organisations, may also use technology to detect and prevent fraud.\r\n\r\n4. We may amend these Terms and Conditions from time to time without notice to you, in which case, we will publish the amended version on www.positivebid.com and within the PositiveBid application.  You confirm that we shall not be liable to you or any third party for any change to these Terms and Conditions from time to time.  It is your responsibility to check regularly to determine whether these Terms and Conditions have changed.",
+             "position" => 7,
+            "published" => true,
+                "title" => "Terms and Conditions"
         }
     ],
      "show_answers_on_faq" => true,
