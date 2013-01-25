@@ -152,10 +152,10 @@ class Lot < ActiveRecord::Base
 
   def append_to_log(text)
     if self.new_record?
-      logger.info("#{Time.now.to_s} Deal New: #{text}\n")
+      logger.info("#{Time.now.to_s} Lot New: #{text}\n")
       self.log = (log || '') + "#{Time.now.to_s} #{text}\n"
     else
-      logger.info("#{Time.now.to_s} Deal #{id}: #{text}\n")
+      logger.info("#{Time.now.to_s} Lot #{id}: #{text}\n")
       self.update_column(:log, (log || '') + "#{Time.now.to_s} #{text}\n")
     end
   end
