@@ -1,17 +1,17 @@
 
 = f.input :name, label: 'Auction Name', input_html: { class: 'span6' }, :helplink => true
-= f.input :description, input_html: { rows: 5 , class: 'span6' }, helplink: true
-= f.input :location, input_html: { class: 'span6' }, helplink: true
+= f.input :description, input_html: { rows: 5 , class: 'span6' }, helplink: true, hint: "Please include useful information such as the date, location and time of your event."
+= #f.input :location, input_html: { class: 'span6' }, helplink: true
 = f.input :time_zone, :hint => "Make sure you set this correctly", helplink: true
 = # f.input :hashtag, input_html: { class: 'span6' }, helplink: true
 
-= f.input :event_start_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.event_start_at.try(:strftime,"%Y-%m-%d %H:%M")}, helplink: true
-= f.input :event_end_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.event_end_at.try(:strftime,"%Y-%m-%d %H:%M")}, helplink: true
+= #f.input :event_start_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.event_start_at.try(:strftime,"%Y-%m-%d %H:%M")}, helplink: true
+= #f.input :event_end_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.event_end_at.try(:strftime,"%Y-%m-%d %H:%M")}, helplink: true
 
-= f.input :default_lot_timing, as: :select, collection: Lot::TIMINGS, :include_blank => false, helplink: true
+= #f.input :default_lot_timing, as: :select, collection: Lot::TIMINGS, :include_blank => false, helplink: true
 
-= f.input :default_sale_start_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.default_sale_start_at.try(:strftime,"%Y-%m-%d %H:%M")}, :hint => "For lots with timing set to 'scheduled'", helplink: true
-= f.input :default_sale_end_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.default_sale_end_at.try(:strftime,"%Y-%m-%d %H:%M")}, :hint => "For lots with timing set to 'scheduled'", helplink: true
+= #f.input :default_sale_start_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.default_sale_start_at.try(:strftime,"%Y-%m-%d %H:%M")}, :hint => "For lots with timing set to 'scheduled'", helplink: true
+= #f.input :default_sale_end_at, as: :string, input_html: { class: 'ui-datetime-picker span3' , :value => f.object.default_sale_end_at.try(:strftime,"%Y-%m-%d %H:%M")}, :hint => "For lots with timing set to 'scheduled'", helplink: true
 
 = #TODO f.input :allow_anonymous_bids
 = # f.input :fundraising_target, input_html: {  class: 'span2', min: 0  }, helplink: true
@@ -23,9 +23,10 @@
 = f.input :charity_contact_email, input_html: { class: 'span6'  }, helplink: true
 = f.input :charity_contact_telephone, input_html: { class: 'span6'  }, helplink: true
 = #TODO f.input :charity_approved
-= f.input :manual_payment_accepted, helplink: true
+%strong Choose at least one payment method:
+= f.input :manual_payment_accepted, helplink: true, label: false, inline_label: 'Manual Payment Accepted'
 = f.input :manual_payment_instructions, input_html: { class: 'span6' }, :hint => 'e.g. Go the front desk now', helplink: true
-= f.input :justgiving_payment_accepted, :label => "JustGiving Payment Accepted", helplink: true
+= f.input :justgiving_payment_accepted, helplink: true, label: false, inline_label: 'JustGiving Payment Accepted'
 = f.input :justgiving_sdi_charity_id, :label => "JustGiving SDI Charity Id", helplink: true
 
 .control-group
@@ -36,7 +37,7 @@
 
 - f.object.picture or f.object.build_picture
 = f.simple_fields_for :picture do |p|
-  = p.input :image_file, as: :file, label: 'Photo File', helplink: true
+  = p.input :image_file, as: :file, label: 'Auction Image', helplink: true
   - # = p.input :image_file_url, as: :url, label: 'Photo URL', hint: "You can either choose a file to upload as your photo, or supply the URL to a photo and we'll grab it for you.", input_html: { class: 'span6' }, helplink: true
 
 

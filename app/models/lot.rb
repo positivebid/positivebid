@@ -18,7 +18,7 @@ class Lot < ActiveRecord::Base
   attr_accessible *ADMIN_FIELDS, :as => :admin
 
   STATE_DESCRIPTIONS = {
-   'draft' => 'Lot is being setup and it\'s listing is not yet visible.',
+   'draft' => 'Lot is being setup and it\'s listing is not yet visible on the bidding pages.',
    'published' => 'Lot listing is now visible.',
    'open' => 'Lot is open for bidding',
    'closing' => 'Lot bidding is closing. Last chance for new bids.',
@@ -109,15 +109,18 @@ class Lot < ActiveRecord::Base
       transition :draft => :published
     end
 
-    event :auto_open, :organiser_open_bidding_now, :admin_open_bidding_now do
+    #event :auto_open, :organiser_open_bidding_now, :admin_open_bidding_now do
+    event :auto_open, :admin_open_bidding_now do
       transition :published => :open
     end
 
-    event :auto_close_start, :organiser_start_auto_closing_now, :admin_start_auto_closing_now do
+    #event :auto_close_start, :organiser_start_auto_closing_now, :admin_start_auto_closing_now do
+    event :auto_close_start, :admin_start_auto_closing_now do
       transition :open => :closing
     end
 
-    event :organiser_close_bidding_immediately, :admin_close_bidding_immediately do
+    #event :organiser_close_bidding_immediately, :admin_close_bidding_immediately do
+    event :admin_close_bidding_immediately do
       transition :closing => :sold
       transition :open => :sold
     end

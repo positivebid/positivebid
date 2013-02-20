@@ -43,12 +43,14 @@
   - if resources.respond_to? 'num_pages'
     = paginate resources
 
-  %h3 Lot States
-  - Lot::STATES.each do |s|
-    %p
+  .well
+    %h4 Lot States
+    %p A brief description of the state lots can be in:
+    - Lot::STATES.each do |s|
       %strong #{s}
       \-
       #{Lot::STATE_DESCRIPTIONS[s]}
+      %br
 
 :javascript
   $('table tbody').sortable({

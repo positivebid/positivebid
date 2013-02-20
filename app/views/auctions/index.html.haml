@@ -35,11 +35,14 @@
 
 
 
-  %h3 Auction States
-  - Auction::STATES.each do |s|
+  .well
+    %h4 Auction States
+    %p A brief description of the state auctions can be in:
     %p
-      %strong #{s}
-      \-
-      #{Auction::STATE_DESCRIPTIONS[s]}
+      - Auction::STATES.each do |s|
+        %strong #{s}
+        \-
+        #{Auction::STATE_DESCRIPTIONS[s]}
+        %br
 
 

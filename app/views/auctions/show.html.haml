@@ -24,30 +24,43 @@
     Auction:
   %h1
     = resource.name.titleize
+
+  - if resource.state == "draft"
+    .alert.alert-success
+      %p
+        This auction is currently in state
+        %strong draft.
+      %p
+        Please continue to setup your auction and
+        %em lots 
+        (and the required 
+        %em items 
+        for those lots).
+      %p
+        The Auction will not appear 
+        on our bidding site until it has been submitted to 
+        PositiveBid and then approved by us.
+      %p
+        When you're ready please use the 
+        %b Organiser Submit for Approval
+        button below to submit the auction to us for approval.
+
   %p 
     %a.btn.btn-small{:href => edit_resource_path} Edit
     - resource.state_events.each do |event|
       - if event.to_s.match(/^organiser/)
-        %a.btn.btn-small{:href => resource_path(resource, 'auction[state_event]' => event ), 'data-method' => 'PUT'} #{event.to_s.humanize}
-    = helplink("auction_show_links")
+        %a.btn.btn-small.btn-success{:href => resource_path(resource, 'auction[state_event]' => event ), 'data-method' => 'PUT'} #{event.to_s.humanize}
+        = helplink("auction_#{event.to_s}")
 
     %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
 
 
 
   %table.table.table-striped.table-bordered
-    - for column in [ :name, :description, :location, :time_zone, :event_start_at, :event_end_at, :default_lot_timing, :charity_contact_email, :charity_contact_name, :charity_contact_telephone, :charity_name ]
+    - for column in [ :name, :description, :time_zone, :charity_contact_email, :charity_contact_name, :charity_contact_telephone, :charity_name ]
       %tr
         %th= column.to_s.humanize
         %td= resource.send(column)
-    - if resource.default_sale_start_at    
-      %tr
-        %th Default Sale Start At
-        %td= resource.default_sale_start_at.to_s(:long)
-    - if resource.default_sale_end_at    
-      %tr
-        %th Default Sale End At
-        %td= resource.default_sale_end_at.to_s(:long)
     %tr
       %th Manual Payment Accepted
       %td= resource.manual_payment_accepted

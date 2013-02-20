@@ -40,6 +40,13 @@ class Auction < ActiveRecord::Base
   accepts_nested_attributes_for :picture
 
   validates_presence_of :name
+  validates_presence_of :charity_name
+  validates_presence_of :charity_contact_name
+  validates_presence_of :charity_contact_email
+  validates_presence_of :charity_contact_telephone
+  validates_presence_of :organiser_name
+  validates_presence_of :organiser_email
+  validates_presence_of :organiser_telephone
   validates_length_of :name, :in => 2..100
   validates_length_of :manual_payment_instructions, :maximum => 250, :allow_nil => true
   validates_inclusion_of :default_lot_timing, :in => Lot::TIMINGS
@@ -94,8 +101,6 @@ class Auction < ActiveRecord::Base
 
   state_machine :initial => :draft do
 
-    before_transition :draft => :submitted, :do => :validate_can_submit
-
     event :organiser_submit_for_approval, :admin_submit do 
       transition :draft => :submitted
     end
@@ -125,16 +130,6 @@ class Auction < ActiveRecord::Base
     end
   end
 
-  def validate_can_submit
-    self.errors.add(:charity_name, "Please specify the Charity before submitting your auction for Approval") if self.charity_name.blank?
-    self.errors.add(:charity_contact_name, "Please specify the Charity Contact Name before submitting your auction for approval") if self.charity_contact_name.blank?
-    self.errors.add(:charity_contact_email, "Please specify the Charity Contact email address before submitting your auction for approval") if self.charity_contact_email.blank?
-    self.errors.add(:charity_contact_telephone, "Please specify the Charity Contact telephone address before submitting your auction for approval") if self.charity_contact_telephone.blank?
-    self.errors.add(:organiser_name, "Please specify the Organiser Name (Your Name) before submitting your auction for approval") if self.organiser_name.blank?
-    self.errors.add(:organiser_email, "Please specify the Organiser Email (Your Email) before submitting your auction for approval") if self.organiser_email.blank?
-    self.errors.add(:organiser_telephone, "Please specify the Organiser Telephone Number (Your Number) before submitting your auction for approval") if self.organiser_telephone.blank?
-    return self.errors.size == 0
-  end
 
 
 
