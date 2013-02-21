@@ -8,7 +8,10 @@
       %br
       %em #{truncate(resource.description)}
     %td 
-      %a{:href => admin_user_path(resource.user)} #{resource.user.name}
+      - if resource.user
+        %a{:href => admin_user_path(resource.user)} #{resource.user.name}
+      - else
+        (deleted)
     %td #{resource.state}
     %td
       %a.btn{:href => resource_path(resource)} View
