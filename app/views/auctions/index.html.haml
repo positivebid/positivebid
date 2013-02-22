@@ -23,26 +23,27 @@
     - if path_exists?(:new_resource_path)
       %a.btn.btn-primary{:href => new_resource_path} Add New #{resource_name.humanize}
 
-  - if resources.respond_to? 'num_pages'
-    = paginate resources
+  - if resources.any?
+    - if resources.respond_to? 'num_pages'
+      = paginate resources
 
-  %table.table.table-striped.table-bordered.table-condensed.max-width
-    = render :partial => 'header'
-    = render :partial => 'row'
+    %table.table.table-striped.table-bordered.table-condensed.max-width
+      = render :partial => 'header'
+      = render :partial => 'row'
 
-  - if resources.respond_to? 'num_pages'
-    = paginate resources
+    - if resources.respond_to? 'num_pages'
+      = paginate resources
 
 
 
-  .well
-    %h4 Auction States
-    %p A brief description of the state auctions can be in:
-    %p
-      - Auction::STATES.each do |s|
-        %strong #{s}
-        \-
-        #{Auction::STATE_DESCRIPTIONS[s]}
-        %br
+    .well
+      %h4 Auction States
+      %p A brief description of the state auctions can be in:
+      %p
+        - Auction::STATES.each do |s|
+          %strong #{s}
+          \-
+          #{Auction::STATE_DESCRIPTIONS[s]}
+          %br
 
 

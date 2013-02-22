@@ -19,7 +19,7 @@
       %a{:href => resource_items_path} Items for Lot
 
   .well
-    This lot is detailed below. To add items to this Lot click the 
+    This Lot is detailed below. To add Items to this Lot click the 
     %em Items for Lot
     link above.
 
@@ -29,14 +29,16 @@
   - if resource.state == "draft"
     .alert.alert-success
       %p
-        This lot is currently in a 
+        This Lot is currently in a 
         %strong draft
         state.
       %p
         Please continue to set up your lot by adding
         at least one
         %strong item 
-        to it.
+        to it by clicking on the blue
+        %em Items for Lot
+        link above.
       %p
         The Lot will not appear 
         on our bidding site until you publish it by

@@ -26,7 +26,7 @@ class AuctionsController < ApplicationController
         format.html do
           flash[:notice] = "#{resource_name.humanize} was successfully updated."
           if params[:auction] and params[:auction][:state_event] == "organiser_submit_for_approval"
-            flash[:success] = "Your Auction has been submitted to PositiveBid for approval. It is now in a <strong>submitted</strong> state. Once it has been approved it become <strong>active</strong> as detailed in the <strong>Auction State</strong> below. "
+            flash[:success] = "Your Auction has been submitted to PositiveBid for approval. It is now in a <strong>submitted</strong> state. Once it has been approved it will become <strong>active</strong> as detailed in the <strong>Auction State</strong> below. "
           end
           redirect_to resource_url
         end
