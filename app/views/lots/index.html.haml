@@ -15,12 +15,13 @@
 
   .well
     %p 
-      The Lots for this auction are listed below.
       - if resources.blank?
+        No Lots have yet been added to this Auction.
         To add new lots to this auction use the 
         %em Add New Lot
-        button. One or more items can be added to each lot.
+        button. One or more items should be added to each lot.
       - else
+        The Lots for this auction are listed on this page.
         Each lot needs a unique Lot Number. The order of the lots can be rearranged by clicking and dragging the 
         %em Position
         column.
@@ -36,21 +37,24 @@
   - if resources.respond_to? 'num_pages'
     = paginate resources
 
-  %table.table.table-striped.table-bordered.table-condensed.max-width
-    = render :partial => 'header'
-    = render :partial => 'row'
+  - if resources.any?
+    %table.table.table-striped.table-bordered.table-condensed.max-width
+      = render :partial => 'header'
+      = render :partial => 'row'
+
 
   - if resources.respond_to? 'num_pages'
     = paginate resources
 
-  .well
-    %h4 Lot States
-    %p A brief description of the state lots can be in:
-    - Lot::STATES.each do |s|
-      %strong #{s}
-      \-
-      #{Lot::STATE_DESCRIPTIONS[s]}
-      %br
+  - if resources.any?
+    .well
+      %h4 Lot States
+      %p A brief description of the state lots can be in:
+      - Lot::STATES.each do |s|
+        %strong #{s}
+        \-
+        #{Lot::STATE_DESCRIPTIONS[s]}
+        %br
 
 :javascript
   $('table tbody').sortable({

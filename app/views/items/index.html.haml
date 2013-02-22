@@ -20,13 +20,15 @@
 
   .well
     %p 
-      The Items for this Lot are listed below.
       - if resources.blank?
-        To add new items to this Lot use the 
+        No Items have yet been added to this Lot. At least one Item is required 
+        for each Lot.
+        To add new Items to this Lot use the 
         %em Add New Item
-        button. One or more items can be added to each lot.
+        button.
       - else
-        The order of the items can be rearranged by clicking and dragging the 
+        The Items for this Lot are listed below.
+        The order of the Items can be rearranged by clicking and dragging the 
         %em Position
         column.
 
@@ -44,9 +46,10 @@
   - if resources.respond_to? 'num_pages'
     = paginate resources
 
-  %table.table.table-striped.table-bordered.table-condensed.max-width
-    = render :partial => 'header'
-    = render :partial => 'row'
+  - if resources.any?
+    %table.table.table-striped.table-bordered.table-condensed.max-width
+      = render :partial => 'header'
+      = render :partial => 'row'
 
   - if resources.respond_to? 'num_pages'
     = paginate resources

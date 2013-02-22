@@ -19,7 +19,7 @@ class Lot < ActiveRecord::Base
 
   STATE_DESCRIPTIONS = {
    'draft' => 'Lot is being setup and it\'s listing is not yet visible on the bidding pages.',
-   'published' => 'Lot listing is now visible.',
+   'published' => 'Lot will now be visible in Auction Listing.',
    'open' => 'Lot is open for bidding',
    'closing' => 'Lot bidding is closing. Last chance for new bids.',
    'sold' => 'Lot is sold. New bids not acceptted',
@@ -105,7 +105,7 @@ class Lot < ActiveRecord::Base
 
     before_transition :draft => :published, :do => :validate_has_an_item
 
-    event :organiser_publish_listing, :admin_publish_listing do
+    event :organiser_publish_lot, :admin_publish_lot do
       transition :draft => :published
     end
 

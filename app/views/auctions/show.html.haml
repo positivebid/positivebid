@@ -28,20 +28,23 @@
   - if resource.state == "draft"
     .alert.alert-success
       %p
-        This auction is currently in state
-        %strong draft.
+        This auction is currently in a 
+        %strong draft
+        state.
       %p
-        Please continue to setup your auction and
+        Please continue to setup your auction by adding
         %em lots 
-        (and the required 
-        %em items 
-        for those lots).
+        (and at least one
+        %em item
+        for each 
+        %em lot
+        ).
       %p
-        The Auction will not appear 
-        on our bidding site until it has been submitted to 
-        PositiveBid and then approved by us.
+        This Auction will not appear 
+        in our auction application until it has been submitted to 
+        PositiveBid for approval and it has been approved by us.
       %p
-        When you're ready please use the 
+        When this Auction is fully set up please use the 
         %b Organiser Submit for Approval
         button below to submit the auction to us for approval.
 
@@ -52,7 +55,7 @@
         %a.btn.btn-small.btn-success{:href => resource_path(resource, 'auction[state_event]' => event ), 'data-method' => 'PUT'} #{event.to_s.humanize}
         = helplink("auction_#{event.to_s}")
 
-    %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure?', 'data-method' => :delete } Delete
+    %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure? really sure? This will delete the entire Auction including all of the lots and items.', 'data-method' => :delete } Delete Auction
 
 
 

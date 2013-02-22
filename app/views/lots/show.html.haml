@@ -29,17 +29,19 @@
   - if resource.state == "draft"
     .alert.alert-success
       %p
-        This lot is currently in state
-        %strong draft.
+        This lot is currently in a 
+        %strong draft
+        state.
       %p
-        Please continue to setup your lot by adding
-        %strong items 
+        Please continue to set up your lot by adding
+        at least one
+        %strong item 
         to it.
       %p
         The Lot will not appear 
         on our bidding site until you publish it by
         clicking the 
-        %b Organiser Publish Listing
+        %b Organiser Publish Lot
         button below.
 
   %p  
@@ -48,7 +50,7 @@
       - if event.to_s.match(/^organiser/)
         %a.btn.btn-small.btn-success{:href => resource_path(resource, 'lot[state_event]' => event ), 'data-method' => 'PUT'} #{event.to_s.humanize}
         = helplink("lot_#{event.to_s}")
-    %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure you want to delete the Lot? really sure?', 'data-method' => :delete } Delete
+    %a.btn.btn-small.btn-danger.right{:href => resource_path, 'data-confirm' => 'Are you sure you want to delete the Lot? really sure?', 'data-method' => :delete } Delete Lot
 
   %table.table.table-striped.table-bordered
     - for column in  [ :number, :name, :position, :min_increment ]

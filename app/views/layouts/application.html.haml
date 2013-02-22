@@ -55,15 +55,15 @@
 
     - if flash[:notice]
       .container
-        .flash.alert.alert-info.notice= flash[:notice]
+        .flash.alert.alert-info.notice= flash[:notice].html_safe
     - if flash[:error]
       .container
-        .flash.alert.alert-error.error= flash[:error]
+        .flash.alert.alert-error.error= flash[:error].html_safe
     - if flash[:alert]
       .container
-        .flash.alert.alert-error.error= flash[:alert]
+        .flash.alert.alert-error.error= flash[:alert].html_safe
     - if flash[:success]
       .container
-        .flash.alert.alert-success.success= flash[:success]
+        .flash.alert.alert-success.success= flash[:success].html_safe
     = yield
     = render 'shared/page_extras'
