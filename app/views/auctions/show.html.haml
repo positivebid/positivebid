@@ -53,7 +53,10 @@
   %p 
     %a.btn.btn-small{:href => edit_resource_path} Edit
     - resource.state_events.each do |event|
-      - if event.to_s.match(/^organiser/)
+      - if event.to_s.match(/organiser_submit_for_approval/)
+        %a.btn.btn-small.btn-success{:href => resource_path(resource, 'auction[state_event]' => event ), 'data-method' => 'PUT', 'data-confirm' => 'Please only submit your Auction for approval when it is fully set up. Proceed only if you have entered all the Lots and Items for your Auction.'} #{event.to_s.humanize}
+        = helplink("auction_#{event.to_s}")
+      - elsif event.to_s.match(/^organiser/)
         %a.btn.btn-small.btn-success{:href => resource_path(resource, 'auction[state_event]' => event ), 'data-method' => 'PUT'} #{event.to_s.humanize}
         = helplink("auction_#{event.to_s}")
 
