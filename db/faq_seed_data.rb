@@ -11,7 +11,7 @@ FAQS = [{
                 "title" => "What is the PositiveBid auction application?"
         },
         {
-                 "body" => "The team comprises Jason Lee, Peter Jones and Trang Du who all started the project in 2011 and went on to found PositiveBid Ltd having received grant funding from Nesta and the Cabinet Office. We are based at the Google Campus in East London.",
+                 "body" => "The team comprises Jason Lee and Peter Jones who started the project in 2011 and went on to found PositiveBid Ltd having received grant funding from Nesta and the Cabinet Office. We are based at the Google Campus in East London.",
              "position" => 2,
             "published" => true,
                 "title" => "Who is the PositiveBid Team?"
@@ -59,10 +59,16 @@ FAQS = [{
                 "title" => "What are the Terms and Conditions?"
         },
         {
-                 "body" => "You can contact the PositiveBid team by email at info@positivebid.com. ",
+                 "body" => "No. Gift Aid can only be claimed on donations to charities (and Community Amateur Sports Clubs). As auction Lots are being purchased the transaction is not eligible for Gift Aid. Winning auction bidders should not, therefore, make a Gift Aid declaration when paying for a Lot, and charities should not consider such purchases as eligible for the Gift Aid scheme.",
              "position" => 10,
             "published" => true,
-                "title" => "How can I findout more?"
+                "title" => "Can Gift Aid be claimed?"
+        },
+        {
+                 "body" => "You can contact the PositiveBid team by email at info@positivebid.com.",
+             "position" => 11,
+            "published" => true,
+                "title" => "How can I find out more?"
         }
     ],
      "show_answers_on_faq" => true,
@@ -116,6 +122,12 @@ FAQS = [{
              "position" => 7,
             "published" => true,
                 "title" => "Terms and Conditions"
+        },
+        {
+                 "body" => "No. Gift Aid can only be claimed on donations to charities (and Community Amateur Sports Clubs). As auction Lots are being purchased the transaction is not eligible for Gift Aid. Winning auction bidders should not, therefore, make a Gift Aid declaration when paying for a Lot, and charities should not consider such purchases as eligible for the Gift Aid scheme.",
+             "position" => 8,
+            "published" => true,
+                "title" => "Can Gift Aid be claimed?"
         }
     ],
      "show_answers_on_faq" => true,

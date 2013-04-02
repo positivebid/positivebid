@@ -1,5 +1,5 @@
 HELPS = [{
-    "content" => "The PositiveBid web-application will display a photo representing your auction in order to help bidders select it. This photo can be uploaded from a file on your computer using this input field to identify it.",
+    "content" => "The PositiveBid web-application will display a photo representing your auction in order to help bidders select it. Choose a file on your computer by clicking on the button opposite, and then selecting the photo to use.",
         "key" => "auction[picture_attributes]_image_file",
       "title" => "<b>Auction Photo File</b>"
 },{
@@ -47,11 +47,11 @@ HELPS = [{
         "key" => "auction_event_start_at",
       "title" => "<b>Charity Event Start Time</b>"
 },{
-    "content" => "<p>The winning bidder for a Lot can either pay online through Just Giving, or manually with the auction organisers. Please select at least one of these methods for the winning bidder to use.</p>\r\n<p>With the Just Giving option you will need to provide a JustGiving SDI Charity Id in the input field that appears.</p>\r\n",
+    "content" => "<p>Payments for Lots can be made in person at the auction event, or online by being directed through the application and JustGiving to the charity. Please select at least one of these methods for the winning bidder to use when paying for Lots at your event.</p>\r\n<p>To accept JustGiving payments you will need to provide your JustGiving Simple Donation Integration (SDI) Charity Id number in the box that will appear. Please ensure the number is correct!</p>\r\n",
         "key" => "auction_justgiving_payment_accepted",
       "title" => "<b>Just Giving Payment Acceptance</b>"
 },{
-    "content" => "<p>Please enter the benefiting charity's JustGiving SDI Charity Id here so that we can direct payments from the winning bidders to the correct account.</p>\r\n<p>PositiveBid does not directly handle the online payment for Lots from winning bidders.</p>",
+    "content" => "<p>Please enter the benefiting charity's JustGiving  Simple Donation Integration (SDI) Charity Id here so that we can direct payments from the winning bidders to the correct account.</p>\r\n<p>PositiveBid does not directly handle the online payment for Lots from winning bidders.</p>",
         "key" => "auction_justgiving_sdi_charity_id",
       "title" => "<b>JustGiving SDI Charity Id</b>"
 },{
@@ -59,11 +59,11 @@ HELPS = [{
         "key" => "auction_location",
       "title" => "<b>Auction Location<b>"
 },{
-    "content" => "The winning bidder for a Lot can either pay manually, or online through Just Giving. Please select at least one of these methods for the winning bidder to use.",
+    "content" => "<p>Payments for Lots can be made in person at the auction event, or online by being directed through the application and JustGiving to the charity. Please select at least one of these methods for the winning bidder to use when paying for Lots at your event.</p>",
         "key" => "auction_manual_payment_accepted",
       "title" => "<b>Manual Payment Acceptance</b>"
 },{
-    "content" => "Please instruct winning bidders how that should make a manual payment for the Lot they have won. These instructions will be displayed by the PositiveBid web-application to the winning bidder on their screen.",
+    "content" => "<p>Please instruct winning bidders how they should manually pay at the auction event for the Lot they have won. This could be by cash, cheque or credit card.</p><p>These instructions will be displayed in the application to the winning bidder, so should clearly tell them where to go and what to do to make the payment for their Lot.</p>",
         "key" => "auction_manual_payment_instructions",
       "title" => "<b>Manual Payment Instructions</b>"
 },{
@@ -71,7 +71,11 @@ HELPS = [{
         "key" => "auction_name",
       "title" => "<b>Auction Name</b>"
 },{
-    "content" => "Please give us your email address so that we contact you.",
+    "content" => "<p>An <b>active</b> auction can be <b>archived</b> by clicking the <b>Organiser archive</b> button.</p><p>This will remove the auction from the PositiveBid website and application so that it can no longer be viewed by potential bidders. As the organiser you will still be able to view the archived auction in these pages.</p>",
+        "key" => "auction_organiser_archive",
+      "title" => "<b>Archive this Auction<b>"
+},{
+    "content" => "Please provide your email address so that we contact you.",
         "key" => "auction_organiser_email",
       "title" => "<b>Organiser Email Address<b>"
 },{
@@ -79,7 +83,11 @@ HELPS = [{
         "key" => "auction_organiser_name",
       "title" => "<b>Organiser Name<b>"
 },{
-    "content" => "Please give us your telephone number so that we contact you by telephone (only if this is really necessary).",
+    "content" => "<p>When you have setup your auction by adding Lots (with items in those Lots) please use the <b>Organiser submit for approval</b> button to submit it to PositiveBid for approval.</p><p>When you submit your auction it will move from a <b>draft</b> state to a <b>submitted</b> state, and once approved by PositiveBid it will become <b>active</b>.</p><p>See the notes below for more info on these <b>Auction States</b>.</p>",
+        "key" => "auction_organiser_submit_for_approval",
+      "title" => "<b>Submit Auction for Approval</b>"
+},{
+    "content" => "Please provide your telephone number so that we contact you by telephone (only if this is really necessary).",
         "key" => "auction_organiser_telephone",
       "title" => "<b>Organiser Telephone Number<b>"
 },{
@@ -91,7 +99,7 @@ HELPS = [{
         "key" => "auction_time_zone",
       "title" => "<b>Time Zone</b>"
 },{
-    "content" => "The PositiveBid web-application can display a photo of the item. This photo can be uploaded from a file on your computer using this input field.",
+    "content" => "The PositiveBid web-application can display a photo of the item. This photo can be uploaded by clicking the <b>Choose File</b> button and then selecting a photo file on your computer.",
         "key" => "item[picture_attributes]_image_file",
       "title" => "<b>Item Photo File</b>"
 },{
@@ -131,7 +139,7 @@ HELPS = [{
         "key" => "item_terms",
       "title" => "<b>Item Terms & Conditions</b>"
 },{
-    "content" => "<p>The bidding on Lots will increase in increments. The size of these increments is set here in pounds.</p>\r\n<p>The size of these increments needs to be appropriate when compared to the estimated value of the Lot. Is is suggested that an increment between one tenth and one twentieth of the Lot value would be appropriate.</p>",
+    "content" => "<p>The bidding on Lots will increase in increments. The size of these increments is set here (in pounds).</p>\r\n<p>The size of these increments needs to be appropriate when compared to the estimated value of the Lot.</p><p>It is suggested that an increment between one tenth and one twentieth of the Lot value would be appropriate. So a £100 Lot would have a bid increment size of £5 or £10.</p>",
         "key" => "lot_min_increment",
       "title" => "<b>Bidding Increment</b>"
 },{
@@ -142,6 +150,18 @@ HELPS = [{
     "content" => "<p>Enter a Lot number which will determine where the Lot is displayed in the auction catalog.</p>\r\n<p>This number needs to be unique so do not use a number that has been used before.</p>",
         "key" => "lot_number",
       "title" => "<b>Lot Number</b>"
+},{
+    "content" => "<p>When payment for a Lot has been manually received the <b>Organiser mark payment received</b> button can be clicked to record that the payment has been made.</p>",
+        "key" => "lot_organiser_mark_payment_recieved",
+      "title" => "<b>Mark Payment Received</b>"
+},{
+    "content" => "<p>When you add a new Lot to the auction it is initially in a <b>draft</b> state, which means you can set it up without it being visible to bidders yet.</p><p>Once the Lot is setup, with at least one item in it, use the <b>Organiser publish listing</b> button to publish it so that bidders can view it.</p><p>See the notes below for more info on these Lot states.</p>",
+        "key" => "lot_organiser_publish_listing",
+      "title" => "<b>Publish this Lot</b>"
+},{
+    "content" => "<p>When Lots are first created they are in a <b>draft</b> state, which is not viewable by the public or potential bidders.</p><p>When the Lot is complete it will need to be published by clicking on the <b>Organiser publish lot</b> button so that the public and potential bidders can view it.</p><p>The Lot will move from a <b>draft</b> state to a <b>published</b> state as detailed in the <b>Lot States</b> below.</p>",
+        "key" => "lot_organiser_publish_lot",
+      "title" => "<b>Publish Lot</b>"
 },{
     "content" => "Where bidding on a Lot is scheduled to end automatically the default time entered here will be used to end the bidding. ",
         "key" => "lot_sale_end_at",
