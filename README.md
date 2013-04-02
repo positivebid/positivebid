@@ -3,6 +3,8 @@ positive
 
 PositiveBid on Rails
 
+Developed with support from Nesta http://www.nesta.org.uk/ 
+and the Cabinet Office.
 
 # postgres install instructions
 brew install postgresql
