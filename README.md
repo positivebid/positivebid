@@ -3,7 +3,7 @@ positive
 
 PositiveBid on Rails
 
-Developed with support from Nesta http://www.nesta.org.uk/ 
+Developed with support from [Nesta](http://www.nesta.org.uk/)
 and the Cabinet Office.
 
 # postgres install instructions
